@@ -6,22 +6,20 @@ import { ButtonContainer } from './Button'
 export default class Navbar extends Component {
     render() {
         return (
-            <NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-3">
+            <NavWrapper className="navbar fixed-top navbar-expand-lg navbar-dark justify-content-between">
+
                 <Link to='/' className="navbar-brand">
                     codl
                 </Link>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control bg-dark mr-sm-2 border-0" type="search" placeholder="Search" aria-label="Search"/>
+                <form class="form-inline col-6">
+                    <input class="form-control bg-dark mr-sm-2 border-0 col-12" type="search" placeholder="Search" aria-label="Search"/>
                 </form>
-                <ul className="navbar-nav bd-navbar-nav flex-row">
-                    <li className="nav-item">About</li>
-                    <li className="nav-item">About</li>
-                </ul>
-                <Link to='/' className="ml-auto">
+                <Link to='/' className="">
                     <ButtonContainer>
                         Sign in
                     </ButtonContainer>
                 </Link>
+                
             </NavWrapper>
         )
     }
