@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const CardContainer = styled.div`
         width: 15rem;
-        margin-left: 10px;
-        margin-top: 10px;
+        margin-bottom: 10px;
         font-size: 0.9rem;
         line-height: 1.35em;
         border-radius: 3px;

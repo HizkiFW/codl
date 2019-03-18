@@ -6,7 +6,7 @@ export default class Tags extends Component {
     render() {
         return (
             <CardContainer className="card">
-                <div class="card-header">
+                <div className="card-header">
                     Tags
                 </div>
                 <ul className="list-group list-group-flush">

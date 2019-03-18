@@ -10,8 +10,8 @@ export default class Navbar extends Component {
                     <Link to='/' className="navbar-brand">
                         codl
                 </Link>
-                    <form class="form-inline col-6">
-                        <input class="form-control bg-dark mr-sm-2 border-0 col-12" type="search" placeholder="Search" aria-label="Search" />
+                    <form className="form-inline col-6">
+                        <input className="form-control bg-dark mr-sm-2 border-0 col-12" type="search" placeholder="Search" aria-label="Search" />
                     </form>
                     <Link to='/' className="">
                         <ButtonContainer>

@@ -5,11 +5,11 @@ export default class Welcome extends Component {
   render() {
     return (
     <CardContainer className="card">
-        <div class="card-header">
+        <div className="card-header">
             Welcome
         </div>
-        <div class="card-body">
-        <p class="card-text">Share and discuss about the best/coolest piece of code you have ever seen!</p>
+        <div className="card-body">
+        <p className="card-text">Share and discuss the best/coolest piece of code you have ever seen!</p>
         </div>
     </CardContainer>
     )
