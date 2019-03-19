@@ -1,30 +1,34 @@
 import React, { Component } from 'react'
-import Prism from "prismjs"
 import styled from 'styled-components';
-import "prismjs/themes/prism-coy.css";
+import { Pre, LineNo } from './styles'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+import theme from 'prism-react-renderer/themes/vsDarkPlus'
 
+const exampleCode = `
+  (function someDemo() {
+    var test = "Hello World!";
+    console.log(test);
+  })();
+  
+  return () => <App />;
+  `;
 export default class Post extends Component {
-
-  componentDidMount() {
-    Prism.highlightAll();
-  }
 
   render() {
     return (
       <PostWrapper>
-        <pre className="language-javascript line-numbers">
-          <code className="language-javascript">
-            {`
-onSubmit(e) {
-  e.preventDefault();
-  const job = {
-    title: 'Developer',
-    company: 'Facebook' 
-    };
-}
-  `}
-          </code>
-        </pre>
+        <Highlight {...defaultProps} theme={theme} code={exampleCode} language="jsx">
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <Pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })}>
+                  <LineNo>{i + 1}</LineNo>
+                  {line.map((token, key) => <span {...getTokenProps({ token, key })} />)}
+                </div>
+              ))}
+            </Pre>
+          )}
+        </Highlight>
       </PostWrapper>
     )
   }
