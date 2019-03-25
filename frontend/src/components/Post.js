@@ -7,15 +7,16 @@ export default class Post extends Component {
   render() {
     return (
       <PostWrapper>
-        <h1>Title</h1>
-       <Code/>
-       <span>This shit is really awesome because I made it myself</span>
+        <h1>{this.props.data.title}</h1>
+        <Code />
+        <span>{this.props.data.description}</span>
       </PostWrapper>
     )
   }
 }
 
 const PostWrapper = styled.div`
+        margin-bottom: 15px;
         background:white;
         padding: 15px 15px;
 `
