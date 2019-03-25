@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class WebServices {
 
 	@GET
+	@Path("/Posts")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getPosts() {
 		String response="";
