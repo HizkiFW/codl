@@ -1,15 +1,17 @@
 package com.codl.models;
 
 public class Post {
-	
-	public String Title;
-	public String Code;
-	public String Description;
 
-	public Post(String title, String code, String description) {
-		this.Title = title;
-		this.Code = code;
-		this.Description = description;
+	public long id;
+	public String title;
+	public String code;
+	public String description;
+
+	public Post(long id, String title, String code, String description) {
+		this.id = id;
+		this.title = title;
+		this.code = code;
+		this.description = description;
 	}
 
 }
