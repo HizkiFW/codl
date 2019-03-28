@@ -10,11 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="POSTS")
+@Table(name="POST")
 public class Post implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="POST_ID")
 	private long id;
 	@Column(name="TITLE")
@@ -37,6 +37,10 @@ public class Post implements Serializable {
 		this.language = language;
 		this.voteCount = voteCount;
 		this.userId = userId;
+	}
+	
+	public Post() {
+		
 	}
 
 	public long getId() {

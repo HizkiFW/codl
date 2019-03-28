@@ -10,7 +10,7 @@
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.properties.packages</param-name>
-			<param-value>com.codl.rest</param-value>
+			<param-value>com.codl.web</param-value>
 		</init-param>
 		<init-param>
 			<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
@@ -22,6 +22,13 @@
 		<servlet-name>Jersey Web Application</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring.xml</param-value>
+	</context-param>
+	    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
 	<filter>
 		<filter-name>CORS</filter-name>
