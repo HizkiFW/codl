@@ -11,22 +11,21 @@
         http://www.springframework.org/schema/context/spring-context-3.0.xsd 
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
-	<context:annotation-config />
-	<context:component-scan
-		base-package="com.codl.web" />
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-		p:location="/WEB-INF/jdbc.properties"></bean>
+        
+     <context:annotation-config />
+    <context:component-scan base-package="com.howtodoinjava.controller" />
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" p:location="classpath:jdbc.properties"></bean>
+	
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
 		p:driverClassName="${jdbc.driverClassName}"
 		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
 		p:password="${jdbc.password}"></bean>
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation"
-			value="classpath:/META_INF/hibernate.cfg.xml" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
@@ -34,10 +33,9 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="postDAO" class="com.codl.dao.PostDAOImpl"></bean>
-	<bean id="postManager" class="com.codl.service.PostManagerImpl"></bean>
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean id="postManager" class="com.codl.service.PostManagerImpl"/>
+	<bean id="postDAO" class="com.codl.dao.PostDAOImpl"/>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 </beans>
