@@ -3,7 +3,9 @@ package com.codl.web;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -19,24 +21,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class PostWebServices {
 
-    @Autowired
-    private PostManager postManager;
-	
+	@Autowired
+	private PostManager postManager;
+
 	@GET
 	@Path("getPosts")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getPosts() {
-		String response="";
+		String response = "";
 		List<Post> allPosts = postManager.getAllPosts();
-		/*Post[] posts = new Post[2];
-		posts[0] = new Post("Title1", "<html>Hello World</html>", "This si the first code", "HTML", 10, 1);
-		posts[1] = new Post("Title2", "<html>Hello bitch</html>", "This si the second code", "HTML", 2, 1);*/
-		
 		ObjectMapper Obj = new ObjectMapper();
 
 		try {
 
-			 response = Obj.writeValueAsString(allPosts);
+			response = Obj.writeValueAsString(allPosts);
 
 		}
 
@@ -44,8 +42,15 @@ public class PostWebServices {
 			e.printStackTrace();
 		}
 
-	return response;
+		return response;
 
-}
+	}
+
+	@POST
+	@Path("submitPost")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addPost(Post post) {
+		 postManager.addPost(post);
+	}
 
 }

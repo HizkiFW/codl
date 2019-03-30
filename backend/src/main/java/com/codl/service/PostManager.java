@@ -7,5 +7,6 @@ import com.codl.models.Post;
 public interface PostManager {
 	
 	 public List<Post> getAllPosts();
+	 public void addPost(Post post);
 
 }

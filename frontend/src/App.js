@@ -5,8 +5,10 @@ import Navbar from './components/Navbar';
 import Tags from './components/Tags';
 import Welcome from './components/Welcome';
 import SocialMedia from './components/SocialMedia';
-import Submit from './components/Submit';
+import PostForm from './components/PostForm';
 import Error from './components/Error';
+import { Provider } from 'react-redux';
+import store from './store';
 
 class App extends Component {
   render() {
@@ -22,8 +24,10 @@ class App extends Component {
             </div>
             <div className="p-1 flex-grow-1">
               <Switch>
-                <Route path="/" component={Home} exact />
-                <Route path="/submit" component={Submit} />
+                <Provider store={store}>
+                  <Route path="/" component={Home} exact />
+                  <Route path="/submit" component={PostForm} />
+                </Provider>
                 <Route component={Error} />
               </Switch>
             </div>

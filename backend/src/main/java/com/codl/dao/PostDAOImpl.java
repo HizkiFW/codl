@@ -20,4 +20,9 @@ public class PostDAOImpl implements PostDAO {
         return this.sessionFactory.getCurrentSession().createQuery("from Post").list();
     }
 
-}
+    @Override
+	public void addPost(Post post) {
+    	this.sessionFactory.getCurrentSession().save(post);	
+	}
+
+}	

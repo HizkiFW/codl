@@ -20,5 +20,10 @@ public class PostManagerImpl implements PostManager {
 	public List<Post> getAllPosts() {
 		return postDAO.getAllPosts();
 	}
-
+	
+	@Override
+	@Transactional
+	public void addPost(Post post) {
+		 postDAO.addPost(post);
+	}
 }
