@@ -3,19 +3,11 @@ import { Pre, LineNo } from './styles'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/vsDarkPlus'
 
-const exampleCode = `
-  (function someDemo() {
-    var test = "Hello World!";
-    console.log(test);
-  })();
-  
-  return () => <App />;
-  `;
 export default class Code extends Component {
 
   render() {
     return (
-        <Highlight {...defaultProps} theme={theme} code={exampleCode} language="jsx">
+        <Highlight {...defaultProps} theme={theme} code={this.props.code} language={this.props.language}>
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <Pre className={className} style={style}>
               {tokens.map((line, i) => (

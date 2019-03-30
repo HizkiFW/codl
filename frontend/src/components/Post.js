@@ -7,9 +7,10 @@ export default class Post extends Component {
   render() {
     return (
       <PostWrapper>
-        <h1>{this.props.data.title}</h1>
-        <Code />
+        <h4>{this.props.data.language} / No.{this.props.data.id}</h4>
+        <Code code={this.props.data.code} language={this.props.data.language}/>
         <span>{this.props.data.description}</span>
+        <p>{this.props.data.user.username}, {this.props.data.dateCreation}</p>
       </PostWrapper>
     )
   }

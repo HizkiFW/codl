@@ -1,34 +1,35 @@
 import React, { Component } from 'react';
-//import { Switch, Route } from 'react-router-dom';
-import './App.css';
-import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from "./components/Home"
 import Navbar from './components/Navbar';
 import Tags from './components/Tags';
-import PostList from './components/Posts';
-//import Default from './components/Default';
 import Welcome from './components/Welcome';
-import Links from './components/Links';
-import { Provider } from 'react-redux';
-import store from './store'
+import SocialMedia from './components/SocialMedia';
+import Submit from './components/Submit';
+import Error from './components/Error';
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <BrowserRouter>
         <React.Fragment>
           <Navbar />
           <div className="d-flex">
-            <div className="p-2">
+            <div className="p-1">
               <Welcome />
               <Tags />
-              <Links />
+              <SocialMedia />
             </div>
-            <div className="p-2 flex-grow-1">
-              <PostList />
+            <div className="p-1 flex-grow-1">
+              <Switch>
+                <Route path="/" component={Home} exact />
+                <Route path="/submit" component={Submit} />
+                <Route component={Error} />
+              </Switch>
             </div>
           </div>
         </React.Fragment>
-      </Provider>
+      </BrowserRouter>
     );
   }
 }

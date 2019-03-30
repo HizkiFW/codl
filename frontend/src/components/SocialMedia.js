@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CardContainer } from './Card'
 
-export default class Links extends Component {
+export default class SocialMedia extends Component {
   render() {
     return (
       <CardContainer className="card">

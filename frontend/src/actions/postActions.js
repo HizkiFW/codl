@@ -8,3 +8,7 @@ export const fetchPosts = () => dispatch => {
             payload: posts
         }));
 }
+
+export const createPost = (postData) => dispatch => {
+
+}
