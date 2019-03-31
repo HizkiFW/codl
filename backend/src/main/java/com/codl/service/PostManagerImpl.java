@@ -1,5 +1,6 @@
 package com.codl.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,13 @@ public class PostManagerImpl implements PostManager {
 	public List<Post> getAllPosts() {
 		return postDAO.getAllPosts();
 	}
-	
+
 	@Override
 	@Transactional
 	public void addPost(Post post) {
-		 postDAO.addPost(post);
+		Date now = new Date();
+		post.setVoteCount(0);
+		post.setDateCreation(now);
+		postDAO.addPost(post);
 	}
 }

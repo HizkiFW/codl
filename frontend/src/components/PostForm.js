@@ -26,18 +26,13 @@ class PostForm extends Component {
         e.preventDefault();
 
         const post = {
-            id: '',
             title: this.state.title,
             code: this.state.code,
             description: this.state.description,
             language: this.state.language,
-            voteCount: '',
             user: {
-                id: '',
-                username: '',
-                dateCreation: '',
+                id: 1
             },
-            dateCreation: ''
         }
 
         this.props.createPost(post);
@@ -49,11 +44,12 @@ class PostForm extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Title</label>
-                        <input className="form-control" id="exampleInputEmail1" onChange={this.onChange} name="title" value={this.state.title} />
+                        <input className="form-control" id="exampleInputEmail1" onChange={this.onChange} name="title" value={this.state.title} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlSelect1">Language select</label>
-                        <select className="form-control" id="exampleFormControlSelect1" onChange={this.onChange} name="langauge" value={this.state.language}>
+                        <select className="form-control" id="exampleFormControlSelect1" onChange={this.onChange} name="language" value={this.state.language} required>
+                            <option></option>
                             <option>HTML</option>
                             <option>JAVA</option>
                             <option>RUST</option>
@@ -63,7 +59,7 @@ class PostForm extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea3">Code</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea3" rows="7" onChange={this.onChange} name="code" value={this.state.code} />
+                        <textarea className="form-control" id="exampleFormControlTextarea3" rows="7" onChange={this.onChange} name="code" value={this.state.code} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea3">Description</label>

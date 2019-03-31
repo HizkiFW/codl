@@ -16,6 +16,15 @@ export const createPost = (postData) => dispatch => {
             'content-type': 'application/json'
         },
         body: JSON.stringify(postData)
+    }).then(response => {
+        if (response.ok) {
+            window.location = "/";
+          } else {
+            throw new Error('Something went wrong');
+          }
+        })
+        .catch((error) => {
+          alert(error);
+        });
 
-    })
 }

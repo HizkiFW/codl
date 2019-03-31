@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "classnames": "^2.2.6",
     "prism-react-renderer": "^0.1.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
