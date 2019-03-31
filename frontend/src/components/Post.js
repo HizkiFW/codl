@@ -9,9 +9,9 @@ export default class Post extends Component {
     return (
       <PostWrapper>
         <div className="d-flex bd-highlight mb-3">
-          <div className="p-2 bd-highlight">
-            <h4>{this.props.data.language} No.{this.props.data.id} / {this.props.data.title}</h4>
-          posted by {this.props.data.user.username}, {this.props.data.dateCreation}
+          <div className="bd-highlight">
+            <h4><span className="language">#{this.props.data.language}</span> {this.props.data.title}</h4>
+          <span className="author">{this.props.data.user.username}・{this.props.data.dateCreation}</span>
           </div>
           <div className="ml-auto p-2 bd-highlight">
             <Upvote
@@ -40,4 +40,16 @@ const PostWrapper = styled.div`
         margin-bottom: 10px;
         background:white;
         padding: 15px 15px;
+        .author {
+          color:#666;
+          font-size:17px;
+        }
+        .language {
+          background: #091b47;
+          color: #b2ffe1;
+          border-radius: 4px;
+          font-size: 15px;
+          padding: 2px 6px 3px;
+          vertical-align: 4px;
+        }
 `
