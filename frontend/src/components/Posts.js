@@ -27,4 +27,8 @@ const mapStateToProps = state => ({
   posts: state.posts.items
 });
 
-export default connect(mapStateToProps, { fetchPosts })(Posts);
+const mapDispatchToProps = {
+  fetchPosts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

@@ -16,7 +16,8 @@ class PostForm extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    }
+    };
+
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -72,10 +73,14 @@ class PostForm extends Component {
     }
 }
 
-export default connect(null, { createPost })(PostForm);
+const mapDispatchToProps = {
+    createPost
+};
+
+export default connect(null, mapDispatchToProps)(PostForm);
 
 const PostFormWrapper = styled.div`
-                        margin-bottom: 15px;
-                        background:white;
-                        padding: 15px 15px;
+margin-bottom: 15px;
+background:white;
+padding: 15px 15px;
 `
