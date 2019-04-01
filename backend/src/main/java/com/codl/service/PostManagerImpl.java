@@ -30,4 +30,16 @@ public class PostManagerImpl implements PostManager {
 		post.setDateCreation(now);
 		postDAO.addPost(post);
 	}
+	
+	@Override
+	@Transactional
+	public void upvotePost(long id) {
+		postDAO.upvotePost(id);
+	}
+	
+	@Override
+	@Transactional
+	public void downvotePost(long id) {
+		postDAO.downvotePost(id);
+	}
 }

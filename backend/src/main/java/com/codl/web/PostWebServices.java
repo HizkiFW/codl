@@ -33,9 +33,7 @@ public class PostWebServices {
 		ObjectMapper Obj = new ObjectMapper();
 
 		try {
-
 			response = Obj.writeValueAsString(allPosts);
-
 		}
 
 		catch (IOException e) {
@@ -50,7 +48,21 @@ public class PostWebServices {
 	@Path("submitPost")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addPost(Post post) {
-		 postManager.addPost(post);
+		postManager.addPost(post);
+	}
+
+	@POST
+	@Path("upvotePost")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void upvotePost(long id) {
+		postManager.upvotePost(id);
+	}
+
+	@POST
+	@Path("downvotePost")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void downvotePost(long id) {
+		postManager.downvotePost(id);
 	}
 
 }

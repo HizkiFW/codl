@@ -9,7 +9,6 @@ export default class Upvote extends React.Component {
         super(props);
 
         this.state = {
-            updating: false,
             voteStatus: props.voteStatus
         };
     }
@@ -24,7 +23,6 @@ export default class Upvote extends React.Component {
         }
 
         this.setState({
-            updating: false,
             voteStatus: nextProps.voteStatus
         });
     }
@@ -47,7 +45,6 @@ export default class Upvote extends React.Component {
 
     vote(nextStatus) {
         let {
-            updating,
             voteStatus
         } = this.state;
 
@@ -57,7 +54,7 @@ export default class Upvote extends React.Component {
             onRemoveVote
         } = this.props;
 
-        if (updating || !this.allowed()) {
+        if (!this.allowed()) {
             return;
         }
 
@@ -85,16 +82,13 @@ export default class Upvote extends React.Component {
 
         this.setState({
             // update voteStatus
-            voteStatus: nextStatus,
-            // wait for action to complete before allowing upvote
-            updating: true
+            voteStatus: nextStatus
         });
     }
 
     render() {
         let {
-            voteStatus,
-            updating
+            voteStatus
         } = this.state;
 
         let {
@@ -107,8 +101,7 @@ export default class Upvote extends React.Component {
 
         let upvoteCx = cx(className, {
             'upvoted': voteStatus === 1,
-            'downvoted': voteStatus === -1,
-            'updating': updating
+            'downvoted': voteStatus === -1
         });
 
         let upvote = upvoteContent && (
@@ -183,16 +176,10 @@ Upvote.defaultProps = {
 const UpvoteWrapper = styled.div`
 text-align: center;
 .react-upvote {
-    line-height: 32px;
+    line-height: 25px;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-
-    &-buttons,
-    &-count {
-        display: inline-block;
-        vertical-align: middle;
-    }
 
     .downvote,
     .upvote {
@@ -200,11 +187,11 @@ text-align: center;
         cursor: pointer;
     }
 
-    &.downvoted .icon-downvote {
+    &.downvoted .downvote-icon {
         color: #39f;
     }
 
-    &.upvoted .icon-upvote {
+    &.upvoted .upvote-icon{
         color: #f00;
     }
 }
