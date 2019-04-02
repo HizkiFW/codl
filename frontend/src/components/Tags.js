@@ -11,10 +11,10 @@ export default class Tags extends Component {
                 </div>
                 <ul className="list-group list-group-flush">
                     <Link to='/' className="">
-                        <li className="list-group-item">#PHP (1346)</li>
+                        <li className="list-group-item">#php (1346)</li>
                     </Link>
                     <Link to='/' className="">
-                        <li className="list-group-item">#Java (786)</li>
+                        <li className="list-group-item">#java (786)</li>
                     </Link>
                     <Link to='/' className="">
                         <li className="list-group-item">#C++ (314)</li>

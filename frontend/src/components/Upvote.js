@@ -105,13 +105,19 @@ export default class Upvote extends React.Component {
         });
 
         let upvote = upvoteContent && (
-            <div className="upvote" onClick={() => this.vote(1)}>
+            <div className="upvote" onClick={(e) => {
+                e.preventDefault();
+                this.vote(1)
+            }}>
                 {upvoteContent}
             </div>
         );
 
         let downvote = downvoteContent && (
-            <div className="downvote" onClick={() => this.vote(-1)}>
+            <div className="downvote" onClick={(e) => {
+                e.preventDefault();
+                this.vote(-1)
+            }}>
                 {downvoteContent}
             </div>
         );
@@ -181,10 +187,22 @@ text-align: center;
     -webkit-user-select: none;
     -ms-user-select: none;
 
-    .downvote,
     .upvote {
         line-height: 1;
         cursor: pointer;
+
+        &:hover {
+            color: #f00;
+        }
+    }
+
+    .downvote {
+        line-height: 1;
+        cursor: pointer;
+
+        &:hover {
+            color: #39f;
+        }
     }
 
     &.downvoted .downvote-icon {

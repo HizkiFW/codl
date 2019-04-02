@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 import Code from './Code';
 import Upvote from './Upvote';
 import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from '../actions/postActions';
+
+TimeAgo.addLocale(en)
+const timeAgo = new TimeAgo('en-US');
 
 class Post extends Component {
 
@@ -20,12 +25,13 @@ class Post extends Component {
   }
 
   render() {
+    let date = timeAgo.format(new Date(this.props.data.dateCreation), 'twitter');
     return (
       <PostWrapper>
         <div className="d-flex bd-highlight mb-3">
           <div className="bd-highlight">
             <h4><span className="language">#{this.props.data.language}</span> {this.props.data.title}</h4>
-            <span className="author">{this.props.data.user.username}・{this.props.data.dateCreation}</span>
+            <span className="author">{this.props.data.user.username}・{date}</span>
           </div>
           <div className="ml-auto p-2 bd-highlight">
             <Upvote

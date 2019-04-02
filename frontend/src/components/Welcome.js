@@ -6,7 +6,7 @@ export default class Welcome extends Component {
     return (
     <CardContainer className="card">
         <div className="card-header">
-            Welcome
+            Welcome <i className="fa fa-heart"></i>
         </div>
         <div className="card-body">
         <p className="card-text">Share and discuss the best/coolest piece of code you have ever seen!</p>

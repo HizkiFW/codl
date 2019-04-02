@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Post from './Post'
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { fetchPosts } from '../actions/postActions';
 
 class Posts extends Component {
@@ -11,9 +13,11 @@ class Posts extends Component {
 
   render() {
     const postItems = this.props.posts.map(post => (
-      <div key={post.id}>
-        <Post data={post} />
-      </div>
+      <PostsWrapper key={post.id}>
+        <NavLink to={'/comments/' + post.id}>
+          <Post data={post} />
+        </NavLink>
+      </PostsWrapper>
     ));
     return (
       <div>
@@ -32,3 +36,10 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+
+const PostsWrapper = styled.div`
+  a {
+    text-decoration: none;
+    color:inherit;
+  }
+`
