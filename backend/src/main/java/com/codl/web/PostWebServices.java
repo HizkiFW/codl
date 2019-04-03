@@ -45,6 +45,27 @@ public class PostWebServices {
 	}
 
 	@POST
+	@Path("getPost")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getPost(long id) {
+		System.out.println("LOOOOOOOOOOOOOOOL" + id);
+		String response = "";
+		Post post = postManager.getPost(id);
+		ObjectMapper Obj = new ObjectMapper();
+
+		try {
+			response = Obj.writeValueAsString(post);
+		}
+
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return response;
+	}
+
+	@POST
 	@Path("submitPost")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addPost(Post post) {

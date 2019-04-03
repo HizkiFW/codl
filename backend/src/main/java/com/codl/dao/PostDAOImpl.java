@@ -34,7 +34,7 @@ public class PostDAOImpl implements PostDAO {
 			this.sessionFactory.getCurrentSession().save(post);
 		}
 	}
-	
+
 	@Override
 	public void downvotePost(long id) {
 		Post post = (Post) this.sessionFactory.getCurrentSession().get(Post.class, id);
@@ -43,6 +43,11 @@ public class PostDAOImpl implements PostDAO {
 			post.setVoteCount(post.getVoteCount() - 1);
 			this.sessionFactory.getCurrentSession().save(post);
 		}
+	}
+
+	@Override
+	public Post getPost(long id) {
+		return (Post) this.sessionFactory.getCurrentSession().get(Post.class, id);
 	}
 
 }
