@@ -21,12 +21,6 @@ public class PostManagerImpl implements PostManager {
 	public List<Post> getAllPosts() {
 		return postDAO.getAllPosts();
 	}
-	
-	@Override
-	@Transactional
-	public Post getPost(long id) {
-		return postDAO.getPost(id);
-	}
 
 	@Override
 	@Transactional

@@ -3,7 +3,7 @@ import Post from './Post'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { fetchPosts, fetchPost } from '../actions/postActions';
+import { fetchPosts } from '../actions/postActions';
 
 class Posts extends Component {
 
@@ -14,7 +14,12 @@ class Posts extends Component {
   render() {
     const postItems = this.props.posts.map(post => (
       <PostsWrapper key={post.id}>
-        <Link to={'/comments/' + post.id} onClick={() => { this.props.fetchPost(post.id) }}>
+        <Link to={{
+          pathname: '/comments/' + post.id,
+          state: {
+            postId: post.id
+          }
+        }}>
           <Post data={post} />
         </Link>
       </PostsWrapper>
@@ -32,8 +37,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchPosts,
-  fetchPost
+  fetchPosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

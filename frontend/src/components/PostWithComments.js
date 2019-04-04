@@ -9,21 +9,15 @@ class PostWithComments extends Component {
         return (
             <React.Fragment>
                 <Post data={this.props.post} />
-                <Comments data={this.props.post.comments}/>
+                <Comments data={this.props.post.comments} />
             </React.Fragment>
         )
     }
-
 }
 
-/*const mapStateToProps = state => ({
-    post: state.posts.item
-});*/
-
-function mapStateToProps(state) {
-    console.log('hello');
-    return { post: state.posts.item }
-  }
+const mapStateToProps = (state, props) => ({
+    post: state.posts.items.find(x => x.id === props.location.state.postId)
+});
 
 export default connect(mapStateToProps, null)(PostWithComments);;
 

@@ -10,6 +10,5 @@ public interface PostManager {
 	 public void addPost(Post post);
 	 public void upvotePost(long id);
 	 public void downvotePost(long id);
-	 public Post getPost(long id);
 
 }

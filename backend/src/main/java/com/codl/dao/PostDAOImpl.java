@@ -45,9 +45,4 @@ public class PostDAOImpl implements PostDAO {
 		}
 	}
 
-	@Override
-	public Post getPost(long id) {
-		return (Post) this.sessionFactory.getCurrentSession().get(Post.class, id);
-	}
-
 }

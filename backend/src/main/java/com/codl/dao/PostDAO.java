@@ -10,6 +10,5 @@ public interface PostDAO {
     public List<Post> getAllPosts();
     public void upvotePost(long id);
     public void downvotePost(long id);
-    public Post getPost(long id);
     
 }
