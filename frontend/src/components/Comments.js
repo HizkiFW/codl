@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
+import Comment from './Comment'
+import CommentForm from './CommentForm';
+import styled from 'styled-components';
 
 class Comments extends Component {
 
   render() {
     const commentItems = this.props.data.map(comment => (
-      <div key={comment.id}>
-        {comment.text}
-      </div>
+      <Comment key={comment.id} data={comment} />
     ));
     return (
-      <div>
+      <CommentsWrapper>
+        <CommentForm />
         {commentItems}
-      </div>
+      </CommentsWrapper>
     )
   }
 }
 
 export default Comments;
+
+const CommentsWrapper = styled.div`
+background:white;
+padding: 15px 15px;
+margin-bottom:10px
+
+`

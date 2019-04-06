@@ -33,7 +33,7 @@ class Post extends Component {
             <h4><span className="language">#{this.props.data.language}</span> {this.props.data.title}</h4>
             <span className="author">{this.props.data.user.username}・{date}</span>
           </div>
-          <div className="ml-auto p-2 bd-highlight">
+          <div className="ml-auto bd-highlight">
             <Upvote
               //voteStatus={user.votes[postData.id] || 0}
               voteStatus={0}
