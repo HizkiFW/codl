@@ -7,7 +7,7 @@ export default class Navbar extends Component {
     render() {
         return (
             <NavWrapper className="navbar navbar-expand-lg navbar-dark justify-content-between">
-                <NavLink to='/' className="navbar-brand">
+                <NavLink to="/" className="navbar-brand">
                     codl
                 </NavLink>
                 <form className="form-inline col-6">
