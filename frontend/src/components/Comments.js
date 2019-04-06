@@ -23,6 +23,7 @@ export default Comments;
 const CommentsWrapper = styled.div`
 background:white;
 padding: 15px 15px;
-margin-bottom:10px
-
+margin-bottom:10px;
+border-radius: 3px;
+margin-right: 5px;
 `

@@ -52,7 +52,7 @@ class PostForm extends Component {
                         <select className="form-control" id="exampleFormControlSelect1" onChange={this.onChange} name="language" value={this.state.language} required>
                             <option></option>
                             <option>HTML</option>
-                            <option>JAVA</option>
+                            <option>java</option>
                             <option>RUST</option>
                             <option>GO</option>
                             <option>JAVASCRIPT</option>
@@ -80,7 +80,10 @@ const mapDispatchToProps = {
 export default connect(null, mapDispatchToProps)(PostForm);
 
 const PostFormWrapper = styled.div`
+border-radius: 3px;
 margin-bottom: 15px;
+margin-top:5px;
+margin-right:5px;
 background:white;
 padding: 15px 15px;
 `

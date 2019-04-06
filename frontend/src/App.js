@@ -16,30 +16,30 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Provider store={store}>
-          <PersistGate persistor={persistor}>
-            <Navbar />
-            <div className="d-flex">
-              <div className="p-1">
-                <Welcome />
-                <Tags />
-                <SocialMedia />
-              </div>
-              <div className="p-1 flex-grow-1">
-                <BrowserRouter>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <BrowserRouter>
+            <React.Fragment>
+              <Navbar />
+              <div className="d-flex">
+                <div className="p-1">
+                  <Welcome />
+                  <Tags />
+                  <SocialMedia />
+                </div>
+                <div className="p-1 flex-grow-1">
                   <Switch>
                     <Route path="/" component={Home} exact />
                     <Route path="/submit" component={PostForm} />
                     <Route path="/comments/*" component={PostWithComments} />
                     <Route component={Error} />
                   </Switch>
-                </BrowserRouter>
+                </div>
               </div>
-            </div>
-          </PersistGate>
-        </Provider>
-      </React.Fragment>
+            </React.Fragment>
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
     );
   }
 }

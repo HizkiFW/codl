@@ -65,6 +65,9 @@ export default connect(null, mapDispatchToProps)(Post);
 
 
 const PostWrapper = styled.div`
+border-radius: 3px;
+margin-top:5px;
+margin-right:5px;
 margin-bottom: 10px;
 background:white;
 padding: 15px 15px;
