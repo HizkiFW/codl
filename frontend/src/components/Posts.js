@@ -20,7 +20,7 @@ class Posts extends Component {
             postId: post.id
           }
         }}>
-          <Post data={post} />
+          <Post data={post} isHidden={false}/>
         </Link>
       </PostsWrapper>
     ));

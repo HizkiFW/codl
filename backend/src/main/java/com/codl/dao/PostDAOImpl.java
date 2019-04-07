@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.codl.models.Comment;
 import com.codl.models.Post;
 
 @Repository
@@ -23,6 +24,11 @@ public class PostDAOImpl implements PostDAO {
 	@Override
 	public void addPost(Post post) {
 		this.sessionFactory.getCurrentSession().save(post);
+	}
+	
+	@Override
+	public void addComment(Comment comment) {
+		this.sessionFactory.getCurrentSession().save(comment);
 	}
 
 	@Override

@@ -13,31 +13,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COMMENT")
+@Table(name = "COMMENT")
 public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private long id;
-	@Column(name="TEXT")
+	@Column(name = "TEXT")
 	private String text;
 	@ManyToOne
-	@JoinColumn(name="USER_ID", nullable=false)
+	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
-	@Column(name="DATE_CREATION")
+	@Column(name = "DATE_CREATION")
 	private Date dateCreation;
-	
-	public Comment(String text, User user, Date dateCreation) {
+	@Column(name = "POST_ID")
+	private long postId;
+
+	public Comment(String text, User user, Date dateCreation, long postId) {
 		this.text = text;
 		this.user = user;
 		this.dateCreation = dateCreation;
+		this.postId = postId;
 	}
-	
+
 	public Comment() {
-		
+
 	}
 
 	public long getId() {
@@ -74,6 +77,14 @@ public class Comment implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public long getPostId() {
+		return postId;
+	}
+
+	public void setPostId(long postId) {
+		this.postId = postId;
 	}
 
 }

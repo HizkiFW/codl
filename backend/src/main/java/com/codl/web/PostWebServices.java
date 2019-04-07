@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.codl.models.Comment;
 import com.codl.models.Post;
 import com.codl.service.PostManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,6 +45,13 @@ public class PostWebServices {
 
 	}
 
+	@POST
+	@Path("submitComment")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addComment(Comment comment) {
+		postManager.addComment(comment);
+	}
+	
 	@POST
 	@Path("submitPost")
 	@Consumes(MediaType.APPLICATION_JSON)

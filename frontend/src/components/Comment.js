@@ -9,6 +9,10 @@ const timeAgo = new TimeAgo('en-US');
 export default class Comment extends Component {
   render() {
     let date = timeAgo.format(new Date(this.props.data.dateCreation), 'twitter');
+
+    if (date === "") {
+      date = "seconds ago"
+    }
     return (
       <CommentWrapper>
         <div className="d-flex bd-highlight mb-3">

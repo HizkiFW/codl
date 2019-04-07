@@ -8,8 +8,8 @@ class PostWithComments extends Component {
     render() {
         return (
             <React.Fragment>
-                <Post data={this.props.post} />
-                <Comments data={this.props.post.comments} />
+                <Post data={this.props.post} isHidden={true}/>
+                <Comments data={this.props.post.comments} postId={this.props.location.state.postId}/>
             </React.Fragment>
         )
     }

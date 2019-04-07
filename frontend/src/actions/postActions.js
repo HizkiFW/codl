@@ -1,4 +1,4 @@
-import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST, FETCH_POST } from './types';
+import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST, NEW_COMMENT } from './types';
 
 export const fetchPosts = () => dispatch => {
   fetch('http://localhost:8080/getPosts')
@@ -7,20 +7,6 @@ export const fetchPosts = () => dispatch => {
       type: FETCH_POSTS,
       payload: posts
     }));
-}
-
-export const fetchPost = (id) => dispatch => {
-  fetch('http://localhost:8080/getPost', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(id)
-  }).then(res => res.json())
-    .then(post => dispatch({
-      type: FETCH_POST,
-      payload: post
-  }));
 }
 
 export const createPost = (postData) => dispatch => {
@@ -41,6 +27,19 @@ export const createPost = (postData) => dispatch => {
       alert(error);
     });
 
+}
+
+export const createComment = (commentData) => dispatch => {
+  fetch('http://localhost:8080/submitComment', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(commentData)
+  }).then(comment => dispatch({
+    type: NEW_COMMENT,
+    payload: commentData
+  }));
 }
 
 export const upvotePost = (id) => dispatch => {

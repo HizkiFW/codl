@@ -45,7 +45,7 @@ class PostForm extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Title</label>
-                        <input className="form-control" id="exampleInputEmail1" onChange={this.onChange} name="title" value={this.state.title} required />
+                        <input className="form-control" id="exampleInputEmail1" spellCheck="false" onChange={this.onChange} name="title" value={this.state.title} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlSelect1">Language select</label>
@@ -60,11 +60,11 @@ class PostForm extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea3">Code</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea3" rows="7" onChange={this.onChange} name="code" value={this.state.code} required />
+                        <textarea className="form-control" id="exampleFormControlTextarea3" spellCheck="false" rows="7" onChange={this.onChange} name="code" value={this.state.code} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea3">Description</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea3" rows="2" onChange={this.onChange} name="description" value={this.state.description} />
+                        <textarea className="form-control" id="exampleFormControlTextarea3" spellCheck="false" rows="2" onChange={this.onChange} name="description" value={this.state.description} />
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>

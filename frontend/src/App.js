@@ -11,13 +11,13 @@ import Error from './components/Error';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
-
+import Loader from './components/Loader';
 class App extends Component {
 
   render() {
     return (
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
+        <PersistGate loading={<Loader/>} persistor={persistor}>
           <BrowserRouter>
             <React.Fragment>
               <Navbar />

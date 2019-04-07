@@ -26,7 +26,7 @@ class Post extends Component {
 
   getComments(number) {
 
-    if (number===0) {
+    if (number === 0) {
       return " Comment"
     } else {
       return number + " Comments"
@@ -60,7 +60,7 @@ class Post extends Component {
           </div></div>
         <Code code={this.props.data.code} language={this.props.data.language} />
         <span>{this.props.data.description}</span>
-        <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div>
+        {!this.props.isHidden && <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div>}
       </PostWrapper>
     )
   }

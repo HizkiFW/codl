@@ -11,7 +11,7 @@ class Comments extends Component {
     ));
     return (
       <CommentsWrapper>
-        <CommentForm />
+        <CommentForm postId={this.props.postId} />
         {commentItems}
       </CommentsWrapper>
     )
