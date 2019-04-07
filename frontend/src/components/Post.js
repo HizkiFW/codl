@@ -24,8 +24,18 @@ class Post extends Component {
     console.log('removevote');
   }
 
+  getComments(number) {
+
+    if (number===0) {
+      return " Comment"
+    } else {
+      return number + " Comments"
+    }
+  }
+
   render() {
     let date = timeAgo.format(new Date(this.props.data.dateCreation), 'twitter');
+    let numberOfComments = this.getComments(this.props.data.comments.length);
     return (
       <PostWrapper>
         <div className="d-flex bd-highlight mb-3">
@@ -50,6 +60,7 @@ class Post extends Component {
           </div></div>
         <Code code={this.props.data.code} language={this.props.data.language} />
         <span>{this.props.data.description}</span>
+        <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div>
       </PostWrapper>
     )
   }
@@ -82,5 +93,24 @@ padding: 15px 15px;
     font-size: 15px;
     padding: 2px 6px 3px;
     vertical-align: 4px;
+  }
+  .comment {
+    color: rgb(135, 138, 140);
+    margin-top:5px;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 700;
+    height: 28px;
+    width: max-content;
+    align-items: center;
+    display: flex;
+    border-radius: 2px;
+    padding: 0 4px 0 4px;
+      i {
+        vertical-align: 1px;
+      }
+      &:hover {
+        background-color: rgba(26, 26, 27, 0.1);
+      }
   }
 `
