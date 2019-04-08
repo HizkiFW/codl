@@ -28,4 +28,8 @@ const NavWrapper = styled.nav`
         color:white;
         font-size:1rem;
         text-transform:capitalize;
+        outline:none;
+        a, a:active, a:focus {
+            outline: none;
+        }
 `

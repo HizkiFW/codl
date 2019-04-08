@@ -1,27 +1,43 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { CardContainer } from './Card'
+import { fetchTags } from '../actions/tagActions';
+import { connect } from 'react-redux';
 
-export default class Tags extends Component {
+class Tags extends Component {
+
+    componentWillMount() {
+        this.props.fetchTags();
+    }
+
     render() {
+
+        const tagItems = this.props.tags.map(tag => (
+            <Link to='/' className="">
+                <li className="list-group-item">#{tag[0]} ({tag[1]})</li>
+            </Link>
+        ));
+
         return (
             <CardContainer className="card">
                 <div className="card-header">
                     Tags
                 </div>
                 <ul className="list-group list-group-flush">
-                    <Link to='/' className="">
-                        <li className="list-group-item">#php (1346)</li>
-                    </Link>
-                    <Link to='/' className="">
-                        <li className="list-group-item">#java (786)</li>
-                    </Link>
-                    <Link to='/' className="">
-                        <li className="list-group-item">#C++ (314)</li>
-                    </Link>
+                    {tagItems}
                 </ul>
             </CardContainer>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    tags: state.tags.items
+});
+
+const mapDispatchToProps = {
+    fetchTags
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tags);
 
