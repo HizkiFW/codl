@@ -12,8 +12,8 @@ class Tags extends Component {
 
     render() {
 
-        const tagItems = this.props.tags.map(tag => (
-            <Link to='/' className="">
+        const tagItems = this.props.tags.map((tag, i) => (
+            <Link to='/' key={i}>
                 <li className="list-group-item">#{tag[0]} ({tag[1]})</li>
             </Link>
         ));
