@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import Code from './Code';
@@ -10,7 +10,25 @@ import { upvotePost, downvotePost } from '../actions/postActions';
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
 
+
 class Post extends Component {
+  constructor() {
+    super();
+    this.theme = '';
+  }
+  componentWillMount() {
+    this.theme = (() => {
+      switch (this.props.data.language) {
+        case 'HTML':
+          return { fg: "white", bg: "brown" };
+        case 'RUST':
+          return { fg: "yellow", bg: "black" };
+        default:
+          return { fg: "#b2ffe1", bg: "#091b47" };
+      }
+    }
+    )();
+  }
 
   upvotePost(id) {
     this.props.upvotePost(id);
@@ -40,7 +58,7 @@ class Post extends Component {
       <PostWrapper>
         <div className="d-flex bd-highlight mb-3">
           <div className="bd-highlight">
-            <h4><span className="language">#{this.props.data.language}</span> {this.props.data.title}</h4>
+            <h4><ThemeProvider theme={this.theme}><LanguageWrapper>#{this.props.data.language}</LanguageWrapper></ThemeProvider> {this.props.data.title}</h4>
             <span className="author">{this.props.data.user.username}・{date}</span>
           </div>
           <div className="ml-auto bd-highlight">
@@ -86,14 +104,6 @@ padding: 15px 15px;
     color:#666;
     font-size:17px;
   }
-  .language {
-    background: #091b47;
-    color: #b2ffe1;
-    border-radius: 4px;
-    font-size: 15px;
-    padding: 2px 6px 3px;
-    vertical-align: 4px;
-  }
   .comment {
     color: rgb(135, 138, 140);
     margin-top:5px;
@@ -113,4 +123,13 @@ padding: 15px 15px;
         background-color: rgba(26, 26, 27, 0.1);
       }
   }
+`
+
+const LanguageWrapper = styled.span`
+color: ${props => props.theme.fg};
+background: ${props => props.theme.bg};
+border-radius: 4px;
+font-size: 15px;
+padding: 2px 6px 3px;
+vertical-align: 4px;
 `
