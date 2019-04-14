@@ -19,8 +19,8 @@ public class PostManagerImpl implements PostManager {
 
 	@Override
 	@Transactional
-	public List<Post> getAllPosts() {
-		return postDAO.getAllPosts();
+	public List<Post> getAllPosts(String language) {
+		return postDAO.getAllPosts(language);
 	}
 
 	@Override

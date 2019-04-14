@@ -7,7 +7,7 @@ import com.codl.models.Post;
 
 public interface PostManager {
 	
-	 public List<Post> getAllPosts();
+	 public List<Post> getAllPosts(String language);
 	 public void addPost(Post post);
 	 public void addComment(Comment comment);
 	 public void upvotePost(long id);

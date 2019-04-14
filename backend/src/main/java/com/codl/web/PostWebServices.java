@@ -25,12 +25,13 @@ public class PostWebServices {
 	@Autowired
 	private PostManager postManager;
 
-	@GET
+	@POST
 	@Path("getPosts")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getPosts() {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String getPosts(String language) {
 		String response = "";
-		List<Post> allPosts = postManager.getAllPosts();
+		List<Post> allPosts = postManager.getAllPosts(language);
 		ObjectMapper Obj = new ObjectMapper();
 
 		try {

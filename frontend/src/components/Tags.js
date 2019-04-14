@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import { CardContainer } from './Card'
 import { fetchTags } from '../actions/tagActions';
+import { fetchPosts } from '../actions/postActions';
 import { connect } from 'react-redux';
 
 class Tags extends Component {
@@ -11,11 +11,12 @@ class Tags extends Component {
     }
 
     render() {
-
         const tagItems = this.props.tags.map((tag, i) => (
-            <Link to='/' key={i}>
-                <li className="list-group-item">#{tag[0]} ({tag[1]})</li>
-            </Link>
+            <li className="list-group-item" key={i} onClick={(e) => {
+                console.log(tag)
+                e.preventDefault();
+                this.props.fetchPosts(tag[0])
+            }}>#{tag[0]} ({tag[1]})</li>
         ));
 
         return (
@@ -36,7 +37,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    fetchTags
+    fetchTags,
+    fetchPosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);

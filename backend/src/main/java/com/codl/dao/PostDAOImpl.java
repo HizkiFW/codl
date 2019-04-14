@@ -2,6 +2,7 @@ package com.codl.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,15 +18,21 @@ public class PostDAOImpl implements PostDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Post> getAllPosts() {
-		return this.sessionFactory.getCurrentSession().createQuery("from Post").list();
+	public List<Post> getAllPosts(String language) {
+		if (!language.isEmpty()) {
+			Query query = this.sessionFactory.getCurrentSession().createQuery("from Post P where P.language = :language");
+			query.setParameter("language",language);
+			return query.list();
+		} else {
+			return this.sessionFactory.getCurrentSession().createQuery("from Post").list();
+		}
 	}
 
 	@Override
 	public void addPost(Post post) {
 		this.sessionFactory.getCurrentSession().save(post);
 	}
-	
+
 	@Override
 	public void addComment(Comment comment) {
 		this.sessionFactory.getCurrentSession().save(comment);

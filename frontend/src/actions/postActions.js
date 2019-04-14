@@ -1,8 +1,13 @@
 import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST, NEW_COMMENT } from './types';
 
-export const fetchPosts = () => dispatch => {
-  fetch('http://localhost:8080/getPosts')
-    .then(res => res.json())
+export const fetchPosts = (tag) => dispatch => {
+  fetch('http://localhost:8080/getPosts', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: tag
+  }).then(res => res.json())
     .then(posts => dispatch({
       type: FETCH_POSTS,
       payload: posts
