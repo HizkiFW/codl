@@ -8,7 +8,12 @@ import { fetchPosts } from '../actions/postActions';
 class Posts extends Component {
 
   componentWillMount() {
-    this.props.fetchPosts();
+    if (this.props.location.state === undefined) {
+      this.props.fetchPosts();
+    }
+    else {
+      this.props.fetchPosts(this.props.location.state.tag);
+    }
   }
 
   render() {
@@ -20,7 +25,7 @@ class Posts extends Component {
             postId: post.id
           }
         }}>
-          <Post data={post} isHidden={false}/>
+          <Post data={post} isHidden={false} />
         </Link>
       </PostsWrapper>
     ));

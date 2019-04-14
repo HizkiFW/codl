@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { CardContainer } from './Card'
 import { fetchTags } from '../actions/tagActions';
 import { fetchPosts } from '../actions/postActions';
@@ -12,11 +13,14 @@ class Tags extends Component {
 
     render() {
         const tagItems = this.props.tags.map((tag, i) => (
-            <li className="list-group-item" key={i} onClick={(e) => {
-                console.log(tag)
-                e.preventDefault();
-                this.props.fetchPosts(tag[0])
-            }}>#{tag[0]} ({tag[1]})</li>
+            <Link key={i} to={{
+                pathname: '/t/' + tag[0],
+                state: {
+                    tag: tag[0]
+                }
+            }}>
+                <li className="list-group-item">#{tag[0]} ({tag[1]})</li>
+            </Link>
         ));
 
         return (

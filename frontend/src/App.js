@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from "./components/Home"
+import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 import Navbar from './components/Navbar';
 import Tags from './components/Tags';
 import Welcome from './components/Welcome';
 import SocialMedia from './components/SocialMedia';
 import PostForm from './components/PostForm';
+import Posts from './components/Posts';
 import PostWithComments from './components/PostWithComments';
 import Error from './components/Error';
 import { Provider } from 'react-redux';
@@ -29,7 +31,8 @@ class App extends Component {
                 </div>
                 <div className="p-1 flex-grow-1">
                   <Switch>
-                    <Route path="/" component={Home} exact />
+                    <Route path="/" component={Posts} exact />
+                    <Route path="/t/*" component={Posts} />
                     <Route path="/submit" component={PostForm} />
                     <Route path="/comments/*" component={PostWithComments} />
                     <Route component={Error} />
