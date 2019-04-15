@@ -8,6 +8,7 @@ import Welcome from './components/Welcome';
 import SocialMedia from './components/SocialMedia';
 import PostForm from './components/PostForm';
 import Posts from './components/Posts';
+import FilteredPosts from './components/FilteredPosts'
 import PostWithComments from './components/PostWithComments';
 import Error from './components/Error';
 import { Provider } from 'react-redux';
@@ -32,7 +33,7 @@ class App extends Component {
                 <div className="p-1 flex-grow-1">
                   <Switch>
                     <Route path="/" component={Posts} exact />
-                    <Route path="/t/*" component={Posts} />
+                    <Route path="/t/*" component={FilteredPosts} />
                     <Route path="/submit" component={PostForm} />
                     <Route path="/comments/*" component={PostWithComments} />
                     <Route component={Error} />

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { CardContainer } from './Card'
 import { fetchTags } from '../actions/tagActions';
-import { fetchPosts } from '../actions/postActions';
 import { connect } from 'react-redux';
 
 class Tags extends Component {
@@ -41,8 +40,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    fetchTags,
-    fetchPosts
+    fetchTags
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { createPost } from '../actions/postActions';
 import { connect } from 'react-redux';
-
+import Autocomplete from "./Autocomplete";
 
 class PostForm extends Component {
     constructor(props) {
@@ -48,15 +48,21 @@ class PostForm extends Component {
                         <input className="form-control" id="exampleInputEmail1" spellCheck="false" onChange={this.onChange} name="title" value={this.state.title} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="exampleFormControlSelect1">Language select</label>
-                        <select className="form-control" id="exampleFormControlSelect1" onChange={this.onChange} name="language" value={this.state.language} required>
-                            <option></option>
-                            <option>HTML</option>
-                            <option>java</option>
-                            <option>RUST</option>
-                            <option>GO</option>
-                            <option>JAVASCRIPT</option>
-                        </select>
+                        <label>Language</label>
+                        <Autocomplete
+                            suggestions={[
+                                "Java",
+                                "Rust",
+                                "Html",
+                                "Lisp",
+                                "C#",
+                                "C++",
+                                "Haskell",
+                                "SQL",
+                                "Python",
+                                "Go"
+                            ]}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea3">Code</label>
