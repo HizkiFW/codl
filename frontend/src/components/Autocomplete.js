@@ -181,6 +181,8 @@ input {
     list-style: none;
     margin-top: 0;
     max-height: 143px;
+    position:absolute;
+    background:white;
     overflow-y: auto;
     padding-left: 0;
     width: 300px;
