@@ -22,7 +22,7 @@ class Autocomplete extends Component {
       // Whether or not the suggestion list is shown
       showSuggestions: false,
       // What the user has entered
-      userInput: ""
+      userInput: this.props.default
     };
   }
 
@@ -56,6 +56,7 @@ class Autocomplete extends Component {
       showSuggestions: false,
       userInput: e.currentTarget.innerText
     });
+    this.props.onLanguageChange(this.state.userInput);
   };
 
   // Event fired when the user presses a key down
@@ -173,6 +174,9 @@ input {
   .no-suggestions {
     color: #999;
     padding: 0.5rem;
+    position:absolute;
+    background:white;
+    z-index:5;
   }
   
   .suggestions {
@@ -183,6 +187,7 @@ input {
     max-height: 143px;
     position:absolute;
     background:white;
+    z-index:5;
     overflow-y: auto;
     padding-left: 0;
     width: 300px;

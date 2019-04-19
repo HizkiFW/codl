@@ -31,12 +31,14 @@ class PostForm extends Component {
         super(props);
         this.state = {
             title: '',
-            language: '',
+            language: 'javascript',
             code: '',
             description: ''
         }
 
         this.onChange = this.onChange.bind(this);
+        this.onCodeChange = this.onCodeChange.bind(this);
+        this.onLanguageChange = this.onLanguageChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     };
 
@@ -44,6 +46,19 @@ class PostForm extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
+
+    onCodeChange(newValue) {
+        this.setState({
+            code: newValue
+        });
+    }
+
+    onLanguageChange(newValue) {
+        this.setState({
+            language: newValue
+        });
+    }
+
 
     onSubmit(e) {
         e.preventDefault();
@@ -72,18 +87,27 @@ class PostForm extends Component {
                         </div>
                         <div className="p-1">
                             <label>Language</label>
-                            <Autocomplete suggestions={languages} />
+                            <Autocomplete
+                                suggestions={languages}
+                                onLanguageChange={this.onLanguageChange}
+                                default="javascript"
+                            />
                         </div>
                     </div>
                     <div className="code">
                         <label>Code</label>
                         <AceEditor
-                            mode="java"
+                            mode={this.state.language}
                             theme="terminal"
-                            onChange={this.onChange}
+                            onChange={this.onCodeChange}
                             name="ace"
                             value={this.state.code}
+                            height="400px"
+                            width="100%"
                             editorProps={{ $blockScrolling: true }}
+                            setOptions={{
+                                useWorker: false
+                            }}
                         />
                     </div>
                     <div className="form-group">
@@ -116,7 +140,6 @@ padding: 15px 15px;
 }
 
 #ace {
-    width:100% !important;
-    height:400px !important;
+    
 }
 `

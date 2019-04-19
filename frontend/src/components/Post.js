@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import styled, { ThemeProvider } from 'styled-components';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import Code from './Code';
+import AceEditor from 'react-ace';
+import 'brace/mode/java';
+import 'brace/theme/terminal';
 import Upvote from './Upvote';
 import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from '../actions/postActions';
@@ -75,8 +77,20 @@ class Post extends Component {
               onDownvote={() => this.downvotePost(this.props.data.id)}
               onRemoveVote={() => this.removeVote(this.props.data.id)}
             />
-          </div></div>
-        <Code code={this.props.data.code} language={this.props.data.language} />
+          </div>
+        </div>
+        <AceEditor
+          mode={this.props.data.language}
+          theme="terminal"
+          maxLines={Infinity}
+          width="100%"
+          readOnly={true}
+          value={this.props.data.code}
+          fontSize="15px"
+          setOptions={{
+            useWorker: false
+          }}
+        />
         <span>{this.props.data.description}</span>
         {!this.props.isHidden && <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div>}
       </PostWrapper>
