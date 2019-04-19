@@ -21,15 +21,18 @@ class Post extends Component {
   componentWillMount() {
     this.theme = (() => {
       switch (this.props.data.language) {
-        case 'HTML':
+        case 'html':
           return { fg: "white", bg: "brown" };
-        case 'RUST':
+        case 'rust':
           return { fg: "yellow", bg: "black" };
+        case 'javascript':
+          return { fg: "orange", bg: "blue" };
         default:
           return { fg: "#b2ffe1", bg: "#091b47" };
       }
     }
     )();
+    require(`brace/mode/${this.props.data.language}`);
   }
 
   upvotePost(id) {
@@ -83,6 +86,7 @@ class Post extends Component {
           mode={this.props.data.language}
           theme="terminal"
           maxLines={Infinity}
+          name="ace"
           width="100%"
           readOnly={true}
           value={this.props.data.code}
@@ -117,6 +121,9 @@ padding: 15px 15px;
   .author {
     color:#666;
     font-size:17px;
+  }
+  #ace {
+    margin-bottom:10px;
   }
   .comment {
     color: rgb(135, 138, 140);

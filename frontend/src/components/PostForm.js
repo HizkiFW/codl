@@ -4,7 +4,6 @@ import { createPost } from '../actions/postActions';
 import { connect } from 'react-redux';
 import Autocomplete from "./Autocomplete";
 import AceEditor from 'react-ace';
-import 'brace/mode/java';
 import 'brace/theme/terminal';
 
 const languages = [
@@ -25,6 +24,11 @@ const languages = [
     "typescript",
     "css"
 ];
+
+languages.forEach(lang => {
+    require(`brace/mode/${lang}`);
+    require(`brace/snippets/${lang}`);
+  });
 
 class PostForm extends Component {
     constructor(props) {
