@@ -15,7 +15,7 @@ export default class Navbar extends Component {
                 </form>
                 <NavLink to='/submit' className="">
                     <ButtonContainer>
-                        SHARE CODE
+                        Share code
                     </ButtonContainer>
                 </NavLink>
             </NavWrapper>

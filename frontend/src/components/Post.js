@@ -82,7 +82,8 @@ class Post extends Component {
             />
           </div>
         </div>
-        <AceEditor
+        <div onClick={(e) => e.preventDefault() }>
+          <AceEditor
           mode={this.props.data.language}
           theme="terminal"
           maxLines={Infinity}
@@ -90,14 +91,16 @@ class Post extends Component {
           width="100%"
           readOnly={true}
           value={this.props.data.code}
+          highlightActiveLine={false}
           fontSize="15px"
           setOptions={{
             useWorker: false
           }}
         />
-        <span>{this.props.data.description}</span>
-        {!this.props.isHidden && <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div>}
-      </PostWrapper>
+        </div>
+      <span>{this.props.data.description}</span>
+        { !this.props.isHidden && <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div> }
+      </PostWrapper >
     )
   }
 }

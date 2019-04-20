@@ -11,6 +11,9 @@ export const CardContainer = styled.div`
         &:active{
             color:black;
         }
+        .card-header {
+            font-weight:bold;
+        }
         i {
             color:red;
             vertical-align: -1px;

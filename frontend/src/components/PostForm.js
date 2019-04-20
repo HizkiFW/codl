@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { createPost } from '../actions/postActions';
 import { connect } from 'react-redux';
-import Autocomplete from "./Autocomplete";
+import Select from 'react-select';
 import AceEditor from 'react-ace';
 import 'brace/theme/terminal';
 
-const languages = [
+const options = [
     "javascript",
     "java",
     "python",
@@ -25,10 +25,10 @@ const languages = [
     "css"
 ];
 
-languages.forEach(lang => {
+options.forEach(lang => {
     require(`brace/mode/${lang}`);
     require(`brace/snippets/${lang}`);
-  });
+});
 
 class PostForm extends Component {
     constructor(props) {
@@ -85,16 +85,19 @@ class PostForm extends Component {
             <PostFormWrapper>
                 <form onSubmit={this.onSubmit}>
                     <div className="d-flex">
-                        <div className="p-1 flex-grow-1">
+                        <div className="p-1 flex-grow-1 col-8">
                             <label htmlFor="exampleInputEmail1">Title</label>
                             <input className="form-control" id="exampleInputEmail1" spellCheck="false" onChange={this.onChange} name="title" value={this.state.title} required />
                         </div>
-                        <div className="p-1">
+                        <div className="p-1 col-4">
                             <label>Language</label>
-                            <Autocomplete
-                                suggestions={languages}
-                                onLanguageChange={this.onLanguageChange}
-                                default="javascript"
+                            <Select
+                                value={this.state.language}
+                                onChange={this.onLanguageChange}
+                                options={options.map(
+                                    lang => ({ label: lang, value: lang })
+                                )}
+                                className="select"
                             />
                         </div>
                     </div>
@@ -143,7 +146,7 @@ padding: 15px 15px;
     margin:20px 5px;
 }
 
-#ace {
-    
+.select {   
+    z-index:5;
 }
 `

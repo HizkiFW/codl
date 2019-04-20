@@ -51,5 +51,6 @@ const PostsWrapper = styled.div`
   a {
     text-decoration: none;
     color:inherit;
+    outline:none;
   }
 `
