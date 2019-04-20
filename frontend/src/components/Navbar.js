@@ -6,7 +6,7 @@ import { ButtonContainer } from './Button'
 export default class Navbar extends Component {
     render() {
         return (
-            <NavWrapper className="navbar navbar-expand-lg navbar-dark justify-content-between">
+            <NavWrapper className="navbar sticky-top navbar-expand-lg navbar-dark justify-content-between">
                 <NavLink to="/" className="navbar-brand">
                     codl
                 </NavLink>
@@ -29,6 +29,7 @@ const NavWrapper = styled.nav`
         font-size:1rem;
         text-transform:capitalize;
         outline:none;
+        box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
         a, a:active, a:focus {
             outline: none;
         }

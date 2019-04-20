@@ -35,7 +35,7 @@ class PostForm extends Component {
         super(props);
         this.state = {
             title: '',
-            language: 'javascript',
+            language: '',
             code: '',
             description: ''
         }
@@ -59,7 +59,7 @@ class PostForm extends Component {
 
     onLanguageChange(newValue) {
         this.setState({
-            language: newValue
+            language: newValue.value
         });
     }
 
@@ -92,10 +92,10 @@ class PostForm extends Component {
                         <div className="p-1 col-4">
                             <label>Language</label>
                             <Select
-                                value={this.state.language}
+                                value={{ value: this.state.language, label: this.state.language }}
                                 onChange={this.onLanguageChange}
                                 options={options.map(
-                                    lang => ({ label: lang, value: lang })
+                                    lang => ({ value: lang, label: lang })
                                 )}
                                 className="select"
                             />
