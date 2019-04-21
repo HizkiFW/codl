@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codl.dao.PostDAO;
-import com.codl.models.Comment;
 import com.codl.models.Post;
 
 @Service
@@ -34,12 +33,6 @@ public class PostManagerImpl implements PostManager {
 	
 	@Override
 	@Transactional
-	public void addComment(Comment comment) {
-		postDAO.addComment(comment);
-	}
-	
-	@Override
-	@Transactional
 	public void upvotePost(long id) {
 		postDAO.upvotePost(id);
 	}
@@ -49,4 +42,5 @@ public class PostManagerImpl implements PostManager {
 	public void downvotePost(long id) {
 		postDAO.downvotePost(id);
 	}
+	
 }

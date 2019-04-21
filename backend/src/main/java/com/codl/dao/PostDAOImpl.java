@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.codl.models.Comment;
 import com.codl.models.Post;
 
 @Repository
@@ -19,23 +19,24 @@ public class PostDAOImpl implements PostDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> getAllPosts(String language) {
+		String SQLQuery;
+		Query query;
 		if (!language.isEmpty()) {
-			Query query = this.sessionFactory.getCurrentSession().createQuery("from Post P where P.language = :language");
-			query.setParameter("language",language);
-			return query.list();
+			SQLQuery = "select P.id as id, P.code as code, P.dateCreation as dateCreation, P.description as description, P.language as language, P.title as title, P.voteCount as voteCount, P.user as user, (select count(1) from Comment C where C.postId = P.id) as numberOfComments from Post P where P.language = :language";
+			query = this.sessionFactory.getCurrentSession().createQuery(SQLQuery)
+					.setResultTransformer(Transformers.aliasToBean(Post.class));
+			query.setParameter("language", language);
 		} else {
-			return this.sessionFactory.getCurrentSession().createQuery("from Post").list();
+			SQLQuery = "select P.id as id, P.code as code, P.dateCreation as dateCreation, P.description as description, P.language as language, P.title as title, P.voteCount as voteCount, P.user as user, (select count(1) from Comment C where C.postId = P.id) as numberOfComments from Post P";
+			query = this.sessionFactory.getCurrentSession().createQuery(SQLQuery)
+					.setResultTransformer(Transformers.aliasToBean(Post.class));
 		}
+		return query.list();
 	}
 
 	@Override
 	public void addPost(Post post) {
 		this.sessionFactory.getCurrentSession().save(post);
-	}
-
-	@Override
-	public void addComment(Comment comment) {
-		this.sessionFactory.getCurrentSession().save(comment);
 	}
 
 	@Override

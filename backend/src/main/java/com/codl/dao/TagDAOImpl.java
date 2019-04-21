@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,8 +19,8 @@ public class TagDAOImpl implements TagDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tag> getAllTags() {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select language, count(1) from Post group by language");
-		List<Tag> tags= query.list();
+		Query query = this.sessionFactory.getCurrentSession().createQuery("select language as language, count(1) as count from Post group by language");
+		List<Tag> tags= query.setResultTransformer(Transformers.aliasToBean(Tag.class)).list();
 		return tags;
 	}
 

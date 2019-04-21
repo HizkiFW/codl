@@ -3,11 +3,23 @@ import styled from 'styled-components';
 import TimeAgo from 'javascript-time-ago'
 import Heart from './Heart';
 import en from 'javascript-time-ago/locale/en'
+import { connect } from 'react-redux';
+import { upvoteComment } from '../actions/commentActions';
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
 
-export default class Comment extends Component {
+class Comment extends Component {
+
+  upvoteComment(id) {
+    this.props.upvoteComment(id);
+  }
+
+  removeVote(id) {
+    console.log('removevote');
+  }
+
+
   render() {
     let date = timeAgo.format(new Date(this.props.data.dateCreation), 'twitter');
 
@@ -29,18 +41,23 @@ export default class Comment extends Component {
               //voteStatus={user.votes[postData.id] || 0}
               voteStatus={0}
               upvoteContent={<i className="upvote-icon far fa-heart"></i>}
-              afterContent={<span className="upvote-count">10</span>}
+              afterContent={this.props.data.voteCount}
               //shouldAllow={() => user.isLoggedIn}
               shouldAllow={() => true}
               onDisallowed={() => this.errorMessage('You have to log in!')}
-              //onUpvote={() => this.upvotePost(this.props.data.id)}
-              //onRemoveVote={() => this.removeVote(this.props.data.id)}
+              onUpvote={() => this.upvoteComment(this.props.data.id)}
+              onRemoveVote={() => this.removeVote(this.props.data.id)}
             />
       </CommentWrapper>
     )
   }
 }
 
+const mapDispatchToProps = {
+  upvoteComment
+};
+
+export default connect(null, mapDispatchToProps)(Comment);
 
 const CommentWrapper = styled.div`
 border: 1px solid #dbdbdb;

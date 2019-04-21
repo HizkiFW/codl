@@ -6,11 +6,15 @@ import javax.persistence.Entity;
 public class Tag {
 	
 	private String language;
-	private Integer count;
+	private long count;
 	
-	public Tag(String language, Integer count) {
+	public Tag(String language, long count) {
 		this.language = language;
 		this.count = count;
+	}
+	
+	public Tag() {
+		
 	}
 
 	public String getLanguage() {
@@ -21,11 +25,11 @@ public class Tag {
 		this.language = language;
 	}
 
-	public Integer getCount() {
+	public long getCount() {
 		return count;
 	}
 
-	public void setCount(Integer count) {
+	public void setCount(long count) {
 		this.count = count;
 	}
 	

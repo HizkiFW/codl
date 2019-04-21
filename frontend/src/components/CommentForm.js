@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { createComment } from '../actions/postActions';
+import { createComment } from '../actions/commentActions';
 import { connect } from 'react-redux';
 
 class CommentForm extends Component {
@@ -28,6 +28,7 @@ class CommentForm extends Component {
       postId: this.props.postId,
       text: this.state.text,
       dateCreation: Date.now(),
+      voteCount:0,
       user: {
         id: 1
       },

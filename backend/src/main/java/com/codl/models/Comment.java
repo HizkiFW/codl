@@ -29,13 +29,16 @@ public class Comment implements Serializable {
 	private User user;
 	@Column(name = "DATE_CREATION")
 	private Date dateCreation;
+	@Column(name="VOTE_COUNT")
+	private Integer voteCount;
 	@Column(name = "POST_ID")
 	private long postId;
 
-	public Comment(String text, User user, Date dateCreation, long postId) {
+	public Comment(String text, User user, Date dateCreation, Integer voteCount, long postId) {
 		this.text = text;
 		this.user = user;
 		this.dateCreation = dateCreation;
+		this.voteCount = voteCount;
 		this.postId = postId;
 	}
 
@@ -85,6 +88,14 @@ public class Comment implements Serializable {
 
 	public void setPostId(long postId) {
 		this.postId = postId;
+	}
+
+	public Integer getVoteCount() {
+		return voteCount;
+	}
+
+	public void setVoteCount(Integer voteCount) {
+		this.voteCount = voteCount;
 	}
 
 }

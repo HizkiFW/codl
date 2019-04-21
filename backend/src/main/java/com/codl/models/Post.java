@@ -2,18 +2,16 @@ package com.codl.models;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -43,11 +41,10 @@ public class Post implements Serializable {
 	@Column(name="DATE_CREATION")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date dateCreation;
-	@OneToMany( fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "POST_ID")
-	private Set<Comment> comments;
+	@Transient
+	private long numberOfComments;
 
-	public Post(String title, String code, String description, String language, Integer voteCount, User user, Date dateCreation, Set<Comment> comments) {
+	public Post(String title, String code, String description, String language, Integer voteCount, User user, Date dateCreation, Integer numberOfComments) {
 		this.title = title;
 		this.code = code;
 		this.description = description;
@@ -55,7 +52,7 @@ public class Post implements Serializable {
 		this.voteCount = voteCount;
 		this.user = user;
 		this.dateCreation = dateCreation;
-		this.comments = comments;
+		this.numberOfComments = numberOfComments;
 	}
 	
 	public Post() {
@@ -126,12 +123,12 @@ public class Post implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public Set<Comment> getComments() {
-		return comments;
+	public long getNumberOfComments() {
+		return numberOfComments;
 	}
 
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
+	public void setNumberOfComments(long numberOfComments) {
+		this.numberOfComments = numberOfComments;
 	}
 
 }

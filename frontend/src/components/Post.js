@@ -58,7 +58,7 @@ class Post extends Component {
 
   render() {
     let date = timeAgo.format(new Date(this.props.data.dateCreation), 'twitter');
-    let numberOfComments = this.getComments(this.props.data.comments.length);
+    let numberOfComments = this.getComments(this.props.data.numberOfComments);
     return (
       <PostWrapper>
         <div className="d-flex bd-highlight mb-3">
@@ -82,24 +82,24 @@ class Post extends Component {
             />
           </div>
         </div>
-        <div onClick={(e) => e.preventDefault() }>
+        <div onClick={(e) => e.preventDefault()}>
           <AceEditor
-          mode={this.props.data.language}
-          theme="terminal"
-          maxLines={Infinity}
-          name="ace"
-          width="100%"
-          readOnly={true}
-          value={this.props.data.code}
-          highlightActiveLine={false}
-          fontSize="15px"
-          setOptions={{
-            useWorker: false
-          }}
-        />
+            mode={this.props.data.language}
+            theme="terminal"
+            maxLines={Infinity}
+            name="ace"
+            width="100%"
+            readOnly={true}
+            value={this.props.data.code}
+            highlightActiveLine={false}
+            fontSize="15px"
+            setOptions={{
+              useWorker: false
+            }}
+          />
         </div>
-      <span>{this.props.data.description}</span>
-        { !this.props.isHidden && <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div> }
+        <span>{this.props.data.description}</span>
+        {!this.props.isHidden && <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div>}
       </PostWrapper >
     )
   }

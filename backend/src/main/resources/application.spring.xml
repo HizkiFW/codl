@@ -43,6 +43,8 @@
 	<bean id="postDAO" class="com.codl.dao.PostDAOImpl" />
 	<bean id="tagManager" class="com.codl.service.TagManagerImpl" />
 	<bean id="tagDAO" class="com.codl.dao.TagDAOImpl" />
+	<bean id="commentManager" class="com.codl.service.CommentManagerImpl" />
+	<bean id="commentDAO" class="com.codl.dao.CommentDAOImpl" />
 	<tx:annotation-driven />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

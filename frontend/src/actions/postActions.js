@@ -1,4 +1,4 @@
-import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST, NEW_COMMENT } from './types';
+import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST } from './types';
 
 export const fetchPosts = (tag) => dispatch => {
   fetch('http://localhost:8080/getPosts', {
@@ -34,19 +34,6 @@ export const createPost = (postData) => dispatch => {
 
 }
 
-export const createComment = (commentData) => dispatch => {
-  fetch('http://localhost:8080/submitComment', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(commentData)
-  }).then(comment => dispatch({
-    type: NEW_COMMENT,
-    payload: commentData
-  }));
-}
-
 export const upvotePost = (id) => dispatch => {
   fetch('http://localhost:8080/upvotePost', {
     method: 'POST',
@@ -71,5 +58,4 @@ export const downvotePost = (id) => dispatch => {
     type: DOWNVOTE_POST,
     payload: id
   }))
-
 }

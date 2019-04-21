@@ -104,6 +104,7 @@ export default class Heart extends React.Component {
                 this.vote(1)
             }}>
                 {upvoteContent}
+                <span className="upvote-count">{afterContent}</span>
             </div>
         );
 
@@ -113,7 +114,6 @@ export default class Heart extends React.Component {
 
                     <div className={`${className}-buttons`}>
                         {upvote}
-                        {afterContent}
                     </div>
 
                 </div>
@@ -135,7 +135,7 @@ Heart.propTypes = {
     onRemoveVote: PropTypes.func,
 
     upvoteContent: PropTypes.element,
-    afterContent: PropTypes.element
+    afterContent: PropTypes.number
 };
 
 Heart.defaultProps = {
@@ -155,7 +155,6 @@ Heart.defaultProps = {
 };
 
 const UpvoteWrapper = styled.div`
-text-align: left;
 .react-upvote {
     line-height: 25px;
     -moz-user-select: none;
@@ -163,16 +162,24 @@ text-align: left;
     -ms-user-select: none;
 
     .upvote {
+        display: inline-block;
         line-height: 1;
-        float:left;
         cursor: pointer;
 
         &:hover {
             color: #f00;
         }
+
+        .upvote-count {
+            margin-left: 5px;
+        }
     }
 
     &.upvoted .upvote-icon{
+        color: #f00;
+    }
+
+    &.upvoted .upvote-count{
         color: #f00;
     }
 }

@@ -12,28 +12,28 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.codl.models.Post;
-import com.codl.service.PostManager;
+import com.codl.models.Comment;
+import com.codl.service.CommentManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/")
 @Controller
-public class PostWebServices {
+public class CommentWebServices {
 
 	@Autowired
-	private PostManager postManager;
+	private CommentManager commentManager;
 
 	@POST
-	@Path("getPosts")
+	@Path("getComments")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String getPosts(String language) {
+	public String getComments(long postId) {
 		String response = "";
-		List<Post> allPosts = postManager.getAllPosts(language);
+		List<Comment> comments = commentManager.getComments(postId);
 		ObjectMapper Obj = new ObjectMapper();
 
 		try {
-			response = Obj.writeValueAsString(allPosts);
+			response = Obj.writeValueAsString(comments);
 		}
 
 		catch (IOException e) {
@@ -41,28 +41,20 @@ public class PostWebServices {
 		}
 
 		return response;
-
-	}
-	
-	@POST
-	@Path("submitPost")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void addPost(Post post) {
-		postManager.addPost(post);
 	}
 
 	@POST
-	@Path("upvotePost")
+	@Path("submitComment")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void upvotePost(long id) {
-		postManager.upvotePost(id);
+	public void addComment(Comment comment) {
+		commentManager.addComment(comment);
 	}
 
 	@POST
-	@Path("downvotePost")
+	@Path("upvoteComment")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void downvotePost(long id) {
-		postManager.downvotePost(id);
+	public void upvoteComment(long id) {
+		commentManager.upvoteComment(id);
 	}
 
 }
