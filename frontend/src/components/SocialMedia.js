@@ -4,7 +4,7 @@ import { CardContainer } from './Card'
 export default class SocialMedia extends Component {
   render() {
     return (
-      <CardContainer className="card">
+      <CardContainer className="card d-none d-md-block">
         <div className="card-header">
           Links
         </div>

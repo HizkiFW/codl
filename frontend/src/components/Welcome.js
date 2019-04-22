@@ -4,7 +4,7 @@ import { CardContainer } from './Card'
 export default class Welcome extends Component {
   render() {
     return (
-    <CardContainer className="card">
+    <CardContainer className="card d-none d-md-block">
         <div className="card-header">
             Welcome <i className="fa fa-heart"></i>
         </div>

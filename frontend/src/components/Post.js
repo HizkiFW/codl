@@ -99,7 +99,7 @@ class Post extends Component {
           />
         </div>
         <span>{this.props.data.description}</span>
-        {!this.props.isHidden && <div className="comment"><span><i className="fa fa-comment" aria-hidden="true"></i> {numberOfComments}</span></div>}
+        {!this.props.isHidden && <div className="comment"><span><i className="fa fa-comment-alt" aria-hidden="true"></i> {numberOfComments}</span></div>}
       </PostWrapper >
     )
   }
@@ -141,7 +141,7 @@ padding: 15px 15px;
     border-radius: 2px;
     padding: 0 4px 0 4px;
       i {
-        vertical-align: 1px;
+        vertical-align: -1px;
       }
       &:hover {
         background-color: rgba(26, 26, 27, 0.1);

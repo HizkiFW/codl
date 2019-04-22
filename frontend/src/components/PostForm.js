@@ -35,7 +35,7 @@ class PostForm extends Component {
         super(props);
         this.state = {
             title: '',
-            language: '',
+            language: 'javascript',
             code: '',
             description: ''
         }
@@ -72,6 +72,7 @@ class PostForm extends Component {
             code: this.state.code,
             description: this.state.description,
             language: this.state.language,
+            voteCount: 1,
             user: {
                 id: 1
             },

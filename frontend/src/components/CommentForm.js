@@ -10,7 +10,7 @@ class CommentForm extends Component {
     this.state = {
       postId: '',
       text: '',
-      dateCreation:''
+      dateCreation: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -28,7 +28,7 @@ class CommentForm extends Component {
       postId: this.props.postId,
       text: this.state.text,
       dateCreation: Date.now(),
-      voteCount:0,
+      voteCount: 1,
       user: {
         id: 1
       },
@@ -42,9 +42,11 @@ class CommentForm extends Component {
       <CommentFormWrapper>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <textarea className="form-control" rows="3" placeholder="Say what you want" spellCheck="false" onChange={this.onChange} name="text" value={this.state.text} required />
+            <textarea className="form-control rounded-0" rows="3" placeholder="What are your thoughts?" spellCheck="false" onChange={this.onChange} name="text" value={this.state.text} required />
           </div>
-          <button type="submit" className="btn btn-primary btn-sm">SUBMIT</button>
+          <div className="text-right">
+            <button type="submit" className="btn btn-primary btn-sm">SUBMIT</button>
+          </div>
         </form>
       </CommentFormWrapper>
     )
@@ -59,4 +61,11 @@ export default connect(null, mapDispatchToProps)(CommentForm);
 
 const CommentFormWrapper = styled.div`
 margin-bottom: 20px;
+background-color: #f4f8ff;
+padding: 15px 15px;
+border: 2px solid #4286f4;
+
+textarea:invalid {
+  box-shadow: none;
+}
 `
