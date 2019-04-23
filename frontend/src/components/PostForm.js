@@ -5,29 +5,10 @@ import { connect } from 'react-redux';
 import Select from 'react-select';
 import AceEditor from 'react-ace';
 import 'brace/theme/terminal';
+import { LANGUAGE_LIST } from "../utils/language"
 
-const options = [
-    "javascript",
-    "java",
-    "python",
-    "xml",
-    "ruby",
-    "sass",
-    "markdown",
-    "mysql",
-    "json",
-    "html",
-    "handlebars",
-    "golang",
-    "csharp",
-    "elixir",
-    "typescript",
-    "css"
-];
-
-options.forEach(lang => {
-    require(`brace/mode/${lang}`);
-    require(`brace/snippets/${lang}`);
+LANGUAGE_LIST.forEach(lang => {
+    require(`brace/mode/${lang.value}`);
 });
 
 class PostForm extends Component {
@@ -35,7 +16,7 @@ class PostForm extends Component {
         super(props);
         this.state = {
             title: '',
-            language: 'javascript',
+            language: 'JavaScript',
             code: '',
             description: ''
         }
@@ -95,9 +76,7 @@ class PostForm extends Component {
                             <Select
                                 value={{ value: this.state.language, label: this.state.language }}
                                 onChange={this.onLanguageChange}
-                                options={options.map(
-                                    lang => ({ value: lang, label: lang })
-                                )}
+                                options={LANGUAGE_LIST}
                                 className="select"
                             />
                         </div>

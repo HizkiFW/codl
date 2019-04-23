@@ -3,11 +3,11 @@ import styled, { ThemeProvider } from 'styled-components';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import AceEditor from 'react-ace';
-import 'brace/mode/java';
 import 'brace/theme/terminal';
 import Upvote from './Upvote';
 import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from '../actions/postActions';
+import { getLanguageTheme } from "../utils/language"
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
@@ -19,19 +19,7 @@ class Post extends Component {
     this.theme = '';
   }
   componentWillMount() {
-    this.theme = (() => {
-      switch (this.props.data.language) {
-        case 'html':
-          return { fg: "white", bg: "brown" };
-        case 'rust':
-          return { fg: "yellow", bg: "black" };
-        case 'javascript':
-          return { fg: "orange", bg: "blue" };
-        default:
-          return { fg: "#b2ffe1", bg: "#091b47" };
-      }
-    }
-    )();
+    this.theme = getLanguageTheme(this.props.data.language);
     require(`brace/mode/${this.props.data.language}`);
   }
 
