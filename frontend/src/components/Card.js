@@ -22,6 +22,11 @@ export const CardContainer = styled.div`
         a {
             text-decoration:none;
         }
+        
+        .list-group {
+            height:200px;
+            overflow-y: scroll;
+        }
 
         .list-group-item {
             padding: .5rem 1.25rem;

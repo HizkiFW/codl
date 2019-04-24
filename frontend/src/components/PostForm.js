@@ -5,18 +5,18 @@ import { connect } from 'react-redux';
 import Select from 'react-select';
 import AceEditor from 'react-ace';
 import 'brace/theme/terminal';
-import { LANGUAGE_LIST } from "../utils/language"
+import { LANGUAGE_MAP } from "../utils/language"
 
-LANGUAGE_LIST.forEach(lang => {
-    require(`brace/mode/${lang.value}`);
-});
+for (let [k] of LANGUAGE_MAP) {
+    require(`brace/mode/${k}`);
+}
 
 class PostForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
-            language: 'JavaScript',
+            language: 'javascript',
             code: '',
             description: ''
         }
@@ -74,9 +74,10 @@ class PostForm extends Component {
                         <div className="p-1 col-4">
                             <label>Language</label>
                             <Select
-                                value={{ value: this.state.language, label: this.state.language }}
+                                value={{ value: this.state.language, label: LANGUAGE_MAP.get(this.state.language) }}
                                 onChange={this.onLanguageChange}
-                                options={LANGUAGE_LIST}
+                                options={Array.from(LANGUAGE_MAP, ([key, value]) => ({ value: key, label: value })
+                                )}
                                 className="select"
                             />
                         </div>

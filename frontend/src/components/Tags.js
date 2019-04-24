@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { CardContainer } from './Card'
 import { fetchTags } from '../actions/tagActions';
 import { connect } from 'react-redux';
+import { LANGUAGE_MAP } from "../utils/language"
 
 class Tags extends Component {
 
@@ -18,7 +19,7 @@ class Tags extends Component {
                     tag: tag.language
                 }
             }}>
-                <li className="list-group-item">#{tag.language} ({tag.count})</li>
+                <li className="list-group-item">#{LANGUAGE_MAP.get(tag.language)} ({tag.count})</li>
             </Link>
         ));
 

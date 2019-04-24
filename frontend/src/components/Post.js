@@ -8,6 +8,7 @@ import Upvote from './Upvote';
 import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from '../actions/postActions';
 import { getLanguageTheme } from "../utils/language"
+import { LANGUAGE_MAP } from "../utils/language"
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
@@ -51,7 +52,7 @@ class Post extends Component {
       <PostWrapper>
         <div className="d-flex bd-highlight mb-3">
           <div className="bd-highlight">
-            <h4><ThemeProvider theme={this.theme}><LanguageWrapper>#{this.props.data.language}</LanguageWrapper></ThemeProvider> {this.props.data.title}</h4>
+            <h4><ThemeProvider theme={this.theme}><LanguageWrapper>#{LANGUAGE_MAP.get(this.props.data.language)}</LanguageWrapper></ThemeProvider> {this.props.data.title}</h4>
             <span className="author">{this.props.data.user.username}・{date}</span>
           </div>
           <div className="ml-auto bd-highlight">
