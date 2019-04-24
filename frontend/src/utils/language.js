@@ -150,7 +150,7 @@ export function getLanguageTheme(language) {
         ["abc", ["green", "paleturquoise"]],
         ["actionscript", ["orange", "cyan"]],
         ["ada", ["indianred", "yellow"]],
-        ["apache_conf", ["moccasin", "palegoldenrod"]],
+        ["apache_conf", ["limegreen", "palegoldenrod"]],
         ["asciidoc", ["limegreen", "mediumseagreen"]],
         ["assembly_x86", ["yellow", "olivedrab"]],
         ["autohotkey", ["tomato", "seagreen"]],

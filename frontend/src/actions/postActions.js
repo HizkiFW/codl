@@ -24,8 +24,16 @@ export const createPost = (postData) => dispatch => {
   }).then(response => {
     if (response.ok) {
       window.location = "/";
-    } else {
-      throw new Error('Something went wrong');
+    }
+    if (response.status === 400) {
+      return response.json()
+        .then(responseJson => {
+          responseJson.forEach(error => {
+            if (error.code === "400") {
+              alert(error.message) // global error handler
+            }
+          });
+        })
     }
   })
     .catch((error) => {
