@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ "code", "field", "message" })
 public class ErrorInfo {
 
-	private String code;
+	private String status;
 
 	private String field;
 
 	private String message;
 
-	public ErrorInfo(String code, String field, String message) {
-		this.code = code;
+	public ErrorInfo(String status, String field, String message) {
+		this.status = status;
 		this.field = field;
 		this.message = message;
 	}
 
-	public String getCode() {
-		return code;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getField() {

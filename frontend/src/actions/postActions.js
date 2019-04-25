@@ -1,4 +1,5 @@
 import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST } from './types';
+import $ from 'jquery';
 
 export const fetchPosts = (tag) => dispatch => {
   fetch('http://localhost:8080/getPosts', {
@@ -29,8 +30,9 @@ export const createPost = (postData) => dispatch => {
       return response.json()
         .then(responseJson => {
           responseJson.forEach(error => {
-            if (error.code === "400") {
-              alert(error.message) // global error handler
+            if (error.status === "400") {
+              $('#error').text(error.message).fadeIn();
+              $('html, body').animate({ scrollTop: 0 }, 'fast');
             }
           });
         })

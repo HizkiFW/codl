@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import "popper.js"
+import "jquery/dist/jquery"
+import "bootstrap/dist/js/bootstrap"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Navbar from './components/Navbar';
 import Tags from './components/Tags';

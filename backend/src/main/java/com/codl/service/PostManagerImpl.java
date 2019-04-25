@@ -31,9 +31,7 @@ public class PostManagerImpl implements PostManager {
 		
 		if (post.getDescription().isEmpty()) {
 			List<ErrorInfo> errList = new ArrayList<ErrorInfo>();
-			ErrorInfo err = new ErrorInfo("400", "Descritption", "\"pas de description !!\"");
-			err.setCode("400");
-			err.setField("Description");
+			ErrorInfo err = new ErrorInfo("400", "Descritption", "pas de description !!");
 			errList.add(err);
 			throw new InvalidInputException(errList);
 		}

@@ -65,6 +65,8 @@ class PostForm extends Component {
     render() {
         return (
             <PostFormWrapper>
+                <div className="alert alert-danger collapse" role="alert" id="error">
+                </div>
                 <form onSubmit={this.onSubmit}>
                     <div className="d-flex">
                         <div className="p-1 flex-grow-1 col-8">

@@ -25,20 +25,20 @@ public class Post implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
 	private long id;
-	@Column(name="TITLE")
+	@Column(name="TITLE", nullable=false)
 	private String title;
-	@Column(name="CODE")
+	@Column(name="CODE", columnDefinition="text", nullable=false)
 	private String code;
 	@Column(name="DESCRIPTION")
 	private String description;
-	@Column(name="LANGUAGE")
+	@Column(name="LANGUAGE", nullable=false)
 	private String language;
-	@Column(name="VOTE_COUNT")
+	@Column(name="VOTE_COUNT", nullable=false)
 	private Integer voteCount;
 	@ManyToOne
 	@JoinColumn(name="USER_ID", nullable=false)
 	private User user;
-	@Column(name="DATE_CREATION")
+	@Column(name="DATE_CREATION", nullable=false)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date dateCreation;
 	@Transient

@@ -24,7 +24,7 @@ export const CardContainer = styled.div`
         }
         
         .list-group {
-            height:200px;
+            max-height:200px;
             overflow-y: scroll;
         }
 
