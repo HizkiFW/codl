@@ -28,11 +28,18 @@ public class PostManagerImpl implements PostManager {
 	@Override
 	@Transactional
 	public void addPost(Post post) {
-		
+
+		List<ErrorInfo> errList = new ArrayList<ErrorInfo>();
 		if (post.getDescription().isEmpty()) {
-			List<ErrorInfo> errList = new ArrayList<ErrorInfo>();
 			ErrorInfo err = new ErrorInfo("400", "Descritption", "pas de description !!");
 			errList.add(err);
+		}
+		if (true) {
+			ErrorInfo err1 = new ErrorInfo("400", "Descritption", "Second Error");
+			errList.add(err1);
+		}
+
+		if (!errList.isEmpty()) {
 			throw new InvalidInputException(errList);
 		}
 		Date now = new Date();

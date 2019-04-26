@@ -29,12 +29,14 @@ export const createPost = (postData) => dispatch => {
     if (response.status === 400) {
       return response.json()
         .then(responseJson => {
+          $('#error').empty()
           responseJson.forEach(error => {
             if (error.status === "400") {
-              $('#error').text(error.message).fadeIn();
-              $('html, body').animate({ scrollTop: 0 }, 'fast');
+              $('<li>' + error.message + '</li>').appendTo('#error');
             }
           });
+          $('#error').fadeIn();
+          $('html, body').animate({ scrollTop: 0 }, 'fast');
         })
     }
   })
