@@ -124,6 +124,8 @@ margin-top:5px;
 margin-right:5px;
 background:white;
 padding: 15px 15px;
+border: 1px solid #c9c9c9;
+box-shadow: var(--theme-container-box-shadow, 2px 2px 0px #bfbfbf);
 
 .code {
     margin:20px 5px;

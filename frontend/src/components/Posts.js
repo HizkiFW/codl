@@ -31,6 +31,11 @@ class Posts extends Component {
     ));
     return (
       <div>
+        <SortWrapper>
+          <a class="sort-by-link selected" href="/">NEWEST</a>
+          <span class="separator"></span>
+          <a class="sort-by-link " href="/top/week">POPULAR</a>
+        </SortWrapper>
         {postItems}
       </div>
     )
@@ -53,4 +58,36 @@ const PostsWrapper = styled.div`
     color:inherit;
     outline:none;
   }
+`
+
+const SortWrapper = styled.div`
+text-align: center;
+font-family: Arial;
+height: 45px;
+padding:10px 0px
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sort-by-link {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 0.95em;
+}
+
+.sort-by-link.selected {
+    background: #003ee6;
+    color: white;
+    border: 1px solid #0f0f0f;
+    border-radius: 2px;
+}
+
+.separator {
+    border-left: 2px solid #a7a7a7;
+    display: inline-block;
+    margin: 0px 7px;
+    height: 15px;
+}
 `

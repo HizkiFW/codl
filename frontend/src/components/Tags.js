@@ -25,7 +25,7 @@ class Tags extends Component {
 
         return (
             <CardContainer className="card d-none d-md-block">
-                <div className="card-header">
+                <div className="card-header yellow">
                     Tags
                 </div>
                 <ul className="list-group list-group-flush">

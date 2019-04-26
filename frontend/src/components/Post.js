@@ -101,8 +101,6 @@ const mapDispatchToProps = {
 
 export default connect(null, mapDispatchToProps)(Post);
 
-
-
 const PostWrapper = styled.div`
 border-radius: 3px;
 margin-top:5px;
@@ -110,6 +108,8 @@ margin-right:5px;
 margin-bottom: 10px;
 background:white;
 padding: 15px 15px;
+border: 1px solid #c9c9c9;
+box-shadow: var(--theme-container-box-shadow, 2px 2px 0px #bfbfbf);
   .author {
     color:#666;
     font-size:17px;

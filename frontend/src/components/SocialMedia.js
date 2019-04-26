@@ -5,7 +5,7 @@ export default class SocialMedia extends Component {
   render() {
     return (
       <CardContainer className="card d-none d-md-block">
-        <div className="card-header">
+        <div className="card-header purple">
           Links
         </div>
         <div className="card-body text-center">
