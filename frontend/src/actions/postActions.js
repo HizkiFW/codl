@@ -1,13 +1,13 @@
 import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST } from './types';
 import $ from 'jquery';
 
-export const fetchPosts = (tag) => dispatch => {
+export const fetchPosts = (filter) => dispatch => {
   fetch('http://localhost:8080/getPosts', {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
     },
-    body: tag
+    body: JSON.stringify(filter)
   }).then(res => res.json())
     .then(posts => dispatch({
       type: FETCH_POSTS,

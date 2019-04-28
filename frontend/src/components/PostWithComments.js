@@ -7,21 +7,21 @@ import { fetchComments } from '../actions/commentActions';
 class PostWithComments extends Component {
 
     componentWillMount() {
-        this.props.fetchComments(this.props.location.state.postId);
+        this.props.fetchComments(this.props.match.params.postId);
     }
 
     render() {
         return (
             <React.Fragment>
                 <Post data={this.props.post} isHidden={true} />
-                <Comments postId={this.props.location.state.postId} data={this.props.comments}/>
+                <Comments postId={this.props.match.params.postId} data={this.props.comments}/>
             </React.Fragment>
         )
     }
 }
 
 const mapStateToProps = (state, props) => ({
-    post: state.posts.items.find(x => x.id === props.location.state.postId),
+    post: state.posts.items.find(x => x.id === Number(props.match.params.postId)),
     comments: state.comments.items
 });
 

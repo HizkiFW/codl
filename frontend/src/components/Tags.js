@@ -13,12 +13,7 @@ class Tags extends Component {
 
     render() {
         const tagItems = this.props.tags.map((tag, i) => (
-            <Link key={i} to={{
-                pathname: '/t/' + tag.language,
-                state: {
-                    tag: tag.language
-                }
-            }}>
+            <Link key={i} to={`/t/${tag.language}/new`}>
                 <li className="list-group-item">#{LANGUAGE_MAP.get(tag.language)} ({tag.count})</li>
             </Link>
         ));

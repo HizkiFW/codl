@@ -27,7 +27,7 @@ public class Post implements Serializable {
 	private long id;
 	@Column(name="TITLE", nullable=false)
 	private String title;
-	@Column(name="CODE", columnDefinition="text", nullable=false)
+	@Column(name="CODE", nullable=false)
 	private String code;
 	@Column(name="DESCRIPTION")
 	private String description;

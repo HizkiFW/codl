@@ -36,9 +36,9 @@ class App extends Component {
                 <div className="p-1 flex-grow-1">
                   <Switch>
                     <Route path="/" component={Posts} exact />
-                    <Route path="/t/*" component={FilteredPosts} />
                     <Route path="/submit" component={PostForm} />
-                    <Route path="/comments/*" component={PostWithComments} />
+                    <Route path="/post/:postId" component={PostWithComments} />
+                    <Route path="/t/:lang/:chrono" component={FilteredPosts} />
                     <Route component={Error} />
                   </Switch>
                 </div>

@@ -85,6 +85,9 @@ class Post extends Component {
             setOptions={{
               useWorker: false
             }}
+            editorProps={{
+              $blockScrolling: Infinity
+            }}
           />
         </div>
         <span>{this.props.data.description}</span>

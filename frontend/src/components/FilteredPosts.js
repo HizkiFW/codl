@@ -4,33 +4,30 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { fetchPosts } from '../actions/postActions';
+import ChronoFilter from "./ChronoFilter"
 
 class FilteredPosts extends Component {
 
     componentWillMount() {
-        this.props.fetchPosts(this.props.location.state.tag);
+        this.props.fetchPosts({ language: this.props.match.params.lang, chrono: this.props.match.params.chrono });
     }
 
 
-    componentWillReceiveProps(nextProps){
-        this.props.fetchPosts(nextProps.location.state.tag);
-    }
+    /*componentWillReceiveProps(nextProps){
+        this.props.fetchPosts(nextProps.match.params.lang);
+    }*/
 
     render() {
         const postItems = this.props.posts.map(post => (
             <PostsWrapper key={post.id}>
-                <Link to={{
-                    pathname: '/comments/' + post.id,
-                    state: {
-                        postId: post.id
-                    }
-                }}>
+                <Link to={`/post/${post.id}`}>
                     <Post data={post} isHidden={false} />
                 </Link>
             </PostsWrapper>
         ));
         return (
             <div>
+                <ChronoFilter lang={this.props.match.params.lang} />
                 {postItems}
             </div>
         )

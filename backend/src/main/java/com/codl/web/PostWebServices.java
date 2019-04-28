@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.codl.models.Filter;
 import com.codl.models.Post;
 import com.codl.service.PostManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,9 +28,9 @@ public class PostWebServices {
 	@Path("getPosts")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String getPosts(String language) {
+	public String getPosts(Filter filter) {
 		String response = "";
-		List<Post> allPosts = postManager.getAllPosts(language);
+		List<Post> allPosts = postManager.getAllPosts(filter);
 		ObjectMapper Obj = new ObjectMapper();
 
 		try {

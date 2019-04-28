@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codl.dao.PostDAO;
+import com.codl.models.Filter;
 import com.codl.models.Post;
 import com.codl.utils.ErrorInfo;
 import com.codl.utils.InvalidInputException;
@@ -21,8 +22,12 @@ public class PostManagerImpl implements PostManager {
 
 	@Override
 	@Transactional
-	public List<Post> getAllPosts(String language) {
-		return postDAO.getAllPosts(language);
+	public List<Post> getAllPosts(Filter filter) {
+		if (filter == null || (filter.getChrono().equals("new") && filter.getLanguage().equals("all"))) {
+			return postDAO.getAllPosts();
+		} else {
+			return postDAO.getPostsWithFilter(filter);
+		}
 	}
 
 	@Override
