@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
 import AceEditor from 'react-ace';
-import 'brace/theme/terminal';
+import 'brace/theme/chaos';
 import Upvote from './Upvote';
 import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from '../actions/postActions';
@@ -74,19 +74,21 @@ class Post extends Component {
         <div onClick={(e) => e.preventDefault()}>
           <AceEditor
             mode={this.props.data.language}
-            theme="terminal"
+            theme="chaos"
             maxLines={Infinity}
             name="ace"
             width="100%"
             readOnly={true}
             value={this.props.data.code}
             highlightActiveLine={false}
+            showPrintMargin={false}
             fontSize="15px"
+            scrollMargin= {[10, 10, 10, 10]}
             setOptions={{
               useWorker: false
             }}
             editorProps={{
-              $blockScrolling: Infinity
+              $blockScrolling: Infinity,
             }}
           />
         </div>
