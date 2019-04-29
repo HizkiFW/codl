@@ -22,7 +22,7 @@ class Posts extends Component {
     ));
     return (
       <div>
-        <ChronoFilter lang="all" />
+        <ChronoFilter lang="all" sortByNew={true} />
         {postItems}
       </div>
     )

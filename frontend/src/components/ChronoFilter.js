@@ -4,13 +4,23 @@ import { Link } from 'react-router-dom'
 
 export default class ChronoFilter extends Component {
   render() {
-    return (
-      < SortWrapper >
-        <Link to={`/t/${this.props.lang}/new`}><span className="sort-by-link selected">NEWEST</span></Link>
-        <span className="separator"></span>
-        <Link to={`/t/${this.props.lang}/best`}><span className="sort-by-link">POPULAR</span></Link>
-      </SortWrapper >
-    )
+    if (this.props.sortByNew) {
+      return (
+        < SortWrapper >
+          <Link to={`/t/${this.props.lang}/new`}><span className="sort-by-link selected">NEWEST</span></Link>
+          <span className="separator"></span>
+          <Link to={`/t/${this.props.lang}/best`}><span className="sort-by-link">POPULAR</span></Link>
+        </SortWrapper >
+      )
+    } else {
+      return (
+        < SortWrapper >
+          <Link to={`/t/${this.props.lang}/new`}><span className="sort-by-link">NEWEST</span></Link>
+          <span className="separator"></span>
+          <Link to={`/t/${this.props.lang}/best`}><span className="sort-by-link selected">POPULAR</span></Link>
+        </SortWrapper >
+      )
+    }
   }
 }
 
@@ -19,11 +29,12 @@ const SortWrapper = styled.div`
 text-align: center;
 font-family: Arial;
 height: 45px;
-padding:10px 0px
+padding:10px 0px;
 
 a {
   text-decoration: none;
   color: inherit;
+  outline:none;
 }
 
 .sort-by-link {

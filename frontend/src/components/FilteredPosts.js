@@ -13,11 +13,14 @@ class FilteredPosts extends Component {
     }
 
 
-    /*componentWillReceiveProps(nextProps){
-        this.props.fetchPosts(nextProps.match.params.lang);
-    }*/
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.lang !== this.props.match.params.lang || nextProps.match.params.chrono !== this.props.match.params.chrono) {
+            this.props.fetchPosts({ language: nextProps.match.params.lang, chrono: nextProps.match.params.chrono });
+        }
+    }
 
     render() {
+        let sortByNew = (this.props.match.params.chrono === "new" || typeof this.props.match.params.chrono === 'undefined') ? true : false;
         const postItems = this.props.posts.map(post => (
             <PostsWrapper key={post.id}>
                 <Link to={`/post/${post.id}`}>
@@ -27,7 +30,7 @@ class FilteredPosts extends Component {
         ));
         return (
             <div>
-                <ChronoFilter lang={this.props.match.params.lang} />
+                <ChronoFilter lang={this.props.match.params.lang} sortByNew={sortByNew} />
                 {postItems}
             </div>
         )
