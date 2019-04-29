@@ -13,10 +13,14 @@ class Comment extends Component {
 
   upvoteComment(id) {
     this.props.upvoteComment(id);
+    document.getElementById('like-button').classList.toggle('fas');
+    document.getElementById('like-button').classList.toggle('far');
   }
 
   removeVote(id) {
     console.log('removevote');
+    document.getElementById('like-button').classList.toggle('fas');
+    document.getElementById('like-button').classList.toggle('far');
   }
 
 
@@ -38,16 +42,16 @@ class Comment extends Component {
         </div>
         <div className="text">{this.props.data.text}</div>
         <Heart
-              //voteStatus={user.votes[postData.id] || 0}
-              voteStatus={0}
-              upvoteContent={<i className="upvote-icon far fa-heart"></i>}
-              afterContent={this.props.data.voteCount}
-              //shouldAllow={() => user.isLoggedIn}
-              shouldAllow={() => true}
-              onDisallowed={() => this.errorMessage('You have to log in!')}
-              onUpvote={() => this.upvoteComment(this.props.data.id)}
-              onRemoveVote={() => this.removeVote(this.props.data.id)}
-            />
+          //voteStatus={user.votes[postData.id] || 0}
+          voteStatus={0}
+          upvoteContent={<i id="like-button" className="upvote-icon far fa-heart not-liked"></i>}
+          afterContent={this.props.data.voteCount}
+          //shouldAllow={() => user.isLoggedIn}
+          shouldAllow={() => true}
+          onDisallowed={() => this.errorMessage('You have to log in!')}
+          onUpvote={() => this.upvoteComment(this.props.data.id)}
+          onRemoveVote={() => this.removeVote(this.props.data.id)}
+        />
       </CommentWrapper>
     )
   }
