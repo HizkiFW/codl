@@ -118,14 +118,12 @@ const mapDispatchToProps = {
 export default connect(null, mapDispatchToProps)(PostForm);
 
 const PostFormWrapper = styled.div`
-border-radius: 3px;
+border-radius: 4px;
 margin-bottom: 15px;
-margin-top:5px;
-margin-right:5px;
+margin-top:13px;
 background:white;
 padding: 15px 15px;
 border: 1px solid #c9c9c9;
-box-shadow: var(--theme-container-box-shadow, 2px 2px 0px #bfbfbf);
 
 .code {
     margin:20px 5px;

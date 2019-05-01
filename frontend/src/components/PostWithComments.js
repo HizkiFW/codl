@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Post from './Post'
 import Comments from './Comments'
-import { fetchComments } from '../actions/commentActions';
+import { fetchComments } from '../actions/commentActions'
+import styled from 'styled-components'
 
 class PostWithComments extends Component {
 
@@ -12,10 +13,10 @@ class PostWithComments extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <PostWithCommentsWrapper>
                 <Post data={this.props.post} isHidden={true} />
                 <Comments postId={this.props.match.params.postId} data={this.props.comments}/>
-            </React.Fragment>
+            </PostWithCommentsWrapper>
         )
     }
 }
@@ -29,6 +30,10 @@ const mapDispatchToProps = {
     fetchComments
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostWithComments);;
+export default connect(mapStateToProps, mapDispatchToProps)(PostWithComments);
+
+const PostWithCommentsWrapper = styled.div`
+margin-top:13px;
+`
 
 

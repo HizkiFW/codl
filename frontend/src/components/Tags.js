@@ -19,7 +19,7 @@ class Tags extends Component {
         ));
 
         return (
-            <CardContainer className="card d-none d-md-block">
+            <CardContainer className="card">
                 <div className="card-header yellow">
                     Tags
                 </div>

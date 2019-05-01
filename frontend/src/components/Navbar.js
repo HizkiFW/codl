@@ -11,7 +11,7 @@ export default class Navbar extends Component {
                     codl
                 </NavLink>
                 <form className="form-inline col-6">
-                    <input className="form-control bg-dark mr-sm-2 border-0 col-12" type="search" placeholder="Search" aria-label="Search" />
+                    <input className="form-control form-control-sm bg-dark text-white border-0 col-12" type="search" placeholder="Search" aria-label="Search" />
                 </form>
                 <NavLink to='/submit' className="">
                     <ButtonContainer>
@@ -29,7 +29,7 @@ const NavWrapper = styled.nav`
         font-size:1rem;
         text-transform:capitalize;
         outline:none;
-        box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+        
         a, a:active, a:focus {
             outline: none;
         }

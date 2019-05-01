@@ -4,11 +4,9 @@ export const CardContainer = styled.div`
 width: 15rem;
 margin-bottom: 10px;
 line-height: 1.35em;
-border-radius: 3px;
 margin-top: 5px;
 margin-left:5px;
 border: 1px solid #c9c9c9;
-box-shadow: var(--theme-container-box-shadow, 2px 2px 0px #bfbfbf);
     
     &:active{
         color:black;

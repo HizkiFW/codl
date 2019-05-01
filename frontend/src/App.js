@@ -11,6 +11,7 @@ import Welcome from './components/Welcome';
 import SocialMedia from './components/SocialMedia';
 import PostForm from './components/PostForm';
 import Posts from './components/Posts';
+import Login from "./components/Login";
 import FilteredPosts from './components/FilteredPosts'
 import PostWithComments from './components/PostWithComments';
 import Error from './components/Error';
@@ -23,24 +24,27 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <PersistGate loading={<Loader/>} persistor={persistor}>
+        <PersistGate loading={<Loader />} persistor={persistor}>
           <BrowserRouter>
             <React.Fragment>
               <Navbar />
               <div className="d-flex">
-                <div className="p-1">
+                <div className="p-2 mt-2 d-none d-md-block">
                   <Welcome />
                   <Tags />
                   <SocialMedia />
                 </div>
-                <div className="p-1 flex-grow-1">
+                <div className="p-2 flex-grow-1">
                   <Switch>
                     <Route path="/" component={Posts} exact />
+                    <Route path="/login" component={Login} exact />
                     <Route path="/submit" component={PostForm} />
                     <Route path="/post/:postId" component={PostWithComments} />
                     <Route path="/t/:lang/:chrono" component={FilteredPosts} />
                     <Route component={Error} />
                   </Switch>
+                </div>
+                <div className="p-1 d-none d-md-block">
                 </div>
               </div>
             </React.Fragment>
