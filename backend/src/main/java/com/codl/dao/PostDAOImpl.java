@@ -31,11 +31,10 @@ public class PostDAOImpl implements PostDAO {
 	public List<Post> getPostsWithFilter(Filter filter) {
 		Query query;
 		List<Post> posts;
-		if (!filter.getLanguage().equals("all")) {
-			query = this.sessionFactory.getCurrentSession().getNamedQuery("getPostsWithLanguage").setString("language",
-					filter.getLanguage());
-		} else {
+		if (filter.getLanguage().equals("all")) {
 			query = this.sessionFactory.getCurrentSession().getNamedQuery("getPosts");
+		} else {
+			query = this.sessionFactory.getCurrentSession().getNamedQuery("getPostsWithLanguage").setString("language",filter.getLanguage());
 		}
 
 		posts = query.setResultTransformer(Transformers.aliasToBean(Post.class)).list();

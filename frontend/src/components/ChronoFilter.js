@@ -14,7 +14,6 @@ export default class ChronoFilter extends Component {
   }
 }
 
-
 const SortWrapper = styled.div`
 text-align: center;
 font-family: Arial;
@@ -31,6 +30,11 @@ a {
     display: inline-block;
     padding: 2px 8px;
     font-size: 0.95em;
+
+    &:hover {
+      border-radius: 2px;
+      background-color: rgba(26, 26, 27, 0.1);
+    }
 }
 
 .sort-by-link.selected {

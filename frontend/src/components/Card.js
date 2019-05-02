@@ -48,6 +48,10 @@ border: 1px solid #c9c9c9;
 
     .list-group-item {
         padding: .5rem 1.25rem;
+
+        &:hover {
+            background:#f5f6f7;
+        }
     }
     
     li {
