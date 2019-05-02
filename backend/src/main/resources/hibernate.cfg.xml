@@ -2,11 +2,26 @@
 <!DOCTYPE hibernate-configuration PUBLIC
     "-//Hibernate/Hibernate Configuration DTD//EN"
     "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
- 
+
 <hibernate-configuration>
-    <session-factory>
-        <mapping class="com.codl.models.Post"></mapping>
-        <mapping class="com.codl.models.Comment"></mapping>
-        <mapping class="com.codl.models.User"></mapping>
-    </session-factory>
+
+	<session-factory>
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- Drop and re-create the database schema on startup -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<mapping class="com.codl.models.Post"></mapping>
+		<mapping class="com.codl.models.Comment"></mapping>
+		<mapping class="com.codl.models.User"></mapping>
+
+		<mapping resource="com/codl/dao/queries/postQueries.hbm.xml"></mapping>
+	</session-factory>
 </hibernate-configuration>

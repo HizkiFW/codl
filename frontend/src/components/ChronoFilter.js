@@ -36,7 +36,6 @@ a {
 .sort-by-link.selected {
     background: #003ee6;
     color: white;
-    border: 1px solid #0f0f0f;
     border-radius: 2px;
 }
 

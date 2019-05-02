@@ -31,13 +31,6 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:hibernate.cfg.xml" />
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-			</props>
-		</property>
 	</bean>
 	<bean id="postManager" class="com.codl.service.PostManagerImpl" />
 	<bean id="postDAO" class="com.codl.dao.PostDAOImpl" />
