@@ -193,7 +193,7 @@ export function getLanguageTheme(language) {
         ["groovy", ["gold", "aqua"]],
         ["haml", ["crimson", "mediumseagreen"]],
         ["handlebars", ["lightgoldenrodyellow", "darkolivegreen"]],
-        ["haskell", ["lawngreen", "limegreen"]],
+        ["haskell", ["lawngreen", "darkred"]],
         ["haskell_cabal", ["tomato", "lemonchiffon"]],
         ["haxe", ["gold", "lime"]],
         ["hjson", ["lightgoldenrodyellow", "yellowgreen"]],

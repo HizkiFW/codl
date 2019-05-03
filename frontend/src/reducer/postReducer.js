@@ -1,4 +1,4 @@
-import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST } from '../actions/types';
+import { FETCH_POSTS, FETCH_MORE_POSTS, UPVOTE_POST, DOWNVOTE_POST } from '../actions/types';
 
 const initialState = {
     items: []
@@ -10,6 +10,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 items: action.payload
+            };
+        case FETCH_MORE_POSTS:
+            return {
+                ...state,
+                items: state.items.concat(action.payload)
             };
         case UPVOTE_POST:
             return {

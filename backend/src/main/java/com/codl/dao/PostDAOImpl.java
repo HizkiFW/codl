@@ -21,13 +21,6 @@ public class PostDAOImpl implements PostDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Post> getAllPosts() {
-		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("getPosts").setResultTransformer(Transformers.aliasToBean(Post.class));
-		return query.list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Post> getPostsWithFilter(Filter filter) {
 		Query query;
 		List<Post> posts;
@@ -37,7 +30,7 @@ public class PostDAOImpl implements PostDAO {
 			query = this.sessionFactory.getCurrentSession().getNamedQuery("getPostsWithLanguage").setString("language",filter.getLanguage());
 		}
 
-		posts = query.setResultTransformer(Transformers.aliasToBean(Post.class)).list();
+		posts = query.setResultTransformer(Transformers.aliasToBean(Post.class)).setFirstResult(filter.getStart()).setMaxResults(5).list();
 		if (filter.getChrono().equals("best")) {
 			posts = (List<Post>) posts.stream().sorted(Comparator.comparing(Post::getVoteCount).reversed())
 					.collect(Collectors.toList());

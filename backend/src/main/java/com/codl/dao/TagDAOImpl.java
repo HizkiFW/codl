@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.codl.models.Tag;
 
 @Repository
-public class TagDAOImpl implements TagDAO{
+public class TagDAOImpl implements TagDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -19,9 +19,9 @@ public class TagDAOImpl implements TagDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tag> getAllTags() {
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select language as language, count(1) as count from Post group by language");
-		List<Tag> tags= query.setResultTransformer(Transformers.aliasToBean(Tag.class)).list();
-		return tags;
+		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("getTags")
+				.setResultTransformer(Transformers.aliasToBean(Tag.class));
+		return query.list();
 	}
 
 }

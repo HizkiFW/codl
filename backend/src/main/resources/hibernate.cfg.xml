@@ -23,5 +23,6 @@
 		<mapping class="com.codl.models.User"></mapping>
 
 		<mapping resource="com/codl/dao/queries/postQueries.hbm.xml"></mapping>
+		<mapping resource="com/codl/dao/queries/tagQueries.hbm.xml"></mapping>
 	</session-factory>
 </hibernate-configuration>

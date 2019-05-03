@@ -23,11 +23,7 @@ public class PostManagerImpl implements PostManager {
 	@Override
 	@Transactional
 	public List<Post> getAllPosts(Filter filter) {
-		if (filter == null || (filter.getChrono().equals("new") && filter.getLanguage().equals("all"))) {
-			return postDAO.getAllPosts();
-		} else {
-			return postDAO.getPostsWithFilter(filter);
-		}
+		return postDAO.getPostsWithFilter(filter);
 	}
 
 	@Override
@@ -44,7 +40,7 @@ public class PostManagerImpl implements PostManager {
 			throw new InvalidInputException(errList);
 		}
 		Date now = new Date();
-		post.setVoteCount(0);
+		post.setVoteCount(1);
 		post.setDateCreation(now);
 		postDAO.addPost(post);
 	}

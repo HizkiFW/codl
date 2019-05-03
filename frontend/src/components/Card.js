@@ -42,12 +42,14 @@ border: 1px solid #c9c9c9;
     }
     
     .list-group {
-        max-height:200px;
+        max-height:210px;
         overflow-y: scroll;
     }
 
     .list-group-item {
         padding: .5rem 1.25rem;
+        font-size: 0.9em;
+        line-height: 1.35em;
 
         &:hover {
             background:#f5f6f7;

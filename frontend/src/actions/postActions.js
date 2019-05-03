@@ -1,4 +1,4 @@
-import { FETCH_POSTS, UPVOTE_POST, DOWNVOTE_POST } from './types';
+import { FETCH_POSTS, FETCH_MORE_POSTS, UPVOTE_POST, DOWNVOTE_POST } from './types';
 import $ from 'jquery';
 
 export const fetchPosts = (filter) => dispatch => {
@@ -11,6 +11,20 @@ export const fetchPosts = (filter) => dispatch => {
   }).then(res => res.json())
     .then(posts => dispatch({
       type: FETCH_POSTS,
+      payload: posts
+    }));
+}
+
+export const fetchMorePosts = (filter) => dispatch => {
+  fetch('http://localhost:8080/getPosts', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(filter)
+  }).then(res => res.json())
+    .then(posts => dispatch({
+      type: FETCH_MORE_POSTS,
       payload: posts
     }));
 }

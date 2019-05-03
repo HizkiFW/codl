@@ -3,14 +3,26 @@ import Post from './Post'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { fetchPosts } from '../actions/postActions';
+import { fetchPosts, fetchMorePosts } from '../actions/postActions';
 import ChronoFilter from "./ChronoFilter"
+import InfiniteScroll from "react-infinite-scroll-component"
 
 class Posts extends Component {
 
+  state = {
+    start: 0
+  };
+
   componentWillMount() {
-    this.props.fetchPosts();
+    this.props.fetchPosts({ start: this.state.start, language: "all", chrono: "new" });
   }
+
+  fetchMoreData = () => {
+    this.setState({
+      start: this.props.posts.length
+    });
+    this.props.fetchMorePosts({ start: this.state.start, language: "all", chrono: "new" })
+  };
 
   render() {
     const postItems = this.props.posts.map(post => (
@@ -23,7 +35,14 @@ class Posts extends Component {
     return (
       <div>
         <ChronoFilter lang="all" sortByNew={true} />
-        {postItems}
+        <InfiniteScroll
+          dataLength={this.props.posts.length}
+          next={this.fetchMoreData}
+          hasMore={true}
+          loader={<h4 className="text-center">Loading...</h4>}
+        >
+          {postItems}
+        </InfiniteScroll>
       </div>
     )
   }
@@ -34,7 +53,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchPosts
+  fetchPosts,
+  fetchMorePosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

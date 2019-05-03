@@ -5,11 +5,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { fetchPosts } from '../actions/postActions';
 import ChronoFilter from "./ChronoFilter"
+import InfiniteScroll from "react-infinite-scroll-component"
 
 class FilteredPosts extends Component {
 
+    state = {
+        start: 0
+    };
+
     componentWillMount() {
-        this.props.fetchPosts({ language: this.props.match.params.lang, chrono: this.props.match.params.chrono });
+        this.props.fetchPosts({ start: this.state.start, language: this.props.match.params.lang, chrono: this.props.match.params.chrono });
     }
 
 
@@ -18,6 +23,13 @@ class FilteredPosts extends Component {
             this.props.fetchPosts({ language: nextProps.match.params.lang, chrono: nextProps.match.params.chrono });
         }
     }
+
+    fetchMoreData = () => {
+        this.setState({
+            start: this.props.posts.length
+        });
+        this.props.fetchMorePosts({ start: this.state.start, language: this.props.match.params.lang, chrono: this.props.match.params.chrono })
+    };
 
     render() {
         let sortByNew = (this.props.match.params.chrono === "new" || typeof this.props.match.params.chrono === 'undefined') ? true : false;
@@ -31,7 +43,14 @@ class FilteredPosts extends Component {
         return (
             <div>
                 <ChronoFilter lang={this.props.match.params.lang} sortByNew={sortByNew} />
-                {postItems}
+                <InfiniteScroll
+                    dataLength={this.props.posts.length}
+                    next={this.fetchMoreData}
+                    hasMore={true}
+                    loader={<h4 className="text-center">Loading...</h4>}
+                >
+                    {postItems}
+                </InfiniteScroll>
             </div>
         )
     }

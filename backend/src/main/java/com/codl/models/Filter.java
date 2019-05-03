@@ -4,14 +4,16 @@ public class Filter {
 
 	private String language;
 	private String chrono;
+	private int start;
 
 	public Filter() {
 
 	}
 
-	public Filter(String language, String chrono) {
+	public Filter(String language, String chrono, int start) {
 		this.language = language;
 		this.chrono = chrono;
+		this.start = start;
 	}
 
 	public String getLanguage() {
@@ -28,6 +30,14 @@ public class Filter {
 
 	public void setChrono(String chrono) {
 		this.chrono = chrono;
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
 	}
 
 }

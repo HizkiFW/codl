@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
-color:white
-text-transform:capitalize;
-font-size:1rem;
-background-color: #00a7ec;
-border-radius: 0.2rem;
-padding: 0.2rem 0.5rem
-cursor:pointer;
-transition:all 0.5s ease-in-out;
-border:0;
-&:hover{
-    background:#0086bd;
+width: 115px;
+padding: 3px 0px;
+height: auto;
+top: 12px;
+text-align: center;
+font-weight:bold;
+font-size:14px;
+border-radius: 3px;
+border: 2px solid #0a0a0a;
+color: white;
+background: #039dff;
+
+&:focus {
+    outline:none;
 }
-&:focus{
-    outline: none;
+
+&:hover {
+    background-color: #1aa5ff;
 }
 `;
