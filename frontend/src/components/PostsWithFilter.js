@@ -3,7 +3,7 @@ import Post from './Post'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { fetchPosts } from '../actions/postActions';
+import { fetchPosts, fetchMorePosts } from '../actions/postActions';
 import ChronoFilter from "./ChronoFilter"
 import InfiniteScroll from "react-infinite-scroll-component"
 
@@ -46,7 +46,7 @@ class FilteredPosts extends Component {
                 <InfiniteScroll
                     dataLength={this.props.posts.length}
                     next={this.fetchMoreData}
-                    hasMore={true}
+                    hasMore={this.props.hasMore}
                     loader={<h4 className="text-center">Loading...</h4>}
                 >
                     {postItems}
@@ -57,11 +57,13 @@ class FilteredPosts extends Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.items
+    posts: state.posts.items,
+    hasMore: state.posts.hasMore
 });
 
 const mapDispatchToProps = {
-    fetchPosts
+    fetchPosts,
+    fetchMorePosts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilteredPosts);

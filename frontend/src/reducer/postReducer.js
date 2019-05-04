@@ -1,7 +1,8 @@
 import { FETCH_POSTS, FETCH_MORE_POSTS, UPVOTE_POST, DOWNVOTE_POST } from '../actions/types';
 
 const initialState = {
-    items: []
+    items: [],
+    hasMore: true
 }
 
 export default function (state = initialState, action) {
@@ -9,12 +10,14 @@ export default function (state = initialState, action) {
         case FETCH_POSTS:
             return {
                 ...state,
+                hasMore: action.payload.length > 0 ? true : false,
                 items: action.payload
             };
         case FETCH_MORE_POSTS:
             return {
                 ...state,
-                items: state.items.concat(action.payload)
+                hasMore: action.payload.length > 0 ? true : false,
+                items: action.payload.length > 0 ? state.items.concat(action.payload) : state.items
             };
         case UPVOTE_POST:
             return {

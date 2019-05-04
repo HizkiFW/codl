@@ -38,7 +38,7 @@ class Posts extends Component {
         <InfiniteScroll
           dataLength={this.props.posts.length}
           next={this.fetchMoreData}
-          hasMore={true}
+          hasMore={this.props.hasMore}
           loader={<h4 className="text-center">Loading...</h4>}
         >
           {postItems}
@@ -49,7 +49,8 @@ class Posts extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.items
+  posts: state.posts.items,
+  hasMore: state.posts.hasMore
 });
 
 const mapDispatchToProps = {

@@ -12,13 +12,15 @@ import SocialMedia from './components/SocialMedia';
 import PostForm from './components/PostForm';
 import Posts from './components/Posts';
 import Login from "./components/Login";
-import FilteredPosts from './components/FilteredPosts'
+import PostsWithFIlter from './components/PostsWithFilter'
 import PostWithComments from './components/PostWithComments';
 import Error from './components/Error';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loader from './components/Loader';
+import styled from 'styled-components';
+
 class App extends Component {
 
   render() {
@@ -28,7 +30,7 @@ class App extends Component {
           <BrowserRouter>
             <React.Fragment>
               <Navbar />
-              <div className="d-flex">
+              <ContentWrapper className="d-flex">
                 <div className="p-2 mt-2 d-none d-md-block">
                   <Welcome />
                   <Tags />
@@ -40,13 +42,13 @@ class App extends Component {
                     <Route path="/login" component={Login} exact />
                     <Route path="/submit" component={PostForm} />
                     <Route path="/post/:postId" component={PostWithComments} />
-                    <Route path="/t/:lang/:chrono" component={FilteredPosts} />
+                    <Route path="/t/:lang/:chrono" component={PostsWithFIlter} />
                     <Route component={Error} />
                   </Switch>
                 </div>
                 <div className="p-1 d-none d-md-block">
                 </div>
-              </div>
+              </ContentWrapper>
             </React.Fragment>
           </BrowserRouter>
         </PersistGate>
@@ -56,3 +58,8 @@ class App extends Component {
 }
 
 export default App;
+
+const ContentWrapper = styled.div`
+max-width: 1250px;
+margin: auto;
+`
