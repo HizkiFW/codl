@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { createComment } from '../actions/commentActions';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom"
 
 class CommentForm extends Component {
 
@@ -14,12 +15,20 @@ class CommentForm extends Component {
     }
 
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   };
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+  onClick() {
+    if (!this.props.auth) {
+      this.props.history.push('/login');
+    }
+  }
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -42,7 +51,7 @@ class CommentForm extends Component {
       <CommentFormWrapper>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <textarea className="form-control rounded-0" rows="3" placeholder="What are your thoughts?" spellCheck="false" onChange={this.onChange} name="text" value={this.state.text} required />
+            <textarea className="form-control rounded-0" rows="3" placeholder="What are your thoughts?" spellCheck="false" onClick={this.onClick} onChange={this.onChange} name="text" value={this.state.text} required />
           </div>
           <div className="text-right">
             <button type="submit" className="btn btn-primary btn-sm">SUBMIT</button>
@@ -53,11 +62,15 @@ class CommentForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth.authenticated
+});
+
 const mapDispatchToProps = {
   createComment
 };
 
-export default connect(null, mapDispatchToProps)(CommentForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommentForm));
 
 const CommentFormWrapper = styled.div`
 margin-bottom: 20px;

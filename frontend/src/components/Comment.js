@@ -5,6 +5,7 @@ import Heart from './Heart';
 import en from 'javascript-time-ago/locale/en'
 import { connect } from 'react-redux';
 import { upvoteComment } from '../actions/commentActions';
+import { withRouter } from "react-router-dom"
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
@@ -12,15 +13,23 @@ const timeAgo = new TimeAgo('en-US');
 class Comment extends Component {
 
   upvoteComment(id) {
-    this.props.upvoteComment(id);
-    document.getElementById('like-button').classList.toggle('fas');
-    document.getElementById('like-button').classList.toggle('far');
+    if (this.props.auth) {
+      this.props.upvoteComment(id);
+      document.getElementById('like-button').classList.toggle('fas');
+      document.getElementById('like-button').classList.toggle('far');
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   removeVote(id) {
-    console.log('removevote');
-    document.getElementById('like-button').classList.toggle('fas');
-    document.getElementById('like-button').classList.toggle('far');
+    if (this.props.auth) {
+      console.log('removevote');
+      document.getElementById('like-button').classList.toggle('fas');
+      document.getElementById('like-button').classList.toggle('far');
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
 
@@ -57,11 +66,15 @@ class Comment extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth.authenticated
+});
+
 const mapDispatchToProps = {
   upvoteComment
 };
 
-export default connect(null, mapDispatchToProps)(Comment);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Comment));
 
 const CommentWrapper = styled.div`
 border: 1px solid #dbdbdb;

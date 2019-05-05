@@ -24,13 +24,13 @@ export default class Navbar extends Component {
 }
 
 const NavWrapper = styled.nav`
-        background:#24292e;
-        color:white;
-        font-size:1rem;
-        text-transform:capitalize;
-        outline:none;
-        
-        a, a:active, a:focus {
-            outline: none;
-        }
+background:#24292e;
+color:white;
+font-size:1rem;
+text-transform:capitalize;
+outline:none;
+
+    a, a:active, a:focus {
+        outline: none;
+    }
 `

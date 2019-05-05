@@ -9,10 +9,10 @@ import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from '../actions/postActions';
 import { getLanguageTheme } from "../utils/language"
 import { LANGUAGE_MAP } from "../utils/language"
+import { withRouter } from "react-router-dom"
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
-
 
 class Post extends Component {
   constructor() {
@@ -25,15 +25,28 @@ class Post extends Component {
   }
 
   upvotePost(id) {
-    this.props.upvotePost(id);
+    if (this.props.auth) {
+      this.props.upvotePost(id);
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   downvotePost(id) {
-    this.props.downvotePost(id);
+    if (this.props.auth) {
+      this.props.downvotePost(id);
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   removeVote(id) {
-    console.log('removevote');
+    if (this.props.auth) {
+      console.log('removevote');
+    } else {
+      this.props.history.push('/login');
+    }
+
   }
 
   getComments(number) {
@@ -83,7 +96,7 @@ class Post extends Component {
             highlightActiveLine={false}
             showPrintMargin={false}
             fontSize="15px"
-            scrollMargin= {[10, 10, 10, 10]}
+            scrollMargin={[10, 10, 10, 10]}
             setOptions={{
               useWorker: false
             }}
@@ -99,12 +112,16 @@ class Post extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth.authenticated
+});
+
 const mapDispatchToProps = {
   upvotePost,
   downvotePost
 };
 
-export default connect(null, mapDispatchToProps)(Post);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));
 
 const PostWrapper = styled.div`
 border-radius: 4px;

@@ -20,6 +20,7 @@ import { persistor, store } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loader from './components/Loader';
 import styled from 'styled-components';
+import Portal from './utils/Portal'
 import { AUTH_USER } from "./actions/types"
 
 const user = localStorage.getItem('token');
@@ -29,7 +30,10 @@ if (user) {
 }
 
 class App extends Component {
-
+  state = { showModal: true }
+  handleCloseModal = () => {
+    this.setState({ showModal: false })
+  }
   render() {
     return (
       <Provider store={store}>
@@ -46,7 +50,6 @@ class App extends Component {
                 <div className="p-2 flex-grow-1">
                   <Switch>
                     <Route path="/" component={Posts} exact />
-                    <Route path="/login" component={Login} exact />
                     <Route path="/submit" component={PostForm} />
                     <Route path="/post/:postId" component={PostWithComments} />
                     <Route path="/t/:lang/:chrono" component={PostsWithFIlter} />
@@ -55,7 +58,12 @@ class App extends Component {
                 </div>
                 <div className="p-1 d-none d-md-block">
                 </div>
-              </ContentWrapper>
+              </ContentWrapper >
+              {this.state.showModal ? (
+                <Portal>
+                  <Login onClose={this.handleCloseModal} />
+                </Portal>
+              ) : null}
             </React.Fragment>
           </BrowserRouter>
         </PersistGate>
