@@ -19,6 +19,21 @@
 			order by P.dateCreation desc
         ]]>
      </query>
+     <query name="getPostsByBest">
+        <![CDATA[
+            select P.id as id,
+			   P.code as code,
+			   P.dateCreation as dateCreation,
+			   P.description as description,
+			   P.language as language,
+			   P.title as title,
+			   P.voteCount as voteCount,
+			   P.user as user,
+			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
+			from Post P
+			order by P.voteCount desc
+        ]]>
+     </query>
      <query name="getPostsWithLanguage">
         <![CDATA[
             select P.id as id,
@@ -33,6 +48,22 @@
 			from Post P
 			where P.language = :language
 			order by P.dateCreation desc
+        ]]>
+     </query>
+     <query name="getPostsWithLanguageByBest">
+        <![CDATA[
+            select P.id as id,
+			   P.code as code,
+			   P.dateCreation as dateCreation,
+			   P.description as description,
+			   P.language as language,
+			   P.title as title,
+			   P.voteCount as voteCount,
+			   P.user as user,
+			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
+			from Post P
+			where P.language = :language
+			order by P.voteCount desc
         ]]>
      </query>
 </hibernate-mapping>

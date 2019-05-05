@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Select from 'react-select';
 import AceEditor from 'react-ace';
 import 'brace/theme/terminal';
+import requireAuth from '../utils/requireAuth';
 import { LANGUAGE_MAP } from "../utils/language"
 
 for (let [k] of LANGUAGE_MAP) {
@@ -115,7 +116,7 @@ const mapDispatchToProps = {
     createPost
 };
 
-export default connect(null, mapDispatchToProps)(PostForm);
+export default connect(null, mapDispatchToProps)(requireAuth(PostForm));
 
 const PostFormWrapper = styled.div`
 border-radius: 4px;

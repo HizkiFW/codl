@@ -156,7 +156,7 @@ export function getLanguageTheme(language) {
         ["autohotkey", ["tomato", "seagreen"]],
         ["batchfile", ["salmon", "lightcoral"]],
         ["bro", ["lightsalmon", "springgreen"]],
-        ["c_cpp", ["darkorange", "lightgreen"]],
+        ["c_cpp", ["red", "paleturquoise"]],
         ["c9search", ["chartreuse", "limegreen"]],
         ["cirru", ["indianred", "lime"]],
         ["clojure", ["lightsalmon", "crimson"]],

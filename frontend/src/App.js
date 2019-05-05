@@ -20,6 +20,13 @@ import { persistor, store } from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Loader from './components/Loader';
 import styled from 'styled-components';
+import { AUTH_USER } from "./actions/types"
+
+const user = localStorage.getItem('token');
+
+if (user) {
+  store.dispatch({ type: AUTH_USER, payload: user });
+}
 
 class App extends Component {
 
