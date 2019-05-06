@@ -1,8 +1,8 @@
 import { SHOW_MODAL, CLOSE_MODAL } from './types';
 
-export const showModal = () => dispatch => ({
-      type: SHOW_MODAL
-    });
+export const showModal = () => dispatch => {
+     dispatch({type: SHOW_MODAL})
+};
 
 
 export const closeModal = () => dispatch => {
