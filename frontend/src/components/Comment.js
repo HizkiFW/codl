@@ -4,6 +4,7 @@ import TimeAgo from 'javascript-time-ago'
 import Heart from './Heart';
 import en from 'javascript-time-ago/locale/en'
 import { connect } from 'react-redux';
+import { showModal } from '../actions/modalActions';
 import { upvoteComment } from '../actions/commentActions';
 
 TimeAgo.addLocale(en)
@@ -12,23 +13,15 @@ const timeAgo = new TimeAgo('en-US');
 class Comment extends Component {
 
   upvoteComment(id) {
-    if (this.props.auth) {
-      this.props.upvoteComment(id);
-      document.getElementById('like-button').classList.toggle('fas');
-      document.getElementById('like-button').classList.toggle('far');
-    } else {
-      this.props.history.push('/login');
-    }
+    this.props.upvoteComment(id);
+    document.getElementById('like-button').classList.toggle('fas');
+    document.getElementById('like-button').classList.toggle('far');
   }
 
   removeVote(id) {
-    if (this.props.auth) {
-      console.log('removevote');
-      document.getElementById('like-button').classList.toggle('fas');
-      document.getElementById('like-button').classList.toggle('far');
-    } else {
-      this.props.history.push('/login');
-    }
+    console.log('removevote');
+    document.getElementById('like-button').classList.toggle('fas');
+    document.getElementById('like-button').classList.toggle('far');
   }
 
 
@@ -54,9 +47,8 @@ class Comment extends Component {
           voteStatus={0}
           upvoteContent={<i id="like-button" className="upvote-icon far fa-heart not-liked"></i>}
           afterContent={this.props.data.voteCount}
-          //shouldAllow={() => user.isLoggedIn}
-          shouldAllow={() => true}
-          onDisallowed={() => this.errorMessage('You have to log in!')}
+          shouldAllow={() => this.props.auth ? true : false}
+          onDisallowed={() => this.props.showModal()}
           onUpvote={() => this.upvoteComment(this.props.data.id)}
           onRemoveVote={() => this.removeVote(this.props.data.id)}
         />
@@ -70,7 +62,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  upvoteComment
+  upvoteComment,
+  showModal
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment);

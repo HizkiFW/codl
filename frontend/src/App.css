@@ -3,3 +3,7 @@ body {
   background-color: #dae0e6 !important;
   font-size:18px;
 }
+
+.modal-open {
+  overflow: hidden;
+}

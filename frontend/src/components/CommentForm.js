@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import { createComment } from '../actions/commentActions';
+import { showModal } from '../actions/modalActions';
 import { connect } from 'react-redux';
 
 class CommentForm extends Component {
@@ -24,7 +25,7 @@ class CommentForm extends Component {
 
   onClick() {
     if (!this.props.auth) {
-      this.props.history.push('/login');
+      this.props.showModal();
     }
   }
 
@@ -66,7 +67,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  createComment
+  createComment,
+  showModal
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

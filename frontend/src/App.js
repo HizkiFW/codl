@@ -30,13 +30,8 @@ if (user) {
 }
 
 class App extends Component {
-  state = { showModal: true }
-  handleCloseModal = () => {
-    this.setState({ showModal: false })
-  }
-  render() {
-    let showModal = store.getState().modal.showModal;
 
+  render() {
     return (
       <Provider store={store}>
         <PersistGate loading={<Loader />} persistor={persistor}>
@@ -61,11 +56,9 @@ class App extends Component {
                 <div className="p-1 d-none d-md-block">
                 </div>
               </ContentWrapper >
-              {showModal ? (
-                <Portal>
-                  <Login onClose={this.handleCloseModal} />
-                </Portal>
-              ) : null}
+              <Portal>
+                <Login />
+              </Portal>
             </React.Fragment>
           </BrowserRouter>
         </PersistGate>

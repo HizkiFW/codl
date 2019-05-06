@@ -25,28 +25,15 @@ class Post extends Component {
   }
 
   upvotePost(id) {
-    if (this.props.auth) {
-      this.props.upvotePost(id);
-    } else {
-      this.props.showModal();
-    }
+    this.props.upvotePost(id);
   }
 
   downvotePost(id) {
-    if (this.props.auth) {
-      this.props.downvotePost(id);
-    } else {
-      this.props.history.push('/login');
-    }
+    this.props.downvotePost(id);
   }
 
   removeVote(id) {
-    if (this.props.auth) {
-      console.log('removevote');
-    } else {
-      this.props.history.push('/login');
-    }
-
+    console.log('removevote');
   }
 
   getComments(number) {
@@ -75,9 +62,8 @@ class Post extends Component {
               upvoteContent={<i className="upvote-icon fa fa-arrow-up"></i>}
               afterContent={<span className="upvote-count">{this.props.data.voteCount}</span>}
               downvoteContent={<i className="downvote-icon fa fa-arrow-down"></i>}
-              //shouldAllow={() => user.isLoggedIn}
-              shouldAllow={() => true}
-              onDisallowed={() => this.errorMessage('You have to log in!')}
+              shouldAllow={() => this.props.auth ? true : false}
+              onDisallowed={() => this.props.showModal()}
               onUpvote={() => this.upvotePost(this.props.data.id)}
               onDownvote={() => this.downvotePost(this.props.data.id)}
               onRemoveVote={() => this.removeVote(this.props.data.id)}

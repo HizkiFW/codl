@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { showModal } from '../actions/modalActions';
 
 export default ChildComponent => {
     class ComposedComponent extends Component {
@@ -15,7 +16,8 @@ export default ChildComponent => {
 
         shouldNavigateAway() {
             if (!this.props.auth) {
-                this.props.history.push('/login');
+                this.props.history.push('/');
+                this.props.showModal();
             }
         }
 
@@ -28,5 +30,9 @@ export default ChildComponent => {
         auth: state.auth.authenticated
     });
 
-    return connect(mapStateToProps)(ComposedComponent);
+    const mapDispatchToProps = {
+        showModal
+      };
+
+    return connect(mapStateToProps, mapDispatchToProps)(ComposedComponent);
 };
