@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import { createComment } from '../actions/commentActions';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom"
 
 class CommentForm extends Component {
 
@@ -70,7 +69,7 @@ const mapDispatchToProps = {
   createComment
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CommentForm));
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
 
 const CommentFormWrapper = styled.div`
 margin-bottom: 20px;

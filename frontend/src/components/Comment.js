@@ -5,7 +5,6 @@ import Heart from './Heart';
 import en from 'javascript-time-ago/locale/en'
 import { connect } from 'react-redux';
 import { upvoteComment } from '../actions/commentActions';
-import { withRouter } from "react-router-dom"
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
@@ -74,7 +73,7 @@ const mapDispatchToProps = {
   upvoteComment
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Comment));
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);
 
 const CommentWrapper = styled.div`
 border: 1px solid #dbdbdb;

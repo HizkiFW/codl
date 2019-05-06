@@ -6,7 +6,7 @@ import { ButtonContainer } from './Button'
 export default class Navbar extends Component {
     render() {
         return (
-            <NavWrapper className="navbar sticky-top navbar-expand-lg navbar-dark justify-content-between">
+            <NavWrapper className="navbar navbar-expand-lg navbar-dark justify-content-between">
                 <NavLink to="/" className="navbar-brand">
                     codl
                 </NavLink>

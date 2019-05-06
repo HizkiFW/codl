@@ -35,6 +35,8 @@ class App extends Component {
     this.setState({ showModal: false })
   }
   render() {
+    let showModal = store.getState().modal.showModal;
+
     return (
       <Provider store={store}>
         <PersistGate loading={<Loader />} persistor={persistor}>
@@ -59,7 +61,7 @@ class App extends Component {
                 <div className="p-1 d-none d-md-block">
                 </div>
               </ContentWrapper >
-              {this.state.showModal ? (
+              {showModal ? (
                 <Portal>
                   <Login onClose={this.handleCloseModal} />
                 </Portal>

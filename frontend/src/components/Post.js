@@ -7,9 +7,9 @@ import 'brace/theme/chaos';
 import Upvote from './Upvote';
 import { connect } from 'react-redux';
 import { upvotePost, downvotePost } from '../actions/postActions';
+import { showModal } from '../actions/modalActions';
 import { getLanguageTheme } from "../utils/language"
 import { LANGUAGE_MAP } from "../utils/language"
-import { withRouter } from "react-router-dom"
 
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo('en-US');
@@ -28,7 +28,7 @@ class Post extends Component {
     if (this.props.auth) {
       this.props.upvotePost(id);
     } else {
-      this.props.history.push('/login');
+      this.props.showModal();
     }
   }
 
@@ -118,10 +118,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   upvotePost,
-  downvotePost
+  downvotePost,
+  showModal
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
 
 const PostWrapper = styled.div`
 border-radius: 4px;
