@@ -69,7 +69,8 @@ module.exports = {
     // Setup plugin to use a HTML file for serving bundled js files
     plugins: [
         new HtmlWebpackPlugin({
-            template: './public/index.html'
+            template: './public/index.html',
+            favicon: './public/img/favicon.ico',
         }),
         extractPlugin,
         new CleanWebpackPlugin(),
