@@ -96,7 +96,8 @@ z-index: 1050;
 	border: none;
 	color: #343a40;
 	cursor: pointer;
-	padding: initial;
+    padding: initial;
+    outline:none;
 }
 }
 `
