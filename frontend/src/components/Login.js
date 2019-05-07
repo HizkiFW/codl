@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { signIn } from '../actions/authActions';
 import { closeModal } from '../actions/modalActions';
+import rms from "../../public/img/rms.jpg"
 
 const onSuccess = response => {
     this.props.signIn(response);
@@ -25,7 +26,7 @@ class Login extends Component {
                         <div className="join-body" onClick={(e) => { e.stopPropagation() }}>
                             <p className="join-title">JOIN US</p>
                             <div className="join-image">
-                                <img src="img/rms.jpg" className="img-fluid rounded" alt="join us"></img>
+                                <img src={rms} className="img-fluid rounded" alt="join us"></img>
                             </div>
                             <GitHubLogin clientId="21dde3092c2673fd5e40"
                                 redirectUri="http://localhost:3000/"

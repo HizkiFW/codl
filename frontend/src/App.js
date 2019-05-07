@@ -22,6 +22,7 @@ import Loader from './components/Loader';
 import styled from 'styled-components';
 import Portal from './utils/Portal'
 import { AUTH_USER } from "./actions/types"
+import { cowsay } from "../public/cowsay.js"
 
 const user = localStorage.getItem('token');
 
@@ -30,7 +31,12 @@ if (user) {
 }
 
 class App extends Component {
+  state = { showPrint: true }
 
+  componentDidMount() {
+    console.log(cowsay, "font-size: 18px");
+    this.setState({ showPrint: false })
+  }
   render() {
     return (
       <Provider store={store}>

@@ -1,5 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const extractPlugin = new ExtractTextPlugin({
+    filename: 'bundle.css'
+});
 
 module.exports = {
     //This property defines where the application starts
@@ -8,7 +14,7 @@ module.exports = {
     //This property defines the file path and the file name which will be used for deploying the bundled file
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
     },
 
     //Setup loaders
@@ -30,17 +36,29 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: extractPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader']
+                })
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.html$/,
+                use: [{
+                    loader: 'html-loader',
+                    options: {
+                        minimize: true
+                    }
+                }]
+            },
+            {
+                test: /\.(png|jpg|gif|svg|ico)$/,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
                             outputPath: 'img/',
-                            publicPath: 'img/'
+                            publicPath: '/img'
                         },
                     },
                 ],
@@ -52,6 +70,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
-        })
+        }),
+        extractPlugin,
+        new CleanWebpackPlugin(),
     ]
 }
