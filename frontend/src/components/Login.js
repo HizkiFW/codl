@@ -25,7 +25,7 @@ class Login extends Component {
                         <div className="join-body" onClick={(e) => { e.stopPropagation() }}>
                             <p className="join-title">JOIN US</p>
                             <div className="join-image">
-                                <img src="./rms.jpg" className="img-fluid rounded" alt="join us"></img>
+                                <img src="img/rms.jpg" className="img-fluid rounded" alt="join us"></img>
                             </div>
                             <GitHubLogin clientId="21dde3092c2673fd5e40"
                                 redirectUri="http://localhost:3000/"
