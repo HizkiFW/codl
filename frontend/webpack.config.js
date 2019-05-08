@@ -2,12 +2,23 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const extractPlugin = new ExtractTextPlugin({
     filename: 'bundle.css'
 });
 
 module.exports = {
+
+    devServer: {
+        historyApiFallback: true,
+        contentBase: path.join(__dirname, '/dist'),
+        hot: true
+    },
+
+    //Allow to debug on actual source instead of minified
+    devtool: "source-map",
+
     //This property defines where the application starts
     entry: './src/index.js',
 
@@ -74,5 +85,21 @@ module.exports = {
         }),
         extractPlugin,
         new CleanWebpackPlugin(),
+        new WebpackPwaManifest({
+            name: 'My Applications Friendly Name',
+            short_name: 'Application',
+            description: 'Description!',
+            background_color: '#01579b',
+            theme_color: '#01579b',
+            'theme-color': '#01579b',
+            start_url: '/',
+            icons: [
+                {
+                    src: path.resolve('public/img/favicon.ico'),
+                    sizes: [16, 24, 32, 64],
+                    destination: path.join('img')
+                }
+            ]
+        })
     ]
 }

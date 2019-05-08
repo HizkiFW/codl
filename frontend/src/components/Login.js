@@ -6,15 +6,16 @@ import { signIn } from '../actions/authActions';
 import { closeModal } from '../actions/modalActions';
 import rms from "../../public/img/rms.jpg"
 
-const onSuccess = response => {
-    this.props.signIn(response);
-}
-const onFailure = response => {
-    console.error(response);
-}
 
 class Login extends Component {
 
+    onSuccess = response => {
+        console.log(response);
+        this.props.signIn(response);
+    }
+    onFailure = response => {
+        console.log(response);
+    }
     onClick() {
         this.props.closeModal();
     }
@@ -29,9 +30,9 @@ class Login extends Component {
                                 <img src={rms} className="img-fluid rounded" alt="join us"></img>
                             </div>
                             <GitHubLogin clientId="21dde3092c2673fd5e40"
-                                redirectUri="http://localhost:3000/"
-                                onSuccess={onSuccess}
-                                onFailure={onFailure}
+                                redirectUri="http://localhost:8081/"
+                                onSuccess={this.onSuccess()}
+                                onFailure={this.onFailure()}
                                 children={<span><i className="fab fa-github"></i> Sign In with Github</span>}
                                 className="btn btn-dark"
                             />
