@@ -9,7 +9,7 @@ import rms from "../../public/img/rms.jpg";
 class Login extends Component {
   onSuccess = response => {
     console.log(response);
-    this.props.signIn(response);
+    this.props.signIn({client_id: "21dde3092c2673fd5e40", client_secret: "15a74c6c18127778c368df9fd114225017bbb5e7", code: response});
   };
   onFailure = response => {
     console.log(response);
