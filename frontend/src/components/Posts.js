@@ -1,27 +1,34 @@
-import React, { Component } from 'react'
-import Post from './Post'
-import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { fetchPosts, fetchMorePosts } from '../actions/postActions';
-import ChronoFilter from "./ChronoFilter"
-import InfiniteScroll from "react-infinite-scroll-component"
+import React, { Component } from "react";
+import Post from "./Post";
+import { connect } from "react-redux";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { fetchPosts, fetchMorePosts } from "../actions/postActions";
+import ChronoFilter from "./ChronoFilter";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 class Posts extends Component {
-
   state = {
     start: 0
   };
 
   componentWillMount() {
-    this.props.fetchPosts({ start: this.state.start, language: "all", chrono: "new" });
+    this.props.fetchPosts({
+      start: this.state.start,
+      language: "all",
+      chrono: "new"
+    });
   }
 
   fetchMoreData = () => {
     this.setState({
       start: this.props.posts.length
     });
-    this.props.fetchMorePosts({ start: this.state.start, language: "all", chrono: "new" })
+    this.props.fetchMorePosts({
+      start: this.state.start,
+      language: "all",
+      chrono: "new"
+    });
   };
 
   render() {
@@ -44,7 +51,7 @@ class Posts extends Component {
           {postItems}
         </InfiniteScroll>
       </div>
-    )
+    );
   }
 }
 
@@ -58,12 +65,15 @@ const mapDispatchToProps = {
   fetchMorePosts
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Posts);
 
 const PostsWrapper = styled.div`
   a {
     text-decoration: none;
-    color:inherit;
-    outline:none;
+    color: inherit;
+    outline: none;
   }
-`
+`;

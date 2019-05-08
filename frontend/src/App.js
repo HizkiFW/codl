@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
-import "popper.js"
-import "jquery/dist/jquery"
-import "bootstrap/dist/js/bootstrap"
-import "bootstrap/dist/css/bootstrap.min.css"
-import Navbar from './components/Navbar';
-import Tags from './components/Tags';
-import Welcome from './components/Welcome';
-import SocialMedia from './components/SocialMedia';
-import PostForm from './components/PostForm';
-import Posts from './components/Posts';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.css";
+import "popper.js";
+import "jquery/dist/jquery";
+import "bootstrap/dist/js/bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./components/Navbar";
+import Tags from "./components/Tags";
+import Welcome from "./components/Welcome";
+import SocialMedia from "./components/SocialMedia";
+import PostForm from "./components/PostForm";
+import Posts from "./components/Posts";
 import Login from "./components/Login";
-import PostsWithFIlter from './components/PostsWithFilter'
-import PostWithComments from './components/PostWithComments';
-import Error from './components/Error';
-import { Provider } from 'react-redux';
-import { persistor, store } from './store';
-import { PersistGate } from 'redux-persist/integration/react';
-import Loader from './components/Loader';
-import styled from 'styled-components';
-import Portal from './utils/Portal'
-import { AUTH_USER } from "./actions/types"
-import { cowsay } from "../public/cowsay.js"
+import PostsWithFIlter from "./components/PostsWithFilter";
+import PostWithComments from "./components/PostWithComments";
+import Error from "./components/Error";
+import { Provider } from "react-redux";
+import { persistor, store } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+import Loader from "./components/Loader";
+import styled from "styled-components";
+import Portal from "./utils/Portal";
+import { AUTH_USER } from "./actions/types";
+import { cowsay } from "../public/cowsay.js";
 
-const user = localStorage.getItem('token');
+const user = localStorage.getItem("token");
 
 if (user) {
   store.dispatch({ type: AUTH_USER, payload: user });
 }
 
 class App extends Component {
-  state = { showPrint: true }
+  state = { showPrint: true };
 
   componentDidMount() {
     console.log(cowsay, "font-size: 18px");
-    this.setState({ showPrint: false })
+    this.setState({ showPrint: false });
   }
   render() {
     return (
@@ -55,13 +55,15 @@ class App extends Component {
                     <Route path="/" component={Posts} exact />
                     <Route path="/submit" component={PostForm} />
                     <Route path="/post/:postId" component={PostWithComments} />
-                    <Route path="/t/:lang/:chrono" component={PostsWithFIlter} />
+                    <Route
+                      path="/t/:lang/:chrono"
+                      component={PostsWithFIlter}
+                    />
                     <Route component={Error} />
                   </Switch>
                 </div>
-                <div className="p-1 d-none d-md-block">
-                </div>
-              </ContentWrapper >
+                <div className="p-1 d-none d-md-block" />
+              </ContentWrapper>
               <Portal>
                 <Login />
               </Portal>
@@ -76,6 +78,6 @@ class App extends Component {
 export default App;
 
 const ContentWrapper = styled.div`
-max-width: 1250px;
-margin: auto;
-`
+  max-width: 1250px;
+  margin: auto;
+`;

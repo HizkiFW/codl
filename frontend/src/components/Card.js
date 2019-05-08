@@ -1,63 +1,62 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CardContainer = styled.div`
-width: 15rem;
-margin-bottom: 10px;
-line-height: 1.35em;
-margin-top: 5px;
-margin-left:5px;
-border: 1px solid #c9c9c9;
-    
-    &:active{
-        color:black;
+  width: 15rem;
+  margin-bottom: 10px;
+  line-height: 1.35em;
+  margin-top: 5px;
+  margin-left: 5px;
+  border: 1px solid #c9c9c9;
+
+  &:active {
+    color: black;
+  }
+
+  .card-body {
+    background-color: white;
+  }
+  .card-header {
+    font-weight: bold;
+
+    &.purple {
+      background-color: #b8afff;
     }
 
-    .card-body {
-        background-color: white;
-    }
-    .card-header {
-        font-weight:bold;
-        
-
-        &.purple {
-            background-color:#b8afff;
-        }
-
-        &.blue {
-            background-color:#9fd6ff;
-        }
-
-        &.yellow {
-            background-color:#fcf3b0;
-        }
+    &.blue {
+      background-color: #9fd6ff;
     }
 
-    i {
-        color:red;
-        vertical-align: -1px;
+    &.yellow {
+      background-color: #fcf3b0;
     }
+  }
 
-    a {
-        text-decoration:none;
-    }
-    
-    .list-group {
-        max-height:210px;
-        overflow-y: scroll;
-    }
+  i {
+    color: red;
+    vertical-align: -1px;
+  }
 
-    .list-group-item {
-        padding: .5rem 1.25rem;
-        font-size: 0.9em;
-        line-height: 1.35em;
+  a {
+    text-decoration: none;
+  }
 
-        &:hover {
-            background:#f5f6f7;
-        }
+  .list-group {
+    max-height: 210px;
+    overflow-y: scroll;
+  }
+
+  .list-group-item {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9em;
+    line-height: 1.35em;
+
+    &:hover {
+      background: #f5f6f7;
     }
-    
-    li {
-        font-size: 0.9em;
-        color:black;
-    }
-`
+  }
+
+  li {
+    font-size: 0.9em;
+    color: black;
+  }
+`;

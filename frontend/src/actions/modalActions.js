@@ -1,12 +1,11 @@
-import { SHOW_MODAL, CLOSE_MODAL } from './types';
+import { SHOW_MODAL, CLOSE_MODAL } from "./types";
 
 export const showModal = () => dispatch => {
-  document.body.classList.toggle('modal-open');
-  dispatch({ type: SHOW_MODAL })
+  document.body.classList.toggle("modal-open");
+  dispatch({ type: SHOW_MODAL });
 };
 
-
 export const closeModal = () => dispatch => {
-  document.body.classList.toggle('modal-open');
-  dispatch({ type: CLOSE_MODAL })
-}
+  document.body.classList.toggle("modal-open");
+  dispatch({ type: CLOSE_MODAL });
+};

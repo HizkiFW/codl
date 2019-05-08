@@ -1,17 +1,17 @@
-import { FETCH_TAGS } from '../actions/types';
+import { FETCH_TAGS } from "../actions/types";
 
 const initialState = {
-    items: []
-}
+  items: []
+};
 
-export default function (state = initialState, action) {
-    switch (action.type) {
-        case FETCH_TAGS:
-            return {
-                ...state,
-                items: action.payload
-            };
-        default:
-            return state;
-    }
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case FETCH_TAGS:
+      return {
+        ...state,
+        items: action.payload
+      };
+    default:
+      return state;
+  }
 }

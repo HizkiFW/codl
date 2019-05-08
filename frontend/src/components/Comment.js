@@ -1,35 +1,36 @@
-import React, { Component } from 'react'
-import styled from 'styled-components';
-import TimeAgo from 'javascript-time-ago'
-import Heart from './Heart';
-import en from 'javascript-time-ago/locale/en'
-import { connect } from 'react-redux';
-import { showModal } from '../actions/modalActions';
-import { upvoteComment } from '../actions/commentActions';
+import React, { Component } from "react";
+import styled from "styled-components";
+import TimeAgo from "javascript-time-ago";
+import Heart from "./Heart";
+import en from "javascript-time-ago/locale/en";
+import { connect } from "react-redux";
+import { showModal } from "../actions/modalActions";
+import { upvoteComment } from "../actions/commentActions";
 
-TimeAgo.addLocale(en)
-const timeAgo = new TimeAgo('en-US');
+TimeAgo.addLocale(en);
+const timeAgo = new TimeAgo("en-US");
 
 class Comment extends Component {
-
   upvoteComment(id) {
     this.props.upvoteComment(id);
-    document.getElementById('like-button').classList.toggle('fas');
-    document.getElementById('like-button').classList.toggle('far');
+    document.getElementById("like-button").classList.toggle("fas");
+    document.getElementById("like-button").classList.toggle("far");
   }
 
   removeVote(id) {
-    console.log('removevote');
-    document.getElementById('like-button').classList.toggle('fas');
-    document.getElementById('like-button').classList.toggle('far');
+    console.log("removevote");
+    document.getElementById("like-button").classList.toggle("fas");
+    document.getElementById("like-button").classList.toggle("far");
   }
 
-
   render() {
-    let date = timeAgo.format(new Date(this.props.data.dateCreation), 'twitter');
+    let date = timeAgo.format(
+      new Date(this.props.data.dateCreation),
+      "twitter"
+    );
 
     if (date === "") {
-      date = "seconds ago"
+      date = "seconds ago";
     }
     return (
       <CommentWrapper>
@@ -45,15 +46,20 @@ class Comment extends Component {
         <Heart
           //voteStatus={user.votes[postData.id] || 0}
           voteStatus={0}
-          upvoteContent={<i id="like-button" className="upvote-icon far fa-heart not-liked"></i>}
+          upvoteContent={
+            <i
+              id="like-button"
+              className="upvote-icon far fa-heart not-liked"
+            />
+          }
           afterContent={this.props.data.voteCount}
-          shouldAllow={() => this.props.auth ? true : false}
+          shouldAllow={() => (this.props.auth ? true : false)}
           onDisallowed={() => this.props.showModal()}
           onUpvote={() => this.upvoteComment(this.props.data.id)}
           onRemoveVote={() => this.removeVote(this.props.data.id)}
         />
       </CommentWrapper>
-    )
+    );
   }
 }
 
@@ -66,19 +72,22 @@ const mapDispatchToProps = {
   showModal
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comment);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Comment);
 
 const CommentWrapper = styled.div`
-border: 1px solid #dbdbdb;
-margin-bottom: 10px;
-padding: 15px 15px;
+  border: 1px solid #dbdbdb;
+  margin-bottom: 10px;
+  padding: 15px 15px;
   .author {
-    font-size:20px;
+    font-size: 20px;
   }
   .date {
-    font-size:12px;
+    font-size: 12px;
   }
   .text {
-    margin-bottom:15px;
+    margin-bottom: 15px;
   }
-`
+`;
