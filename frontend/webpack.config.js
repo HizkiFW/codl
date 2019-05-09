@@ -11,9 +11,7 @@ const extractPlugin = new ExtractTextPlugin({
 module.exports = {
 
     devServer: {
-        historyApiFallback: true,
-        contentBase: path.join(__dirname, '/dist'),
-        hot: true
+        historyApiFallback: true
     },
 
     //Allow to debug on actual source instead of minified

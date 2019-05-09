@@ -1,13 +1,12 @@
 import { AUTH_USER, AUTH_ERROR } from "./types";
 
-export const signIn = params => dispatch => {
-  fetch("https://github.com/login/oauth/access_token", {
+export const signIn = code => dispatch => {
+  fetch("http://localhost:8080/signIn", {
     method: "POST",
     headers: {
-      "content-type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "content-type": "application/json"
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(code)
   })
     .then(response => {
       dispatch({

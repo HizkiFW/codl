@@ -9,7 +9,9 @@ import rms from "../../public/img/rms.jpg";
 class Login extends Component {
   onSuccess = response => {
     console.log(response);
-    this.props.signIn({client_id: "21dde3092c2673fd5e40", client_secret: "15a74c6c18127778c368df9fd114225017bbb5e7", code: response});
+    if (response !== undefined) {
+      this.props.signIn(response);
+    }
   };
   onFailure = response => {
     console.log(response);
@@ -39,14 +41,19 @@ class Login extends Component {
               <GitHubLogin
                 clientId="21dde3092c2673fd5e40"
                 redirectUri="http://localhost:8081/"
-                onSuccess={this.onSuccess()}
-                onFailure={this.onFailure()}
+                onSuccess={(data) => {
+                  this.onSuccess(data);
+                }}
+                onFailure={(error) => {
+                  this.onFailure(error);
+                }}
                 children={
-                  <span>
-                    <i className="fab fa-github" /> Sign In with Github
+                  <span className="icon-wrapper">
+                    <span className="fab fa-github" />
+                    <span>Sign in with Github</span>
                   </span>
                 }
-                className="btn btn-dark"
+                className="btn btn-github"
               />
               <button
                 className="close-modal"
@@ -120,6 +127,39 @@ const LoginWrapper = styled.div`
       cursor: pointer;
       padding: initial;
       outline: none;
+    }
+
+    .btn-github {
+      position: relative;
+      padding-left: 48px;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #fff;
+      background-color: #444;
+      border-color: rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background-color: #2b2b2b;
+      }
+      &:active {
+        background-image: none;
+      }
+
+      .icon-wrapper {
+        .fa-github {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 38px;
+          line-height: 34px;
+          font-size: 1.6em;
+          text-align: center;
+          border-right: 1px solid rgba(0, 0, 0, 0.2);
+        }
+      }
     }
   }
 `;
