@@ -11,27 +11,38 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER")
+@Table(name = "USER")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private long id;
-	@Column(name="USERNAME")
+	@Column(name = "NAME")
+	private String name;
+	@Column(name = "USERNAME")
 	private String username;
-	@Column(name="DATE_CREATION")
+	@Column(name = "EMAIL")
+	private String email;
+	@Column(name = "URL_AVATAR")
+	private String urlAvatar;
+	@Column(name = "DATE_CREATION")
 	private Date dateCreation;
-	
-	public User(String username, Date dateCreation) {
-		this.username = username;
-		this.dateCreation = dateCreation;
-	}
-	
+
 	public User() {
-		
+
+	}
+
+	public User(long id, String name, String username, String email, String urlAvatar, Date dateCreation) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.urlAvatar = urlAvatar;
+		this.dateCreation = dateCreation;
 	}
 
 	public long getId() {
@@ -56,5 +67,29 @@ public class User implements Serializable {
 
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUrlAvatar() {
+		return urlAvatar;
+	}
+
+	public void setUrlAvatar(String urlAvatar) {
+		this.urlAvatar = urlAvatar;
 	}
 }

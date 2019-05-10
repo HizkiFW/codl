@@ -1,4 +1,4 @@
-package com.codl.models.utils;
+package com.codl.models.oauth;
 
 public class OAuthCode {
 

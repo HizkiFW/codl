@@ -53,17 +53,20 @@ class Post extends Component {
     return (
       <PostWrapper>
         <div className="d-flex bd-highlight mb-3">
+          <div className="bd-highlight mr-2">
+            <img className="profile-pic" src={this.props.data.user.urlAvatar} />
+          </div>
           <div className="bd-highlight">
-            <h4>
+            <div>
               <ThemeProvider theme={this.theme}>
                 <LanguageWrapper>
                   #{LANGUAGE_MAP.get(this.props.data.language)}
                 </LanguageWrapper>
               </ThemeProvider>{" "}
-              {this.props.data.title}
-            </h4>
+              <span className="title">{this.props.data.title}</span>
+            </div>
             <span className="author">
-              {this.props.data.user.username}・{date}
+              {this.props.data.user.name}・{date}
             </span>
           </div>
           <div className="ml-auto bd-highlight">
@@ -145,6 +148,17 @@ const PostWrapper = styled.div`
 
   &:hover {
     border: 1px solid #909090;
+  }
+
+  .profile-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+  }
+
+  .title {
+    font-size: 27px;
+    line-height: 32px;
   }
 
   .author {

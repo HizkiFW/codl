@@ -39,6 +39,7 @@
 	<bean id="commentManager" class="com.codl.service.CommentManagerImpl" />
 	<bean id="commentDAO" class="com.codl.dao.CommentDAOImpl" />
 	<bean id="userManager" class="com.codl.service.UserManagerImpl" />
+	<bean id="userDAO" class="com.codl.dao.UserDAOImpl" />
 	<tx:annotation-driven />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

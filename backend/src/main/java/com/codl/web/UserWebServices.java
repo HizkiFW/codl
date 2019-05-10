@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.codl.models.User;
-import com.codl.models.utils.OAuthCode;
+import com.codl.models.oauth.OAuthCode;
 import com.codl.service.UserManager;
 
 @Path("/")

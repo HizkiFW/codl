@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+    <query name="checkIfUserExists">
+        <![CDATA[
+			select
+				case when (count(user) > 0)  then true else false end  
+			from User user
+			where
+				user.username = :username
+        ]]>
+     </query>
+     <query name="getUserByLogin">
+        <![CDATA[
+			select
+			U.id as id,
+            U.dateCreation as dateCreation,
+            U.username as username,
+            U.email as email,
+            U.name as name,
+            U.urlAvatar as urlAvatar
+			from User U
+			where
+				U.username = :username
+        ]]>
+     </query>
+</hibernate-mapping>
