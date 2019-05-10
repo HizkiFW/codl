@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.codl.models.Filter;
 import com.codl.models.Post;
+import com.codl.models.utils.Filter;
 import com.codl.service.PostManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

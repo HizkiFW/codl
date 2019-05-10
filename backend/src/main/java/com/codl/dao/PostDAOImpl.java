@@ -8,8 +8,8 @@ import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.codl.models.Filter;
 import com.codl.models.Post;
+import com.codl.models.utils.Filter;
 
 @Repository
 public class PostDAOImpl implements PostDAO {

@@ -2,8 +2,8 @@ package com.codl.service;
 
 import java.util.List;
 
-import com.codl.models.Filter;
 import com.codl.models.Post;
+import com.codl.models.utils.Filter;
 
 public interface PostManager {
 	

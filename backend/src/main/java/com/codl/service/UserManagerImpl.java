@@ -7,17 +7,22 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import com.codl.models.OAuthCode;
 import com.codl.models.User;
+import com.codl.models.utils.OAuthCode;
 
+@Configuration
 @Service
+@PropertySource("classpath:application.properties")
 public class UserManagerImpl implements UserManager {
 
-	public static final String GITHUB_OAUTH = "https://github.com/login/oauth/access_token";
-	public static String CLIENT_ID = "21dde3092c2673fd5e40";
-	public static String CLIENT_SECRET = "15a74c6c18127778c368df9fd114225017bbb5e7";
+	@Autowired
+	Environment env;
 
 	@Override
 	public User signIn(OAuthCode OAuthcode) {
@@ -32,14 +37,16 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	private void fetchOauthTokenWithCode(String code) throws Exception {
-		URL url = new URL(GITHUB_OAUTH);
+		URL url = new URL(env.getProperty("oauth.url"));
 		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 
 		con.setRequestMethod("POST");
-
+		con.addRequestProperty("Accept", "application/json");
+		
 		con.setDoOutput(true);
 		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-		wr.writeBytes("client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&code=" + code);
+		wr.writeBytes("client_id=" + env.getProperty("oauth.clientId") + "&client_secret="
+				+ env.getProperty("oauth.secretClientId") + "&code=" + code);
 		wr.flush();
 		wr.close();
 

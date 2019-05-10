@@ -1,4 +1,4 @@
-package com.codl.models;
+package com.codl.models.utils;
 
 public class Filter {
 

@@ -6,7 +6,7 @@ import storage from 'redux-persist/lib/storage'
 
 const config = {
     key: 'root',
-    blacklist: ['auth'],
+    blacklist: ['auth', 'modal'],
     storage
 }
 
@@ -18,7 +18,7 @@ export const store = createStore(
     initialState,
     compose(
         applyMiddleware(...middleWare)
-        //, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 

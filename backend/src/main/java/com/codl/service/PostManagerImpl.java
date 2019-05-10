@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codl.dao.PostDAO;
-import com.codl.models.Filter;
 import com.codl.models.Post;
+import com.codl.models.utils.Filter;
 import com.codl.utils.ErrorInfo;
 import com.codl.utils.InvalidInputException;
 
