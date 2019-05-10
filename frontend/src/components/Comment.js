@@ -35,8 +35,8 @@ class Comment extends Component {
     return (
       <CommentWrapper>
         <div className="d-flex bd-highlight mb-3">
-          <div className="bd-highlight">
-            <img className="profile-pic" url={this.props.data.user.urlAvatar} />
+          <div className="bd-highlight mr-1">
+            <img className="profile-pic" src={this.props.data.user.urlAvatar} />
           </div>
           <div className="bd-highlight">
             <span className="author">{this.props.data.user.name}</span>
@@ -85,8 +85,8 @@ const CommentWrapper = styled.div`
   margin-bottom: 10px;
   padding: 15px 15px;
   .profile-pic {
-    height: 50px;
-    width: 50px;
+    height: 33px;
+    width: 33px;
     border-radius: 50px;
   }
   .author {

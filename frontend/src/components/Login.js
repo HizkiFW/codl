@@ -11,6 +11,7 @@ class Login extends Component {
     console.log(response);
     if (response !== undefined) {
       this.props.signIn(response);
+      this.props.closeModal();
     }
   };
   onFailure = response => {
@@ -41,10 +42,10 @@ class Login extends Component {
               <GitHubLogin
                 clientId="21dde3092c2673fd5e40"
                 redirectUri="http://localhost:8081/"
-                onSuccess={(data) => {
+                onSuccess={data => {
                   this.onSuccess(data);
                 }}
-                onFailure={(error) => {
+                onFailure={error => {
                   this.onFailure(error);
                 }}
                 children={

@@ -8,18 +8,13 @@ export const signIn = code => dispatch => {
     },
     body: JSON.stringify(code)
   })
-    .then(response => {
-      dispatch({
-        type: AUTH_USER,
-        payload: response
-      });
+    .then(res => res.json())
+    .then(
+      user =>
+        dispatch({
+          type: AUTH_USER,
+          payload: user
+        })
       //localStorage.setItem("token", response.data.token);
-      console.log("osssama " + response);
-    })
-    .catch(error => {
-      dispatch({
-        type: AUTH_ERROR,
-        payload: "Error"
-      });
-    });
+    );
 };

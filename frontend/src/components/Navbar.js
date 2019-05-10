@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonContainer } from "./Button";
+import { connect } from "react-redux";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   render() {
     return (
       <NavWrapper className="navbar sticky-top navbar-expand-lg navbar-dark justify-content-between">
@@ -18,13 +19,27 @@ export default class Navbar extends Component {
             aria-label="Search"
           />
         </form>
-        <NavLink to="/submit" className="">
-          <ButtonContainer>SHARE CODE</ButtonContainer>
-        </NavLink>
+        <div>
+          <NavLink to="/submit" className="d-none d-md-inline-block mr-3">
+            <ButtonContainer>SHARE CODE</ButtonContainer>
+          </NavLink>
+          {this.props.auth ? (
+            <img className="profile-pic" src={this.props.auth.urlAvatar} />
+          ) : null}
+        </div>
       </NavWrapper>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth.authenticated
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Navbar);
 
 const NavWrapper = styled.nav`
   background: #24292e;
@@ -32,6 +47,12 @@ const NavWrapper = styled.nav`
   font-size: 1rem;
   text-transform: capitalize;
   outline: none;
+
+  .profile-pic {
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+  }
 
   a,
   a:active,
