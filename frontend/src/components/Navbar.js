@@ -24,7 +24,17 @@ class Navbar extends Component {
             <ButtonContainer>SHARE CODE</ButtonContainer>
           </NavLink>
           {this.props.auth ? (
-            <img className="profile-pic" src={this.props.auth.urlAvatar} />
+            <div className="dropdown show d-inline-block">
+              <button data-toggle="dropdown" className="profile-button">
+                <img className="profile-pic" src={this.props.auth.urlAvatar} />
+              </button>
+
+              <div className="dropdown-menu dropdown-menu-right">
+                <a className="dropdown-item" href="#">
+                  Sign Out
+                </a>
+              </div>
+            </div>
           ) : null}
         </div>
       </NavWrapper>
@@ -47,6 +57,12 @@ const NavWrapper = styled.nav`
   font-size: 1rem;
   text-transform: capitalize;
   outline: none;
+
+  .profile-button {
+    background: transparent;
+    border: 0;
+    outline: none;
+  }
 
   .profile-pic {
     height: 35px;

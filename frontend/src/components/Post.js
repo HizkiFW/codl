@@ -52,24 +52,24 @@ class Post extends Component {
     let numberOfComments = this.getComments(this.props.data.numberOfComments);
     return (
       <PostWrapper>
-        <div className="d-flex bd-highlight mb-3">
-          <div className="bd-highlight mr-2">
+        <div className="d-flex mb-3">
+          <div className="mr-2">
             <img className="profile-pic" src={this.props.data.user.urlAvatar} />
           </div>
-          <div className="bd-highlight">
+          <div>
             <div>
               <ThemeProvider theme={this.theme}>
                 <LanguageWrapper>
                   #{LANGUAGE_MAP.get(this.props.data.language)}
                 </LanguageWrapper>
-              </ThemeProvider>{" "}
+              </ThemeProvider>
               <span className="title">{this.props.data.title}</span>
             </div>
             <span className="author">
               {this.props.data.user.name}・{date}
             </span>
           </div>
-          <div className="ml-auto bd-highlight">
+          <div className="ml-auto">
             <Upvote
               //voteStatus={user.votes[postData.id] || 0}
               voteStatus={0}
@@ -196,4 +196,5 @@ const LanguageWrapper = styled.span`
   font-size: 15px;
   padding: 2px 6px 3px;
   vertical-align: 4px;
+  margin-right:3px;
 `;
