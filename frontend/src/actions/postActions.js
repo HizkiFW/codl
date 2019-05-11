@@ -70,32 +70,32 @@ export const createPost = postData => dispatch => {
     });
 };
 
-export const upvotePost = id => dispatch => {
+export const upvotePost = vote => dispatch => {
   fetch("http://localhost:8080/upvotePost", {
     method: "POST",
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify(id)
+    body: JSON.stringify(vote)
   }).then(response =>
     dispatch({
       type: UPVOTE_POST,
-      payload: id
+      payload: vote.postId
     })
   );
 };
 
-export const downvotePost = id => dispatch => {
+export const downvotePost = vote => dispatch => {
   fetch("http://localhost:8080/downvotePost", {
     method: "POST",
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify(id)
+    body: JSON.stringify(vote)
   }).then(response =>
     dispatch({
       type: DOWNVOTE_POST,
-      payload: id
+      payload: vote.postId
     })
   );
 };

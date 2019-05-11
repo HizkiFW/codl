@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { signIn } from "../actions/authActions";
 import { closeModal } from "../actions/modalActions";
 import rms from "../../public/img/rms.jpg";
+import { CLIENT_ID } from "../utils/oauth";
 
 class Login extends Component {
   onSuccess = response => {
@@ -39,7 +40,7 @@ class Login extends Component {
                 <img src={rms} className="img-fluid rounded" alt="join us" />
               </div>
               <GitHubLogin
-                clientId="21dde3092c2673fd5e40"
+                clientId={CLIENT_ID}
                 redirectUri="http://localhost:3000/"
                 onSuccess={data => {
                   this.onSuccess(data);

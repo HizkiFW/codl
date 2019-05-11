@@ -2,3 +2,4 @@ node_modules
 backend/target
 frontend/dist/
 backend/src/main/resources/application.properties
+frontend/src/utils/oauth.js

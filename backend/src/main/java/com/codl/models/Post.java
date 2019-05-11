@@ -33,8 +33,8 @@ public class Post implements Serializable {
 	private String description;
 	@Column(name="LANGUAGE", nullable=false)
 	private String language;
-	@Column(name="VOTE_COUNT", nullable=false)
-	private Integer voteCount;
+	@Transient
+	private long voteCount;
 	@ManyToOne
 	@JoinColumn(name="USER_ID", nullable=false)
 	private User user;
@@ -44,7 +44,7 @@ public class Post implements Serializable {
 	@Transient
 	private long numberOfComments;
 
-	public Post(String title, String code, String description, String language, Integer voteCount, User user, Date dateCreation, Integer numberOfComments) {
+	public Post(String title, String code, String description, String language, long voteCount, User user, Date dateCreation, long numberOfComments) {
 		this.title = title;
 		this.code = code;
 		this.description = description;
@@ -99,11 +99,11 @@ public class Post implements Serializable {
 		this.language = language;
 	}
 
-	public Integer getVoteCount() {
+	public long getVoteCount() {
 		return voteCount;
 	}
 
-	public void setVoteCount(Integer voteCount) {
+	public void setVoteCount(long voteCount) {
 		this.voteCount = voteCount;
 	}
 

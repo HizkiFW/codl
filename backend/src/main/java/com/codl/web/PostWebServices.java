@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.codl.models.Post;
+import com.codl.models.Vote;
 import com.codl.models.utils.Filter;
 import com.codl.service.PostManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,15 +57,15 @@ public class PostWebServices {
 	@POST
 	@Path("upvotePost")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void upvotePost(long id) {
-		postManager.upvotePost(id);
+	public void upvotePost(Vote vote) {
+		postManager.upvotePost(vote);
 	}
 
 	@POST
 	@Path("downvotePost")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void downvotePost(long id) {
-		postManager.downvotePost(id);
+	public void downvotePost(Vote vote) {
+		postManager.downvotePost(vote);
 	}
 
 }

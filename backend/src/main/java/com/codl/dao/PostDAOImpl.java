@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.codl.models.Post;
+import com.codl.models.Vote;
 import com.codl.models.utils.Filter;
 
 @Repository
@@ -45,27 +46,19 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public void addPost(Post post) {
-		this.sessionFactory.getCurrentSession().save(post);
+		long id = (long) this.sessionFactory.getCurrentSession().save(post);
+		Vote vote = new Vote(post.getUser().getId(), id, 0, 1);
+		this.sessionFactory.getCurrentSession().save(vote);
 	}
 
 	@Override
-	public void upvotePost(long id) {
-		Post post = (Post) this.sessionFactory.getCurrentSession().get(Post.class, id);
-
-		if (post != null) {
-			post.setVoteCount(post.getVoteCount() + 1);
-			this.sessionFactory.getCurrentSession().save(post);
-		}
+	public void upvotePost(Vote vote) {
+		this.sessionFactory.getCurrentSession().save(vote);
 	}
 
 	@Override
-	public void downvotePost(long id) {
-		Post post = (Post) this.sessionFactory.getCurrentSession().get(Post.class, id);
-
-		if (post != null) {
-			post.setVoteCount(post.getVoteCount() - 1);
-			this.sessionFactory.getCurrentSession().save(post);
-		}
+	public void downvotePost(Vote vote) {
+		this.sessionFactory.getCurrentSession().save(vote);
 	}
 
 }

@@ -7,6 +7,7 @@ export const DOWNVOTE_POST = "DOWNVOTE_POST";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
 export const NEW_COMMENT = "NEW_COMMENT";
 export const UPVOTE_COMMENT = "UPVOTE_COMMENT";
+export const DOWNVOTE_COMMENT = "DOWNVOTE_COMMENT";
 
 export const FETCH_TAGS = "FETCH_TAGS";
 

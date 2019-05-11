@@ -3,8 +3,13 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonContainer } from "./Button";
 import { connect } from "react-redux";
+import { signOut } from "../actions/authActions";
 
 class Navbar extends Component {
+  onClick() {
+    this.props.signOut();
+  }
+
   render() {
     return (
       <NavWrapper className="navbar sticky-top navbar-expand-lg navbar-dark justify-content-between">
@@ -30,9 +35,14 @@ class Navbar extends Component {
               </button>
 
               <div className="dropdown-menu dropdown-menu-right">
-                <a className="dropdown-item" href="#">
+                <button
+                  className="dropdown-item"
+                  onClick={() => {
+                    this.onClick();
+                  }}
+                >
                   Sign Out
-                </a>
+                </button>
               </div>
             </div>
           ) : null}
@@ -46,9 +56,13 @@ const mapStateToProps = state => ({
   auth: state.auth.authenticated
 });
 
+const mapDispatchToProps = {
+  signOut
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Navbar);
 
 const NavWrapper = styled.nav`

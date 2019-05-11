@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.codl.models.Comment;
+import com.codl.models.Vote;
 import com.codl.service.CommentManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -53,8 +54,15 @@ public class CommentWebServices {
 	@POST
 	@Path("upvoteComment")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void upvoteComment(long id) {
-		commentManager.upvoteComment(id);
+	public void upvoteComment(Vote vote) {
+		commentManager.upvoteComment(vote);
+	}
+	
+	@POST
+	@Path("downvoteComment")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void downvoteComment(Vote vote) {
+		commentManager.downvoteComment(vote);
 	}
 
 }

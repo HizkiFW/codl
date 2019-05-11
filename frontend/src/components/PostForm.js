@@ -52,10 +52,8 @@ class PostForm extends Component {
       code: this.state.code,
       description: this.state.description,
       language: this.state.language,
-      voteCount: 1,
-      user: {
-        id: 1
-      }
+      dateCreation: Date.now(),
+      user:this.props.auth
     };
 
     this.props.createPost(post);
@@ -132,12 +130,16 @@ class PostForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth.authenticated
+});
+
 const mapDispatchToProps = {
   createPost
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(requireAuth(PostForm));
 

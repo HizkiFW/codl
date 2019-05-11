@@ -1,7 +1,5 @@
 package com.codl.dao;
 
-import java.util.Date;
-
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -29,13 +27,11 @@ public class UserDAOImpl implements UserDAO {
 			user = (User) this.sessionFactory.getCurrentSession().getNamedQuery("getUserByLogin")
 					.setParameter("username", oauthUser.getLogin())
 					.setResultTransformer(Transformers.aliasToBean(User.class)).uniqueResult();
-		} else {
-			user = new User();
-			user.setDateCreation(new Date());
-			user.setEmail(oauthUser.getEmail());
-			user.setName(oauthUser.getName());
 			user.setUrlAvatar(oauthUser.getAvatar_url());
-			user.setUsername(oauthUser.getLogin());
+			user.setName(oauthUser.getName());
+			this.sessionFactory.getCurrentSession().update(user);
+		} else {
+			user = new User(oauthUser);
 			this.sessionFactory.getCurrentSession().save(user);
 		}
 

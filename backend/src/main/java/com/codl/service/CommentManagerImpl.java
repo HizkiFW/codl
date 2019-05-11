@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codl.dao.CommentDAO;
 import com.codl.models.Comment;
+import com.codl.models.Vote;
 
 @Service
 public class CommentManagerImpl implements CommentManager {
@@ -29,7 +30,15 @@ public class CommentManagerImpl implements CommentManager {
 	
 	@Override
 	@Transactional
-	public void upvoteComment(long id) {
-		commentDAO.upvoteComment(id);
+	public void upvoteComment(Vote vote) {
+		vote.setValue(1);
+		commentDAO.upvoteComment(vote);
+	}
+	
+	@Override
+	@Transactional
+	public void downvoteComment(Vote vote) {
+		vote.setValue(-1);
+		commentDAO.downvoteComment(vote);
 	}
 }

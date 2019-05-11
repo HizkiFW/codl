@@ -21,9 +21,11 @@
 		<mapping class="com.codl.models.Post"></mapping>
 		<mapping class="com.codl.models.Comment"></mapping>
 		<mapping class="com.codl.models.User"></mapping>
+		<mapping class="com.codl.models.Vote"></mapping>
 
 		<mapping resource="com/codl/dao/queries/postQueries.hbm.xml"></mapping>
 		<mapping resource="com/codl/dao/queries/tagQueries.hbm.xml"></mapping>
 		<mapping resource="com/codl/dao/queries/userQueries.hbm.xml"></mapping>
+		<mapping resource="com/codl/dao/queries/commentQueries.hbm.xml"></mapping>
 	</session-factory>
 </hibernate-configuration>

@@ -1,4 +1,4 @@
-import { NEW_COMMENT, UPVOTE_COMMENT, FETCH_COMMENTS } from "../actions/types";
+import { NEW_COMMENT, UPVOTE_COMMENT, FETCH_COMMENTS, DOWNVOTE_COMMENT } from "../actions/types";
 
 const initialState = {
   items: []
@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
     case NEW_COMMENT:
       return {
         ...state,
-        items: [...state.items, action.payload]
+        items: [action.payload, ...state.items]
       };
     case UPVOTE_COMMENT:
       return {
@@ -22,6 +22,15 @@ export default function(state = initialState, action) {
         items: state.items.map(comment =>
           comment.id === action.payload
             ? { ...comment, voteCount: comment.voteCount + 1 }
+            : comment
+        )
+      };
+      case DOWNVOTE_COMMENT:
+      return {
+        ...state,
+        items: state.items.map(comment =>
+          comment.id === action.payload
+            ? { ...comment, voteCount: comment.voteCount - 1 }
             : comment
         )
       };

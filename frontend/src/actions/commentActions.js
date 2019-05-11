@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS, NEW_COMMENT, UPVOTE_COMMENT } from "./types";
+import { FETCH_COMMENTS, NEW_COMMENT, UPVOTE_COMMENT, DOWNVOTE_COMMENT } from "./types";
 
 export const fetchComments = postId => dispatch => {
   fetch("http://localhost:8080/getComments", {
@@ -32,17 +32,32 @@ export const createComment = commentData => dispatch => {
   );
 };
 
-export const upvoteComment = id => dispatch => {
+export const upvoteComment = vote => dispatch => {
   fetch("http://localhost:8080/upvoteComment", {
     method: "POST",
     headers: {
       "content-type": "application/json"
     },
-    body: JSON.stringify(id)
+    body: JSON.stringify(vote)
   }).then(response =>
     dispatch({
       type: UPVOTE_COMMENT,
-      payload: id
+      payload: vote.commentId
+    })
+  );
+};
+
+export const downvoteComment = vote => dispatch => {
+  fetch("http://localhost:8080/downvoteComment", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(vote)
+  }).then(response =>
+    dispatch({
+      type: DOWNVOTE_COMMENT,
+      payload: vote.commentId
     })
   );
 };

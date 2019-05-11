@@ -25,11 +25,17 @@ class Post extends Component {
   }
 
   upvotePost(id) {
-    this.props.upvotePost(id);
+    this.props.upvotePost({
+      postId: id,
+      userId: this.props.auth.id
+    });
   }
 
   downvotePost(id) {
-    this.props.downvotePost(id);
+    this.props.downvotePost({
+      postId: id,
+      userId: this.props.auth.id
+    });
   }
 
   removeVote(id) {
@@ -196,5 +202,5 @@ const LanguageWrapper = styled.span`
   font-size: 15px;
   padding: 2px 6px 3px;
   vertical-align: 4px;
-  margin-right:3px;
+  margin-right: 3px;
 `;

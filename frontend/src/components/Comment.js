@@ -12,13 +12,19 @@ const timeAgo = new TimeAgo("en-US");
 
 class Comment extends Component {
   upvoteComment(id) {
-    this.props.upvoteComment(id);
+    this.props.upvoteComment({
+      commentId: id,
+      userId: this.props.auth.id
+    });
     document.getElementById("like-button").classList.toggle("fas");
     document.getElementById("like-button").classList.toggle("far");
   }
 
   removeVote(id) {
-    console.log("removevote");
+    this.props.downvoteComment({
+      commentId: id,
+      userId: this.props.auth.id
+    });
     document.getElementById("like-button").classList.toggle("fas");
     document.getElementById("like-button").classList.toggle("far");
   }

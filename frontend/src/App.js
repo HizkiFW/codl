@@ -21,14 +21,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import Loader from "./components/Loader";
 import styled from "styled-components";
 import Portal from "./utils/Portal";
-import { AUTH_USER } from "./actions/types";
 import { cowsay } from "../public/cowsay.js";
-
-const user = localStorage.getItem("token");
-
-if (user) {
-  store.dispatch({ type: AUTH_USER, payload: user });
-}
 
 class App extends Component {
   state = { showPrint: true };

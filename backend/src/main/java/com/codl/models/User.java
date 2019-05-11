@@ -2,13 +2,19 @@ package com.codl.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.codl.models.oauth.OAuthUser;
 
 @Entity
 @Table(name = "USER")
@@ -30,9 +36,20 @@ public class User implements Serializable {
 	private String urlAvatar;
 	@Column(name = "DATE_CREATION")
 	private Date dateCreation;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "USER_ID")
+	private List<Vote> votes;
 
 	public User() {
 
+	}
+
+	public User(OAuthUser oauthUser) {
+		this.dateCreation = new Date();
+		this.email = oauthUser.getEmail();
+		this.name = oauthUser.getName();
+		this.username = oauthUser.getLogin();
+		this.urlAvatar = oauthUser.getAvatar_url();
 	}
 
 	public User(long id, String name, String username, String email, String urlAvatar, Date dateCreation) {

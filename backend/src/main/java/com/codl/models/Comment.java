@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "COMMENT")
@@ -29,12 +30,12 @@ public class Comment implements Serializable {
 	private User user;
 	@Column(name = "DATE_CREATION", nullable=false)
 	private Date dateCreation;
-	@Column(name="VOTE_COUNT", nullable=false)
-	private Integer voteCount;
 	@Column(name = "POST_ID")
 	private long postId;
+	@Transient
+	private long voteCount;
 
-	public Comment(String text, User user, Date dateCreation, Integer voteCount, long postId) {
+	public Comment(String text, User user, Date dateCreation, long voteCount, long postId) {
 		this.text = text;
 		this.user = user;
 		this.dateCreation = dateCreation;
@@ -90,11 +91,11 @@ public class Comment implements Serializable {
 		this.postId = postId;
 	}
 
-	public Integer getVoteCount() {
+	public long getVoteCount() {
 		return voteCount;
 	}
 
-	public void setVoteCount(Integer voteCount) {
+	public void setVoteCount(long voteCount) {
 		this.voteCount = voteCount;
 	}
 

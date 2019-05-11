@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+    <query name="getComments">
+        <![CDATA[
+            select C.id as id,
+			   C.dateCreation as dateCreation,
+			   C.postId as postId,
+			   C.text as text,
+			   (select sum(V.value) from Vote V where V.commentId = C.id group by V.commentId) as voteCount,
+			   C.user as user
+			from Comment C
+			where C.postId = :postId
+			order by C.dateCreation desc
+        ]]>
+     </query>
+</hibernate-mapping>

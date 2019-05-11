@@ -36,9 +36,7 @@ class CommentForm extends Component {
       text: this.state.text,
       dateCreation: Date.now(),
       voteCount: 1,
-      user: {
-        id: 1
-      }
+      user: this.props.auth
     };
 
     this.props.createComment(comment);

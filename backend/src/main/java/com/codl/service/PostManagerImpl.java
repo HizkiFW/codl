@@ -1,7 +1,6 @@
 package com.codl.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codl.dao.PostDAO;
 import com.codl.models.Post;
+import com.codl.models.Vote;
 import com.codl.models.utils.Filter;
 import com.codl.utils.ErrorInfo;
 import com.codl.utils.InvalidInputException;
@@ -39,22 +39,21 @@ public class PostManagerImpl implements PostManager {
 		if (!errList.isEmpty()) {
 			throw new InvalidInputException(errList);
 		}
-		Date now = new Date();
-		post.setVoteCount(1);
-		post.setDateCreation(now);
 		postDAO.addPost(post);
 	}
 
 	@Override
 	@Transactional
-	public void upvotePost(long id) {
-		postDAO.upvotePost(id);
+	public void upvotePost(Vote vote) {
+		vote.setValue(1);
+		postDAO.upvotePost(vote);
 	}
 
-	@Override
+	@Override	
 	@Transactional
-	public void downvotePost(long id) {
-		postDAO.downvotePost(id);
+	public void downvotePost(Vote vote) {
+		vote.setValue(-1);
+		postDAO.downvotePost(vote);
 	}
 
 }

@@ -12,7 +12,7 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   P.voteCount as voteCount,
+			   (select sum(V.value) from Vote V where V.postId = P.id group by V.postId) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P
@@ -27,11 +27,11 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   P.voteCount as voteCount,
+			   (select sum(V.value) from Vote V where V.postId = P.id group by V.postId) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P
-			order by P.voteCount desc
+			order by voteCount desc
         ]]>
      </query>
      <query name="getPostsWithLanguage">
@@ -42,7 +42,7 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   P.voteCount as voteCount,
+			   (select sum(V.value) from Vote V where V.postId = P.id group by V.postId) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P
@@ -58,12 +58,12 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   P.voteCount as voteCount,
+			   (select sum(V.value) from Vote V where V.postId = P.id group by V.postId) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P
 			where P.language = :language
-			order by P.voteCount desc
+			order by voteCount desc
         ]]>
      </query>
 </hibernate-mapping>
