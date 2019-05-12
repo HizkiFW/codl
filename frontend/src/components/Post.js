@@ -77,7 +77,13 @@ class Post extends Component {
           </div>
           <div className="ml-auto">
             <Upvote
-              //voteStatus={user.votes[postData.id] || 0}
+              voteStatus={
+                this.props.auth.votes
+                  ? this.props.auth.votes.filter(
+                      vote => vote.postId === this.props.data.id
+                    ).value || 0
+                  : 0
+              }
               voteStatus={0}
               upvoteContent={<i className="upvote-icon fa fa-arrow-up" />}
               afterContent={

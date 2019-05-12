@@ -35,13 +35,24 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public void upvoteComment(Vote vote) {
-		this.sessionFactory.getCurrentSession().save(vote);
+		saveCommentVote(vote);
 	}
 
 	@Override
 	public void downvoteComment(Vote vote) {
-		this.sessionFactory.getCurrentSession().save(vote);
+		saveCommentVote(vote);
+	}
 
+	private void saveCommentVote(Vote vote) {
+		Vote existingVote = (Vote) this.sessionFactory.getCurrentSession().getNamedQuery("getVoteByCommentIdAndUserId")
+				.setParameter("commentId", vote.getCommentId()).setParameter("userId", vote.getUserId())
+				.setResultTransformer(Transformers.aliasToBean(Vote.class)).uniqueResult();
+		if (existingVote != null) {
+			existingVote.setValue(vote.getValue());
+			this.sessionFactory.getCurrentSession().update(existingVote);
+		} else {
+			this.sessionFactory.getCurrentSession().save(vote);
+		}
 	}
 
 }

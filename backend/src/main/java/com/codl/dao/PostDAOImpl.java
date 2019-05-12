@@ -53,12 +53,24 @@ public class PostDAOImpl implements PostDAO {
 
 	@Override
 	public void upvotePost(Vote vote) {
-		this.sessionFactory.getCurrentSession().save(vote);
+		savePostVote(vote);
 	}
 
 	@Override
 	public void downvotePost(Vote vote) {
-		this.sessionFactory.getCurrentSession().save(vote);
+		savePostVote(vote);
+	}
+
+	private void savePostVote(Vote vote) {
+		Vote existingVote = (Vote) this.sessionFactory.getCurrentSession().getNamedQuery("getVoteByPostIdAndUserId")
+				.setParameter("postId", vote.getPostId()).setParameter("userId", vote.getUserId())
+				.setResultTransformer(Transformers.aliasToBean(Vote.class)).uniqueResult();
+		if (existingVote != null) {
+			existingVote.setValue(vote.getValue());
+			this.sessionFactory.getCurrentSession().update(existingVote);
+		} else {
+			this.sessionFactory.getCurrentSession().save(vote);
+		}
 	}
 
 }

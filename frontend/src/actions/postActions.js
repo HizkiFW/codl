@@ -14,13 +14,22 @@ export const fetchPosts = filter => dispatch => {
     },
     body: JSON.stringify(filter)
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong.");
+      }
+    })
     .then(posts =>
       dispatch({
         type: FETCH_POSTS,
         payload: posts
       })
-    );
+    )
+    .catch(error => {
+      console.log(error);
+    });
 };
 
 export const fetchMorePosts = filter => dispatch => {
@@ -31,13 +40,22 @@ export const fetchMorePosts = filter => dispatch => {
     },
     body: JSON.stringify(filter)
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong.");
+      }
+    })
     .then(posts =>
       dispatch({
         type: FETCH_MORE_POSTS,
         payload: posts
       })
-    );
+    )
+    .catch(error => {
+      console.log(error);
+    });
 };
 
 export const createPost = postData => dispatch => {
@@ -66,7 +84,7 @@ export const createPost = postData => dispatch => {
       }
     })
     .catch(error => {
-      alert(error);
+      console.log(error);
     });
 };
 
@@ -77,12 +95,21 @@ export const upvotePost = vote => dispatch => {
       "content-type": "application/json"
     },
     body: JSON.stringify(vote)
-  }).then(response =>
-    dispatch({
-      type: UPVOTE_POST,
-      payload: vote.postId
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Something went wrong.");
+      }
     })
-  );
+    .then(() =>
+      dispatch({
+        type: UPVOTE_POST,
+        payload: vote.postId
+      })
+    )
+    .catch(error => {
+      console.log(error);
+    });
 };
 
 export const downvotePost = vote => dispatch => {
@@ -92,10 +119,19 @@ export const downvotePost = vote => dispatch => {
       "content-type": "application/json"
     },
     body: JSON.stringify(vote)
-  }).then(response =>
-    dispatch({
-      type: DOWNVOTE_POST,
-      payload: vote.postId
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Something went wrong.");
+      }
     })
-  );
+    .then(() =>
+      dispatch({
+        type: DOWNVOTE_POST,
+        payload: vote.postId
+      })
+    )
+    .catch(error => {
+      console.log(error);
+    });
 };

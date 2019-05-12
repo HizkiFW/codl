@@ -4,15 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.codl.models.oauth.OAuthUser;
 
@@ -36,8 +34,7 @@ public class User implements Serializable {
 	private String urlAvatar;
 	@Column(name = "DATE_CREATION")
 	private Date dateCreation;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "USER_ID")
+	@Transient
 	private List<Vote> votes;
 
 	public User() {
@@ -52,7 +49,7 @@ public class User implements Serializable {
 		this.urlAvatar = oauthUser.getAvatar_url();
 	}
 
-	public User(long id, String name, String username, String email, String urlAvatar, Date dateCreation) {
+	public User(long id, String name, String username, String email, String urlAvatar, Date dateCreation, List<Vote> votes) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -60,6 +57,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.urlAvatar = urlAvatar;
 		this.dateCreation = dateCreation;
+		this.votes = votes;
 	}
 
 	public long getId() {
@@ -108,5 +106,13 @@ public class User implements Serializable {
 
 	public void setUrlAvatar(String urlAvatar) {
 		this.urlAvatar = urlAvatar;
+	}
+
+	public List<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(List<Vote> votes) {
+		this.votes = votes;
 	}
 }

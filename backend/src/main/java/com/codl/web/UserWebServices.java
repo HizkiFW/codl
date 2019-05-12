@@ -24,7 +24,7 @@ public class UserWebServices {
 	@Path("signIn")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public User addPost(OAuthCode OAuthcode) {
+	public User signIn(OAuthCode OAuthcode) {
 		return userManager.signIn(OAuthcode);
 	}
 	

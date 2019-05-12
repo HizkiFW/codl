@@ -27,5 +27,6 @@
 		<mapping resource="com/codl/dao/queries/tagQueries.hbm.xml"></mapping>
 		<mapping resource="com/codl/dao/queries/userQueries.hbm.xml"></mapping>
 		<mapping resource="com/codl/dao/queries/commentQueries.hbm.xml"></mapping>
+		<mapping resource="com/codl/dao/queries/voteQueries.hbm.xml"></mapping>
 	</session-factory>
 </hibernate-configuration>

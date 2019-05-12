@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+     <query name="getVotesByUserId">
+        <![CDATA[
+			select
+			V.id as id,
+            V.postId as postId,
+            V.commentId as commentId,
+            V.value as value,
+            V.userId as userId
+			from Vote V
+			where
+				V.userId = :userId
+        ]]>
+     </query>
+    <query name="getVoteByPostIdAndUserId">
+        <![CDATA[
+			select
+			V.id as id,
+            V.postId as postId,
+            V.commentId as commentId,
+            V.value as value,
+            V.userId as userId
+			from Vote V
+			where
+				V.postId = :postId and
+				V.userId = :userId
+        ]]>
+     </query>
+     <query name="getVoteByCommentIdAndUserId">
+        <![CDATA[
+			select
+			V.id as id,
+            V.postId as postId,
+            V.commentId as commentId,
+            V.value as value,
+            V.userId as userId
+			from Vote V
+			where
+				V.commentId = :commentId and
+				V.userId = :userId
+        ]]>
+     </query>
+</hibernate-mapping>

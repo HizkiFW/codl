@@ -9,7 +9,13 @@ export const signIn = code => dispatch => {
     },
     body: JSON.stringify(code)
   })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Something went wrong.");
+      }
+    })
     .then(user => {
       dispatch({
         type: AUTH_USER,
@@ -19,6 +25,7 @@ export const signIn = code => dispatch => {
       //localStorage.setItem("token", response.data.token);
     })
     .catch(error => {
+      console.log(error);
       dispatch({ type: AUTH_ERROR, payload: error });
     });
 };
