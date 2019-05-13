@@ -29,6 +29,13 @@ class Comment extends Component {
     document.getElementById("like-button").classList.toggle("far");
   }
 
+  getVoteStatus(id) {
+    let votes = this.props.auth.votes;
+    if (votes && votes.find(vote => vote.commentId === id)) {
+      return votes.find(vote => vote.commentId === id).value;
+    }
+  }
+
   render() {
     let date = timeAgo.format(
       new Date(this.props.data.dateCreation),
@@ -53,8 +60,9 @@ class Comment extends Component {
         </div>
         <div className="text">{this.props.data.text}</div>
         <Heart
-          //voteStatus={user.votes[postData.id] || 0}
-          voteStatus={0}
+          voteStatus={
+            this.props.auth ? this.getVoteStatus(this.props.data.id) || 0 : 0
+          }
           upvoteContent={
             <i
               id="like-button"

@@ -50,6 +50,13 @@ class Post extends Component {
     }
   }
 
+  getVoteStatus(id) {
+    let votes = this.props.auth.votes;
+    if (votes && votes.find(vote => vote.postId === id)) {
+      return votes.find(vote => vote.postId === id).value;
+    }
+  }
+
   render() {
     let date = timeAgo.format(
       new Date(this.props.data.dateCreation),
@@ -78,13 +85,10 @@ class Post extends Component {
           <div className="ml-auto">
             <Upvote
               voteStatus={
-                this.props.auth.votes
-                  ? this.props.auth.votes.filter(
-                      vote => vote.postId === this.props.data.id
-                    ).value || 0
+                this.props.auth
+                  ? this.getVoteStatus(this.props.data.id) || 0
                   : 0
               }
-              voteStatus={0}
               upvoteContent={<i className="upvote-icon fa fa-arrow-up" />}
               afterContent={
                 <span className="upvote-count">
