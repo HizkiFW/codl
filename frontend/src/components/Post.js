@@ -27,14 +27,16 @@ class Post extends Component {
   upvotePost(id) {
     this.props.upvotePost({
       postId: id,
-      userId: this.props.auth.id
+      userId: this.props.auth.id,
+      value: 1
     });
   }
 
   downvotePost(id) {
     this.props.downvotePost({
       postId: id,
-      userId: this.props.auth.id
+      userId: this.props.auth.id,
+      value: -1
     });
   }
 
@@ -52,7 +54,7 @@ class Post extends Component {
 
   getVoteStatus(id) {
     let votes = this.props.auth.votes;
-    if (votes && votes.find(vote => vote.postId === id)) {
+    if (votes.find(vote => vote.postId === id)) {
       return votes.find(vote => vote.postId === id).value;
     }
   }

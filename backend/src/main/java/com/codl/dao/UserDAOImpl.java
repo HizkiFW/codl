@@ -1,5 +1,6 @@
 package com.codl.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -22,7 +23,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getUser(OAuthUser oauthUser) {
 		User user;
-		List<Vote> votes;
+		List<Vote> votes = new ArrayList<Vote>();
 		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("checkIfUserExists")
 				.setParameter("username", oauthUser.getLogin());
 

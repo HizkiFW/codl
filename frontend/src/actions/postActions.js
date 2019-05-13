@@ -2,7 +2,10 @@ import {
   FETCH_POSTS,
   FETCH_MORE_POSTS,
   UPVOTE_POST,
-  DOWNVOTE_POST
+  DOWNVOTE_POST,
+  USER_UPVOTE_POST,
+  USER_DOWNVOTE_POST,
+  USER_REMOVE_VOTE_POST
 } from "./types";
 import $ from "jquery";
 
@@ -101,12 +104,16 @@ export const upvotePost = vote => dispatch => {
         throw new Error("Something went wrong.");
       }
     })
-    .then(() =>
+    .then(() => {
+      dispatch({
+        type: USER_UPVOTE_POST,
+        payload: vote
+      });
       dispatch({
         type: UPVOTE_POST,
         payload: vote.postId
-      })
-    )
+      });
+    })
     .catch(error => {
       console.log(error);
     });
@@ -125,12 +132,16 @@ export const downvotePost = vote => dispatch => {
         throw new Error("Something went wrong.");
       }
     })
-    .then(() =>
+    .then(() => {
+      dispatch({
+        type: USER_DOWNVOTE_POST,
+        payload: vote
+      });
       dispatch({
         type: DOWNVOTE_POST,
         payload: vote.postId
-      })
-    )
+      });
+    })
     .catch(error => {
       console.log(error);
     });

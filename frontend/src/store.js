@@ -6,7 +6,7 @@ import storage from 'redux-persist/lib/storage'
 
 const config = {
     key: 'root',
-    blacklist: ['modal'],
+    //blacklist: ['auth'],
     storage
 }
 

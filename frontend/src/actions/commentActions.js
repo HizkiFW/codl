@@ -2,7 +2,9 @@ import {
   FETCH_COMMENTS,
   NEW_COMMENT,
   UPVOTE_COMMENT,
-  DOWNVOTE_COMMENT
+  DOWNVOTE_COMMENT,
+  USER_UPVOTE_COMMENT,
+  USER_REMOVE_VOTE_COMMENT
 } from "./types";
 
 export const fetchComments = postId => dispatch => {
@@ -68,12 +70,16 @@ export const upvoteComment = vote => dispatch => {
         throw new Error("Something went wrong.");
       }
     })
-    .then(() =>
+    .then(() => {
+      dispatch({
+        type: USER_UPVOTE_COMMENT,
+        payload: vote
+      });
       dispatch({
         type: UPVOTE_COMMENT,
         payload: vote.commentId
-      })
-    )
+      });
+    })
     .catch(error => {
       console.log(error);
     });
@@ -92,12 +98,16 @@ export const downvoteComment = vote => dispatch => {
         throw new Error("Something went wrong.");
       }
     })
-    .then(() =>
+    .then(() => {
+      dispatch({
+        type: USER_REMOVE_VOTE_COMMENT,
+        payload: vote
+      });
       dispatch({
         type: DOWNVOTE_COMMENT,
         payload: vote.commentId
-      })
-    )
+      });
+    })
     .catch(error => {
       console.log(error);
     });

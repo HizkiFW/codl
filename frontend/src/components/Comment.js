@@ -14,7 +14,8 @@ class Comment extends Component {
   upvoteComment(id) {
     this.props.upvoteComment({
       commentId: id,
-      userId: this.props.auth.id
+      userId: this.props.auth.id,
+      value: 1
     });
     document.getElementById("like-button").classList.toggle("fas");
     document.getElementById("like-button").classList.toggle("far");
@@ -23,7 +24,8 @@ class Comment extends Component {
   removeVote(id) {
     this.props.downvoteComment({
       commentId: id,
-      userId: this.props.auth.id
+      userId: this.props.auth.id,
+      value: -1
     });
     document.getElementById("like-button").classList.toggle("fas");
     document.getElementById("like-button").classList.toggle("far");
@@ -31,7 +33,7 @@ class Comment extends Component {
 
   getVoteStatus(id) {
     let votes = this.props.auth.votes;
-    if (votes && votes.find(vote => vote.commentId === id)) {
+    if (votes.find(vote => vote.commentId === id)) {
       return votes.find(vote => vote.commentId === id).value;
     }
   }
