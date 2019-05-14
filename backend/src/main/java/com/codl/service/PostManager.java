@@ -9,7 +9,7 @@ import com.codl.models.utils.Filter;
 public interface PostManager {
 	
 	 public List<Post> getAllPosts(Filter filter);
-	 public void addPost(Post post);
+	 public Post addPost(Post post);
 	 public void upvotePost(Vote vote);
 	 public void downvotePost(Vote vote);
 	 public void removeVotePost(Vote vote);

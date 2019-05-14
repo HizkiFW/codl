@@ -1,6 +1,8 @@
 import {
   AUTH_USER,
   AUTH_ERROR,
+  USER_NEW_POST,
+  USER_NEW_COMMENT,
   USER_UPVOTE_POST,
   USER_DOWNVOTE_POST,
   USER_REMOVE_VOTE_POST,
@@ -47,12 +49,52 @@ function updateUserCommentVotes(state, action, val) {
   });
 }
 
+function newPostVote(state, action) {
+  let vote = {
+    userId: state.id,
+    commentId: -1,
+    postId: action.payload.id,
+    value: 1
+  };
+
+  let updatedItems = state.votes.concat(vote);
+
+  return updateObject(state, {
+    votes: updatedItems
+  });
+}
+
+function newCommentVote(state, action) {
+  let vote = {
+    userId: state.id,
+    commentId: action.payload.id,
+    postId: -1,
+    value: 1
+  };
+
+  let updatedItems = state.votes.concat(vote);
+
+  return updateObject(state, {
+    votes: updatedItems
+  });
+}
+
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case AUTH_USER:
       return { ...state, authenticated: action.payload };
     case AUTH_ERROR:
       return { ...state, errorMessage: action.payload };
+    case USER_NEW_POST:
+      return {
+        ...state,
+        authenticated: newPostVote(state.authenticated, action)
+      };
+    case USER_NEW_COMMENT:
+      return {
+        ...state,
+        authenticated: newCommentVote(state.authenticated, action)
+      };
     case USER_UPVOTE_POST:
       return {
         ...state,

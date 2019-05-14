@@ -45,10 +45,12 @@ public class PostDAOImpl implements PostDAO {
 	}
 
 	@Override
-	public void addPost(Post post) {
+	public Post addPost(Post post) {
 		long id = (long) this.sessionFactory.getCurrentSession().save(post);
 		Vote vote = new Vote(post.getUser().getId(), id, -1, 1);
 		this.sessionFactory.getCurrentSession().save(vote);
+		post.setId(id);
+		return post;
 	}
 
 	@Override

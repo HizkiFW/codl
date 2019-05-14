@@ -27,10 +27,12 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public void addComment(Comment comment) {
+	public Comment addComment(Comment comment) {
 		long id = (long) this.sessionFactory.getCurrentSession().save(comment);
 		Vote vote = new Vote(comment.getUser().getId(), -1, id, 1);
 		this.sessionFactory.getCurrentSession().save(vote);
+		comment.setId(id);
+		return comment;
 	}
 
 	@Override

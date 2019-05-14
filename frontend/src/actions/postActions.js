@@ -3,6 +3,7 @@ import {
   FETCH_MORE_POSTS,
   UPVOTE_POST,
   DOWNVOTE_POST,
+  USER_NEW_POST,
   USER_UPVOTE_POST,
   USER_DOWNVOTE_POST,
   USER_REMOVE_VOTE_POST
@@ -71,7 +72,7 @@ export const createPost = postData => dispatch => {
   })
     .then(response => {
       if (response.ok) {
-        window.location = "/";
+        return response.json();
       }
       if (response.status === 400) {
         return response.json().then(responseJson => {
@@ -85,6 +86,13 @@ export const createPost = postData => dispatch => {
           $("html, body").animate({ scrollTop: 0 }, "fast");
         });
       }
+    })
+    .then(post => {
+      dispatch({
+        type: USER_NEW_POST,
+        payload: post
+      });
+      window.location = "/";
     })
     .catch(error => {
       console.log(error);

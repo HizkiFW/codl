@@ -50,8 +50,8 @@ public class PostWebServices {
 	@Path("submitPost")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addPost(Post post) {
-		postManager.addPost(post);
+	public Post addPost(Post post) {
+		return postManager.addPost(post);
 	}
 
 	@POST

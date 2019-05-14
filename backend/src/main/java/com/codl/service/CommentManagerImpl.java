@@ -24,8 +24,8 @@ public class CommentManagerImpl implements CommentManager {
 	
 	@Override
 	@Transactional
-	public void addComment(Comment comment) {
-		commentDAO.addComment(comment);
+	public Comment addComment(Comment comment) {
+		return commentDAO.addComment(comment);
 	}
 	
 	@Override

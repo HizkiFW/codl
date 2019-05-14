@@ -28,7 +28,7 @@ public class PostManagerImpl implements PostManager {
 
 	@Override
 	@Transactional
-	public void addPost(Post post) {
+	public Post addPost(Post post) {
 
 		List<ErrorInfo> errList = new ArrayList<ErrorInfo>();
 		if (post.getDescription().isEmpty()) {
@@ -39,7 +39,7 @@ public class PostManagerImpl implements PostManager {
 		if (!errList.isEmpty()) {
 			throw new InvalidInputException(errList);
 		}
-		postDAO.addPost(post);
+		return postDAO.addPost(post);
 	}
 
 	@Override

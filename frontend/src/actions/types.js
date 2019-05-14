@@ -13,6 +13,8 @@ export const FETCH_TAGS = "FETCH_TAGS";
 
 export const AUTH_USER = "AUTH_USER";
 export const AUTH_ERROR = "AUTH_ERROR";
+export const USER_NEW_COMMENT = "USER_NEW_COMMENT"
+export const USER_NEW_POST = "USER_NEW_POST"
 export const USER_UPVOTE_POST = "USER_UPVOTE_POST";
 export const USER_DOWNVOTE_POST = "USER_DOWNVOTE_POST";
 export const USER_REMOVE_VOTE_POST = "USER_REMOVE_VOTE_POST";

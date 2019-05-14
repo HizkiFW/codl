@@ -3,6 +3,7 @@ import {
   NEW_COMMENT,
   UPVOTE_COMMENT,
   REMOVE_VOTE_COMMENT,
+  USER_NEW_COMMENT,
   USER_UPVOTE_COMMENT,
   USER_REMOVE_VOTE_COMMENT
 } from "./types";
@@ -42,16 +43,22 @@ export const createComment = commentData => dispatch => {
     body: JSON.stringify(commentData)
   })
     .then(res => {
-      if (!res.ok) {
+      if (res.ok) {
+        return res.json();
+      } else {
         throw new Error("Something went wrong.");
       }
     })
-    .then(() =>
+    .then(comment => {
+      dispatch({
+        type: USER_NEW_COMMENT,
+        payload: comment
+      });
       dispatch({
         type: NEW_COMMENT,
-        payload: commentData
-      })
-    )
+        payload: comment
+      });
+    })
     .catch(error => {
       console.log(error);
     });

@@ -46,9 +46,10 @@ public class CommentWebServices {
 
 	@POST
 	@Path("submitComment")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addComment(Comment comment) {
-		commentManager.addComment(comment);
+	public Comment addComment(Comment comment) {
+		return commentManager.addComment(comment);
 	}
 
 	@POST
