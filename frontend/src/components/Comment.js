@@ -5,7 +5,7 @@ import Heart from "./Heart";
 import en from "javascript-time-ago/locale/en";
 import { connect } from "react-redux";
 import { showModal } from "../actions/modalActions";
-import { upvoteComment } from "../actions/commentActions";
+import { upvoteComment, removeVoteComment } from "../actions/commentActions";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -17,18 +17,14 @@ class Comment extends Component {
       userId: this.props.auth.id,
       value: 1
     });
-    document.getElementById("like-button").classList.toggle("fas");
-    document.getElementById("like-button").classList.toggle("far");
   }
 
   removeVote(id) {
-    this.props.downvoteComment({
+    this.props.removeVoteComment({
       commentId: id,
       userId: this.props.auth.id,
-      value: -1
+      value: 0
     });
-    document.getElementById("like-button").classList.toggle("fas");
-    document.getElementById("like-button").classList.toggle("far");
   }
 
   getVoteStatus(id) {
@@ -88,6 +84,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   upvoteComment,
+  removeVoteComment,
   showModal
 };
 

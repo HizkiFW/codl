@@ -1,4 +1,4 @@
-import { NEW_COMMENT, UPVOTE_COMMENT, FETCH_COMMENTS, DOWNVOTE_COMMENT } from "../actions/types";
+import { NEW_COMMENT, UPVOTE_COMMENT, FETCH_COMMENTS, REMOVE_VOTE_COMMENT } from "../actions/types";
 
 const initialState = {
   items: []
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
             : comment
         )
       };
-      case DOWNVOTE_COMMENT:
+      case REMOVE_VOTE_COMMENT:
       return {
         ...state,
         items: state.items.map(comment =>

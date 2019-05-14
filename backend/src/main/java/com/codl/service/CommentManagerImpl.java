@@ -37,8 +37,8 @@ public class CommentManagerImpl implements CommentManager {
 	
 	@Override
 	@Transactional
-	public void downvoteComment(Vote vote) {
-		vote.setValue(-1);
-		commentDAO.downvoteComment(vote);
+	public void removeVoteComment(Vote vote) {
+		vote.setValue(0);
+		commentDAO.removeVoteComment(vote);
 	}
 }

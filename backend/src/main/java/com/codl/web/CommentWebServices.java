@@ -59,10 +59,10 @@ public class CommentWebServices {
 	}
 	
 	@POST
-	@Path("downvoteComment")
+	@Path("removeVoteComment")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void downvoteComment(Vote vote) {
-		commentManager.downvoteComment(vote);
+	public void removeVoteComment(Vote vote) {
+		commentManager.removeVoteComment(vote);
 	}
 
 }

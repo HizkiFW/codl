@@ -29,7 +29,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void addComment(Comment comment) {
 		long id = (long) this.sessionFactory.getCurrentSession().save(comment);
-		Vote vote = new Vote(comment.getUser().getId(), 0, id, 1);
+		Vote vote = new Vote(comment.getUser().getId(), -1, id, 1);
 		this.sessionFactory.getCurrentSession().save(vote);
 	}
 
@@ -39,7 +39,7 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public void downvoteComment(Vote vote) {
+	public void removeVoteComment(Vote vote) {
 		saveCommentVote(vote);
 	}
 

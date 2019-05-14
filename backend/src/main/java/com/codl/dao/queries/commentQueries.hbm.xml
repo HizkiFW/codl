@@ -10,7 +10,7 @@
 			   C.dateCreation as dateCreation,
 			   C.postId as postId,
 			   C.text as text,
-			   (select sum(V.value) from Vote V where V.commentId = C.id group by V.commentId) as voteCount,
+			   COALESCE((select sum(V.value) from Vote V where V.commentId = C.id group by V.commentId), 0) as voteCount,
 			   C.user as user
 			from Comment C
 			where C.postId = :postId

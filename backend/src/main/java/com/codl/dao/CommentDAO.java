@@ -13,6 +13,6 @@ public interface CommentDAO {
 	public List<Comment> getComments(long postId);
 	public void addComment(Comment comment);
 	public void upvoteComment(Vote vote);
-	public void downvoteComment(Vote vote);
+	public void removeVoteComment(Vote vote);
 	
 }

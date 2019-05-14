@@ -2,7 +2,7 @@ import {
   FETCH_COMMENTS,
   NEW_COMMENT,
   UPVOTE_COMMENT,
-  DOWNVOTE_COMMENT,
+  REMOVE_VOTE_COMMENT,
   USER_UPVOTE_COMMENT,
   USER_REMOVE_VOTE_COMMENT
 } from "./types";
@@ -85,8 +85,8 @@ export const upvoteComment = vote => dispatch => {
     });
 };
 
-export const downvoteComment = vote => dispatch => {
-  fetch("http://localhost:8080/downvoteComment", {
+export const removeVoteComment = vote => dispatch => {
+  fetch("http://localhost:8080/removeVoteComment", {
     method: "POST",
     headers: {
       "content-type": "application/json"
@@ -104,7 +104,7 @@ export const downvoteComment = vote => dispatch => {
         payload: vote
       });
       dispatch({
-        type: DOWNVOTE_COMMENT,
+        type: REMOVE_VOTE_COMMENT,
         payload: vote.commentId
       });
     })
