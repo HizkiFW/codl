@@ -12,5 +12,6 @@ public interface PostManager {
 	 public void addPost(Post post);
 	 public void upvotePost(Vote vote);
 	 public void downvotePost(Vote vote);
+	 public void removeVotePost(Vote vote);
 
 }

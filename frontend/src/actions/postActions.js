@@ -146,3 +146,38 @@ export const downvotePost = vote => dispatch => {
       console.log(error);
     });
 };
+
+export const removeVotePost = (vote, prevStatus) => dispatch => {
+  fetch("http://localhost:8080/removeVotePost", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(vote)
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Something went wrong.");
+      }
+    })
+    .then(() => {
+      dispatch({
+        type: USER_REMOVE_VOTE_POST,
+        payload: vote
+      });
+      if (prevStatus === 1) {
+        dispatch({
+          type: DOWNVOTE_POST,
+          payload: vote.postId
+        });
+      } else if (prevStatus === -1) {
+        dispatch({
+          type: UPVOTE_POST,
+          payload: vote.postId
+        });
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};

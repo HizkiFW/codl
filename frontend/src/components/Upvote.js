@@ -52,14 +52,14 @@ export default class Upvote extends React.Component {
 
     if (prevStatus === nextStatus) {
       // undo current vote
-      onRemoveVote();
+      onRemoveVote(prevStatus);
       nextStatus = 0;
     } else {
       // add/change vote
 
       if (prevStatus !== 0 && nextStatus !== 0) {
         // undo previous vote first
-        onRemoveVote();
+        onRemoveVote(prevStatus);
       }
 
       // add new vote

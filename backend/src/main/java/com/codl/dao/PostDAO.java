@@ -12,5 +12,5 @@ public interface PostDAO {
     public List<Post> getPostsWithFilter(Filter filter);
     public void upvotePost(Vote vote);
     public void downvotePost(Vote vote);
-    
+    public void removeVotePost(Vote vote);
 }

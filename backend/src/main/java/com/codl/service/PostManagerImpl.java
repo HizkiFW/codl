@@ -55,5 +55,12 @@ public class PostManagerImpl implements PostManager {
 		vote.setValue(-1);
 		postDAO.downvotePost(vote);
 	}
+	
+	@Override	
+	@Transactional
+	public void removeVotePost(Vote vote) {
+		vote.setValue(0);
+		postDAO.removeVotePost(vote);
+	}
 
 }

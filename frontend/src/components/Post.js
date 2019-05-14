@@ -6,7 +6,11 @@ import AceEditor from "react-ace";
 import "brace/theme/chaos";
 import Upvote from "./Upvote";
 import { connect } from "react-redux";
-import { upvotePost, downvotePost } from "../actions/postActions";
+import {
+  upvotePost,
+  downvotePost,
+  removeVotePost
+} from "../actions/postActions";
 import { showModal } from "../actions/modalActions";
 import { getLanguageTheme } from "../utils/language";
 import { LANGUAGE_MAP } from "../utils/language";
@@ -40,8 +44,15 @@ class Post extends Component {
     });
   }
 
-  removeVote(id) {
-    console.log("removevote");
+  removeVotePost(prevStatus, id) {
+    this.props.removeVotePost(
+      {
+        postId: id,
+        userId: this.props.auth.id,
+        value: 0
+      },
+      prevStatus
+    );
   }
 
   getComments(number) {
@@ -102,7 +113,9 @@ class Post extends Component {
               onDisallowed={() => this.props.showModal()}
               onUpvote={() => this.upvotePost(this.props.data.id)}
               onDownvote={() => this.downvotePost(this.props.data.id)}
-              onRemoveVote={() => this.removeVote(this.props.data.id)}
+              onRemoveVote={prevStatus =>
+                this.removeVotePost(prevStatus, this.props.data.id)
+              }
             />
           </div>
         </div>
@@ -148,6 +161,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   upvotePost,
   downvotePost,
+  removeVotePost,
   showModal
 };
 

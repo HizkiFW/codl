@@ -67,5 +67,12 @@ public class PostWebServices {
 	public void downvotePost(Vote vote) {
 		postManager.downvotePost(vote);
 	}
+	
+	@POST
+	@Path("removeVotePost")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void removeVotePost(Vote vote) {
+		postManager.removeVotePost(vote);
+	}
 
 }

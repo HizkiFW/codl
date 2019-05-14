@@ -60,6 +60,11 @@ public class PostDAOImpl implements PostDAO {
 	public void downvotePost(Vote vote) {
 		savePostVote(vote);
 	}
+	
+	@Override
+	public void removeVotePost(Vote vote) {
+		savePostVote(vote);
+	}
 
 	private void savePostVote(Vote vote) {
 		Vote existingVote = (Vote) this.sessionFactory.getCurrentSession().getNamedQuery("getVoteByPostIdAndUserId")
