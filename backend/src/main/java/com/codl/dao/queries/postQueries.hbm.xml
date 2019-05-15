@@ -55,6 +55,7 @@
             select P.id as id,
 			   P.code as code,
 			   P.dateCreation as dateCreation,
+			   P.description as description,
 			   P.language as language,
 			   P.title as title,
 			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id group by V.postId), 0) as voteCount,
