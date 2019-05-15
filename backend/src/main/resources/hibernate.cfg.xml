@@ -7,7 +7,7 @@
 
 	<session-factory>
 		<!-- SQL dialect -->
-		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
 
 		<!-- Disable the second-level cache -->
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
@@ -26,7 +26,8 @@
 		<mapping resource="com/codl/dao/queries/postQueries.hbm.xml"></mapping>
 		<mapping resource="com/codl/dao/queries/tagQueries.hbm.xml"></mapping>
 		<mapping resource="com/codl/dao/queries/userQueries.hbm.xml"></mapping>
-		<mapping resource="com/codl/dao/queries/commentQueries.hbm.xml"></mapping>
+		<mapping
+			resource="com/codl/dao/queries/commentQueries.hbm.xml"></mapping>
 		<mapping resource="com/codl/dao/queries/voteQueries.hbm.xml"></mapping>
 	</session-factory>
 </hibernate-configuration>

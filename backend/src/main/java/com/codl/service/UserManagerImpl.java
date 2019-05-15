@@ -73,8 +73,6 @@ public class UserManagerImpl implements UserManager {
 
 		con.addRequestProperty("Accept", "application/json");
 		con.setRequestProperty("Authorization", "token " + accessToken);
-		int responseCode = con.getResponseCode();
-		System.out.println("Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -104,9 +102,6 @@ public class UserManagerImpl implements UserManager {
 				+ env.getProperty("oauth.secretClientId") + "&code=" + code);
 		wr.flush();
 		wr.close();
-
-		int responseCode = con.getResponseCode();
-		System.out.println("Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
