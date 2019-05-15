@@ -27,9 +27,9 @@ public class Post implements Serializable {
 	private long id;
 	@Column(name="TITLE", nullable=false)
 	private String title;
-	@Column(name="CODE", nullable=false)
+	@Column(name="CODE", columnDefinition = "text", nullable=false)
 	private String code;
-	@Column(name="DESCRIPTION")
+	@Column(name="DESCRIPTION", columnDefinition = "text")
 	private String description;
 	@Column(name="LANGUAGE", nullable=false)
 	private String language;
@@ -39,7 +39,7 @@ public class Post implements Serializable {
 	@JoinColumn(name="USER_ID", nullable=false)
 	private User user;
 	@Column(name="DATE_CREATION", nullable=false)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")	
 	private Date dateCreation;
 	@Transient
 	private long numberOfComments;

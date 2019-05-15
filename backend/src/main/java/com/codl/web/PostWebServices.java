@@ -9,8 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -24,7 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class PostWebServices {
 
-	private static Logger logger = LogManager.getLogger(PostWebServices.class);
 	@Autowired
 	private PostManager postManager;
 
@@ -33,7 +30,6 @@ public class PostWebServices {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String getPosts(Filter filter) {
-		logger.error("Fetching posts wiith: ");
 		String response = "";
 		List<Post> allPosts = postManager.getAllPosts(filter);
 		ObjectMapper Obj = new ObjectMapper();

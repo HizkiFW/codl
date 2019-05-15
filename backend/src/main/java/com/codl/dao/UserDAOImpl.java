@@ -3,7 +3,6 @@ package com.codl.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,24 +17,24 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public User getUser(OAuthUser oauthUser) {
 		User user;
 		List<Vote> votes = new ArrayList<Vote>();
-		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("checkIfUserExists")
-				.setParameter("username", oauthUser.getLogin());
-
-		boolean userExists = (Boolean) query.uniqueResult();
+		boolean userExists = (boolean) this.sessionFactory.getCurrentSession().getNamedQuery("checkIfUserExists")
+				.setParameter("username", oauthUser.getLogin()).getSingleResult();
 
 		if (userExists) {
 			user = (User) this.sessionFactory.getCurrentSession().getNamedQuery("getUserByLogin")
 					.setParameter("username", oauthUser.getLogin())
-					.setResultTransformer(Transformers.aliasToBean(User.class)).uniqueResult();
+					.setResultTransformer(Transformers.aliasToBean(User.class)).getSingleResult();
+
 			votes = this.sessionFactory.getCurrentSession().getNamedQuery("getVotesByUserId")
 					.setParameter("userId", user.getId()).setResultTransformer(Transformers.aliasToBean(Vote.class))
-					.list();
+					.getResultList();
+
 			user.setVotes(votes);
 			/*
 			 * user.setUrlAvatar(oauthUser.getAvatar_url());
@@ -44,6 +43,7 @@ public class UserDAOImpl implements UserDAO {
 			 */
 		} else {
 			user = new User(oauthUser);
+			user.setVotes(votes);
 			this.sessionFactory.getCurrentSession().save(user);
 		}
 

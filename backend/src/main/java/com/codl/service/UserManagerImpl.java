@@ -7,6 +7,8 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -26,6 +28,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @PropertySource("classpath:application.properties")
 public class UserManagerImpl implements UserManager {
 
+	private static Logger logger = LogManager.getLogger(UserManagerImpl.class);
+
 	@Autowired
 	Environment env;
 
@@ -41,15 +45,14 @@ public class UserManagerImpl implements UserManager {
 		try {
 			oauth = fetchOauthTokenWithCode(OAuthcode.getCode());
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("exception when fetchOauthTokenWithCode", e);
 		}
 
 		if (oauth != null) {
 			try {
 				oauthUser = fetchOauthUserData(oauth.getaccess_token());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("exception when fetchOauthUserData", e);
 			}
 		}
 		if (oauthUser != null) {
@@ -85,8 +88,6 @@ public class UserManagerImpl implements UserManager {
 		ObjectMapper mapper = new ObjectMapper();
 		OAuthUser oAuthUser = mapper.readValue(response.toString(), OAuthUser.class);
 
-		System.out.println(response.toString());
-
 		return oAuthUser;
 	}
 
@@ -118,9 +119,6 @@ public class UserManagerImpl implements UserManager {
 
 		ObjectMapper mapper = new ObjectMapper();
 		OAuthAccessToken oAuthAccessToken = mapper.readValue(response.toString(), OAuthAccessToken.class);
-
-		// print result
-		System.out.println(response.toString());
 
 		return oAuthAccessToken;
 	}

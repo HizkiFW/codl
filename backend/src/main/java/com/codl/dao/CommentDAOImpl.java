@@ -2,8 +2,8 @@ package com.codl.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,9 +20,9 @@ public class CommentDAOImpl implements CommentDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comment> getComments(long postId) {
-		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("getComments");
+		Query<Comment> query = this.sessionFactory.getCurrentSession().getNamedQuery("getComments");
 		query.setParameter("postId", postId);
-		return query.setResultTransformer(Transformers.aliasToBean(Comment.class)).list();
+		return query.setResultTransformer(Transformers.aliasToBean(Comment.class)).getResultList();
 
 	}
 
@@ -48,7 +48,7 @@ public class CommentDAOImpl implements CommentDAO {
 	private void saveCommentVote(Vote vote) {
 		Vote existingVote = (Vote) this.sessionFactory.getCurrentSession().getNamedQuery("getVoteByCommentIdAndUserId")
 				.setParameter("commentId", vote.getCommentId()).setParameter("userId", vote.getUserId())
-				.setResultTransformer(Transformers.aliasToBean(Vote.class)).uniqueResult();
+				.setResultTransformer(Transformers.aliasToBean(Vote.class)).getSingleResult();
 		if (existingVote != null) {
 			existingVote.setValue(vote.getValue());
 			this.sessionFactory.getCurrentSession().update(existingVote);

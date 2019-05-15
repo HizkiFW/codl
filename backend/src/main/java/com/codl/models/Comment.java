@@ -23,12 +23,12 @@ public class Comment implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private long id;
-	@Column(name = "TEXT", nullable=false)
+	@Column(name = "TEXT", columnDefinition = "text", nullable = false)
 	private String text;
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
-	@Column(name = "DATE_CREATION", nullable=false)
+	@Column(name = "DATE_CREATION", nullable = false)
 	private Date dateCreation;
 	@Column(name = "POST_ID")
 	private long postId;

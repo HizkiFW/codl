@@ -2,10 +2,8 @@ package com.codl.dao;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,8 +14,6 @@ import com.codl.models.utils.Filter;
 
 @Repository
 public class PostDAOImpl implements PostDAO {
-	
-	private static final Logger logger = LogManager.getLogger(PostDAOImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -25,7 +21,7 @@ public class PostDAOImpl implements PostDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> getPostsWithFilter(Filter filter) {
-		Query query;
+		Query<Post> query;
 		List<Post> posts;
 		if (filter.getLanguage().equals("all")) {
 			if (filter.getChrono().equals("new")) {
@@ -36,15 +32,15 @@ public class PostDAOImpl implements PostDAO {
 		} else {
 			if (filter.getChrono().equals("new")) {
 				query = this.sessionFactory.getCurrentSession().getNamedQuery("getPostsWithLanguage")
-						.setString("language", filter.getLanguage());
+						.setParameter("language", filter.getLanguage());
 			} else {
 				query = this.sessionFactory.getCurrentSession().getNamedQuery("getPostsWithLanguageByBest")
-						.setString("language", filter.getLanguage());
+						.setParameter("language", filter.getLanguage());
 			}
 		}
 
 		posts = query.setResultTransformer(Transformers.aliasToBean(Post.class)).setFirstResult(filter.getStart())
-				.setMaxResults(5).list();
+				.setMaxResults(5).getResultList();
 		return posts;
 	}
 
@@ -66,7 +62,7 @@ public class PostDAOImpl implements PostDAO {
 	public void downvotePost(Vote vote) {
 		savePostVote(vote);
 	}
-	
+
 	@Override
 	public void removeVotePost(Vote vote) {
 		savePostVote(vote);
@@ -75,7 +71,7 @@ public class PostDAOImpl implements PostDAO {
 	private void savePostVote(Vote vote) {
 		Vote existingVote = (Vote) this.sessionFactory.getCurrentSession().getNamedQuery("getVoteByPostIdAndUserId")
 				.setParameter("postId", vote.getPostId()).setParameter("userId", vote.getUserId())
-				.setResultTransformer(Transformers.aliasToBean(Vote.class)).uniqueResult();
+				.setResultTransformer(Transformers.aliasToBean(Vote.class)).getSingleResult();
 		if (existingVote != null) {
 			existingVote.setValue(vote.getValue());
 			this.sessionFactory.getCurrentSession().update(existingVote);
