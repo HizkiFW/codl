@@ -53,11 +53,11 @@ export const upvoteComment = vote => dispatch => {
     .then(res => {
       dispatch({
         type: USER_UPVOTE_COMMENT,
-        payload: res.data
+        payload: vote
       });
       dispatch({
         type: UPVOTE_COMMENT,
-        payload: res.data.commentId
+        payload: vote.commentId
       });
     })
     .catch(error => {
@@ -71,11 +71,11 @@ export const removeVoteComment = vote => dispatch => {
     .then(res => {
       dispatch({
         type: USER_REMOVE_VOTE_COMMENT,
-        payload: res.data
+        payload: vote
       });
       dispatch({
         type: REMOVE_VOTE_COMMENT,
-        payload: res.data.commentId
+        payload: vote.commentId
       });
     })
     .catch(error => {

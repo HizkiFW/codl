@@ -237,7 +237,7 @@ export function getLanguageTheme(language) {
     ["pascal", ["lightgoldenrodyellow", "greenyellow"]],
     ["perl", ["forestgreen", "aquamarine"]],
     ["pgsql", ["darkorange", "mediumspringgreen"]],
-    ["php", ["moccasin", "aqua"]],
+    ["php", ["black", "aqua"]],
     ["pig", ["khaki", "olivedrab"]],
     ["powershell", ["forestgreen", "olive"]],
     ["praat", ["olive", "aquamarine"]],

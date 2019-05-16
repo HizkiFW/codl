@@ -39,11 +39,11 @@ export const upvotePost = vote => dispatch => {
     .then(res => {
       dispatch({
         type: USER_UPVOTE_POST,
-        payload: res.data
+        payload: vote
       });
       dispatch({
         type: UPVOTE_POST,
-        payload: res.data.postId
+        payload: vote.postId
       });
     })
     .catch(error => {
@@ -57,11 +57,11 @@ export const downvotePost = vote => dispatch => {
     .then(res => {
       dispatch({
         type: USER_DOWNVOTE_POST,
-        payload: res.data
+        payload: vote
       });
       dispatch({
         type: DOWNVOTE_POST,
-        payload: res.data.postId
+        payload: vote.postId
       });
     })
     .catch(error => {
@@ -75,17 +75,17 @@ export const removeVotePost = (vote, prevStatus) => dispatch => {
     .then(res => {
       dispatch({
         type: USER_REMOVE_VOTE_POST,
-        payload: res.data
+        payload: vote
       });
       if (prevStatus === 1) {
         dispatch({
           type: DOWNVOTE_POST,
-          payload: res.data.postId
+          payload: vote.postId
         });
       } else if (prevStatus === -1) {
         dispatch({
           type: UPVOTE_POST,
-          payload: res.data.postId
+          payload: vote.postId
         });
       }
     })
