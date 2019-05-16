@@ -13,7 +13,7 @@ import com.codl.models.User;
 import com.codl.models.oauth.OAuthCode;
 import com.codl.service.UserManager;
 
-@Path("/")
+@Path("/auth")
 @Controller
 public class UserWebServices {
 	

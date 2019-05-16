@@ -1,20 +1,17 @@
+import axios from "axios";
 import { FETCH_TAGS } from "./types";
 
+const apiUrl = "http://localhost:8080/tag";
+
 export const fetchTags = () => dispatch => {
-  fetch("http://localhost:8080/getTags")
+  axios
+    .get(`${apiUrl}/getAll`)
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("Something went wrong.");
-      }
-    })
-    .then(tags =>
       dispatch({
         type: FETCH_TAGS,
-        payload: tags
-      })
-    )
+        payload: res.data
+      });
+    })
     .catch(error => {
       console.log(error);
     });

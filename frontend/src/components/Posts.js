@@ -3,7 +3,7 @@ import Post from "./Post";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { fetchPosts, fetchMorePosts } from "../actions/postActions";
+import { fetchPosts } from "../actions/postActions";
 import ChronoFilter from "./ChronoFilter";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -13,22 +13,28 @@ class Posts extends Component {
   };
 
   componentWillMount() {
-    this.props.fetchPosts({
-      start: this.state.start,
-      language: "all",
-      chrono: "new"
-    });
+    this.props.fetchPosts(
+      {
+        start: this.state.start,
+        language: "all",
+        chrono: "new"
+      },
+      ""
+    );
   }
 
   fetchMoreData = () => {
     this.setState({
       start: this.props.posts.length
     });
-    this.props.fetchMorePosts({
-      start: this.state.start,
-      language: "all",
-      chrono: "new"
-    });
+    this.props.fetchPosts(
+      {
+        start: this.state.start,
+        language: "all",
+        chrono: "new"
+      },
+      "MORE"
+    );
   };
 
   render() {
@@ -61,8 +67,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchPosts,
-  fetchMorePosts
+  fetchPosts
 };
 
 export default connect(

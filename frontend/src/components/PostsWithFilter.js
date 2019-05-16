@@ -13,11 +13,14 @@ class FilteredPosts extends Component {
   };
 
   componentWillMount() {
-    this.props.fetchPosts({
-      start: this.state.start,
-      language: this.props.match.params.lang,
-      chrono: this.props.match.params.chrono
-    });
+    this.props.fetchPosts(
+      {
+        start: this.state.start,
+        language: this.props.match.params.lang,
+        chrono: this.props.match.params.chrono
+      },
+      ""
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,10 +28,13 @@ class FilteredPosts extends Component {
       nextProps.match.params.lang !== this.props.match.params.lang ||
       nextProps.match.params.chrono !== this.props.match.params.chrono
     ) {
-      this.props.fetchPosts({
-        language: nextProps.match.params.lang,
-        chrono: nextProps.match.params.chrono
-      });
+      this.props.fetchPosts(
+        {
+          language: nextProps.match.params.lang,
+          chrono: nextProps.match.params.chrono
+        },
+        ""
+      );
     }
   }
 
@@ -36,11 +42,14 @@ class FilteredPosts extends Component {
     this.setState({
       start: this.props.posts.length
     });
-    this.props.fetchMorePosts({
-      start: this.state.start,
-      language: this.props.match.params.lang,
-      chrono: this.props.match.params.chrono
-    });
+    this.props.fetchPosts(
+      {
+        start: this.state.start,
+        language: this.props.match.params.lang,
+        chrono: this.props.match.params.chrono
+      },
+      "MORE"
+    );
   };
 
   render() {
@@ -81,8 +90,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  fetchPosts,
-  fetchMorePosts
+  fetchPosts
 };
 
 export default connect(

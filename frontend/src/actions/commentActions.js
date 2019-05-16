@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   FETCH_COMMENTS,
   NEW_COMMENT,
@@ -8,55 +9,37 @@ import {
   USER_REMOVE_VOTE_COMMENT
 } from "./types";
 
+const apiUrl = "http://localhost:8080/comment";
+
 export const fetchComments = postId => dispatch => {
-  fetch("http://localhost:8080/getComments", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(postId)
-  })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("Something went wrong.");
+  axios
+    .post(`${apiUrl}/getAll`, postId, {
+      headers: {
+        "Content-Type": "application/json"
       }
     })
-    .then(comments =>
+    .then(res => {
       dispatch({
         type: FETCH_COMMENTS,
-        payload: comments
-      })
-    )
+        payload: res.data
+      });
+    })
     .catch(error => {
       console.log(error);
     });
 };
 
-export const createComment = commentData => dispatch => {
-  fetch("http://localhost:8080/submitComment", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(commentData)
-  })
+export const createComment = comment => dispatch => {
+  axios
+    .post(`${apiUrl}/add`, comment)
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("Something went wrong.");
-      }
-    })
-    .then(comment => {
       dispatch({
         type: USER_NEW_COMMENT,
-        payload: comment
+        payload: res.data
       });
       dispatch({
         type: NEW_COMMENT,
-        payload: comment
+        payload: res.data
       });
     })
     .catch(error => {
@@ -65,26 +48,16 @@ export const createComment = commentData => dispatch => {
 };
 
 export const upvoteComment = vote => dispatch => {
-  fetch("http://localhost:8080/upvoteComment", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(vote)
-  })
+  axios
+    .post(`${apiUrl}/upvote`, vote)
     .then(res => {
-      if (!res.ok) {
-        throw new Error("Something went wrong.");
-      }
-    })
-    .then(() => {
       dispatch({
         type: USER_UPVOTE_COMMENT,
-        payload: vote
+        payload: res.data
       });
       dispatch({
         type: UPVOTE_COMMENT,
-        payload: vote.commentId
+        payload: res.data.commentId
       });
     })
     .catch(error => {
@@ -93,26 +66,16 @@ export const upvoteComment = vote => dispatch => {
 };
 
 export const removeVoteComment = vote => dispatch => {
-  fetch("http://localhost:8080/removeVoteComment", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(vote)
-  })
+  axios
+    .post(`${apiUrl}/removeVote`, vote)
     .then(res => {
-      if (!res.ok) {
-        throw new Error("Something went wrong.");
-      }
-    })
-    .then(() => {
       dispatch({
         type: USER_REMOVE_VOTE_COMMENT,
-        payload: vote
+        payload: res.data
       });
       dispatch({
         type: REMOVE_VOTE_COMMENT,
-        payload: vote.commentId
+        payload: res.data.commentId
       });
     })
     .catch(error => {

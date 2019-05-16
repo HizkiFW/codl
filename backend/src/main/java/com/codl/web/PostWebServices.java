@@ -18,7 +18,7 @@ import com.codl.models.utils.Filter;
 import com.codl.service.PostManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/")
+@Path("/post")
 @Controller
 public class PostWebServices {
 
@@ -26,7 +26,7 @@ public class PostWebServices {
 	private PostManager postManager;
 
 	@POST
-	@Path("getPosts")
+	@Path("getAll")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String getPosts(Filter filter) {
@@ -47,7 +47,7 @@ public class PostWebServices {
 	}
 	
 	@POST
-	@Path("submitPost")
+	@Path("add")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Post addPost(Post post) {
@@ -55,21 +55,21 @@ public class PostWebServices {
 	}
 
 	@POST
-	@Path("upvotePost")
+	@Path("upvote")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void upvotePost(Vote vote) {
 		postManager.upvotePost(vote);
 	}
 
 	@POST
-	@Path("downvotePost")
+	@Path("downvote")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void downvotePost(Vote vote) {
 		postManager.downvotePost(vote);
 	}
 	
 	@POST
-	@Path("removeVotePost")
+	@Path("removeVote")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void removeVotePost(Vote vote) {
 		postManager.removeVotePost(vote);

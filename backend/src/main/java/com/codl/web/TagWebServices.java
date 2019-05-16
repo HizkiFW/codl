@@ -15,7 +15,7 @@ import com.codl.models.Tag;
 import com.codl.service.TagManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Path("/")
+@Path("/tag")
 @Controller
 public class TagWebServices {
 
@@ -24,7 +24,7 @@ public class TagWebServices {
 	private TagManager tagManager;
 
 	@GET
-	@Path("getTags")
+	@Path("getAll")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getTags() {
 		String response = "";
