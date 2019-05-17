@@ -12,7 +12,7 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId != -1 group by V.postId), 0) as voteCount,
+			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId = -1 group by V.postId), 0) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P
@@ -27,7 +27,7 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId != -1 group by V.postId), 0) as voteCount,
+			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId = -1 group by V.postId), 0) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P
@@ -42,7 +42,7 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId != -1 group by V.postId), 0) as voteCount,
+			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId = -1 group by V.postId), 0) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P
@@ -58,7 +58,7 @@
 			   P.description as description,
 			   P.language as language,
 			   P.title as title,
-			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId != -1 group by V.postId), 0) as voteCount,
+			   COALESCE((select sum(V.value) from Vote V where V.postId = P.id and V.commentId = -1 group by V.postId), 0) as voteCount,
 			   P.user as user,
 			   (select count(1) from Comment C where C.postId = P.id) as numberOfComments
 			from Post P

@@ -13,7 +13,7 @@ class PostWithComments extends Component {
   render() {
     return (
       <PostWithCommentsWrapper>
-        <Post data={this.props.post} isHidden={true} />
+        <Post data={this.props.post} isExpanded={true} />
         <Comments
           postId={this.props.match.params.postId}
           data={this.props.comments}

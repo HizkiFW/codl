@@ -15,6 +15,7 @@ import {
 import { showModal } from "../actions/modalActions";
 import { getLanguageTheme } from "../utils/language";
 import { LANGUAGE_MAP } from "../utils/language";
+import { withRouter } from "react-router-dom";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -72,6 +73,9 @@ class Post extends Component {
   }
 
   onClick(id) {
+    if (this.props.isExpanded) {
+      this.props.history.push("/");
+    }
     this.props.deletePost(id);
   }
 
@@ -148,7 +152,7 @@ class Post extends Component {
         <span>{this.props.data.description}</span>
         <div className="d-flex align-items-center">
           <div className="">
-            {!this.props.isHidden && (
+            {!this.props.isExpanded && (
               <div className="comment">
                 <span>
                   <i className="fa fa-comment-alt" aria-hidden="true" />{" "}
@@ -192,7 +196,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Post);
+)(withRouter(Post));
 
 const PostWrapper = styled.div`
   border-radius: 4px;

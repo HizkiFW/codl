@@ -132,7 +132,6 @@ export const deletePost = id => dispatch => {
         type: DELETE_POST_COMMENT,
         payload: id
       });
-      window.location = "/";
     })
     .catch(error => {
       console.log(error);

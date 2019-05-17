@@ -9,7 +9,6 @@ import { CLIENT_ID } from "../utils/oauth";
 
 class Login extends Component {
   onSuccess = response => {
-    console.log(response);
     if (response !== undefined) {
       this.props.signIn(response);
     }
