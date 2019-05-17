@@ -55,6 +55,14 @@ public class PostWebServices {
 	}
 
 	@POST
+	@Path("delete")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteComment(long id) {
+		postManager.deletePost(id);
+	}
+
+	@POST
 	@Path("upvote")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void upvotePost(Vote vote) {

@@ -5,7 +5,7 @@ import Heart from "./Heart";
 import en from "javascript-time-ago/locale/en";
 import { connect } from "react-redux";
 import { showModal } from "../actions/modalActions";
-import { upvoteComment, removeVoteComment } from "../actions/commentActions";
+import { upvoteComment, removeVoteComment, deleteComment } from "../actions/commentActions";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -45,34 +45,54 @@ class Comment extends Component {
     }
     return (
       <CommentWrapper>
-        <div className="d-flex bd-highlight mb-3">
-          <div className="bd-highlight mr-1">
+        <div className="d-flex mb-3">
+          <div className=" mr-1">
             <img className="profile-pic" src={this.props.data.user.urlAvatar} />
           </div>
-          <div className="bd-highlight">
+          <div className="">
             <span className="author">{this.props.data.user.name}</span>
           </div>
-          <div className="ml-auto bd-highlight">
+          <div className="ml-auto">
             <span className="date">{date}</span>
           </div>
         </div>
         <div className="text">{this.props.data.text}</div>
-        <Heart
-          voteStatus={
-            this.props.auth ? this.getVoteStatus(this.props.data.id) || 0 : 0
-          }
-          upvoteContent={
-            <i
-              id="like-button"
-              className="upvote-icon far fa-heart not-liked"
+
+        <div className="d-flex">
+          <div className="">
+            <Heart
+              voteStatus={
+                this.props.auth
+                  ? this.getVoteStatus(this.props.data.id) || 0
+                  : 0
+              }
+              upvoteContent={
+                <i
+                  id="like-button"
+                  className="upvote-icon far fa-heart not-liked"
+                />
+              }
+              afterContent={this.props.data.voteCount}
+              shouldAllow={() => (this.props.auth ? true : false)}
+              onDisallowed={() => this.props.showModal()}
+              onUpvote={() => this.upvoteComment(this.props.data.id)}
+              onRemoveVote={() => this.removeVote(this.props.data.id)}
             />
-          }
-          afterContent={this.props.data.voteCount}
-          shouldAllow={() => (this.props.auth ? true : false)}
-          onDisallowed={() => this.props.showModal()}
-          onUpvote={() => this.upvoteComment(this.props.data.id)}
-          onRemoveVote={() => this.removeVote(this.props.data.id)}
-        />
+          </div>
+          <div className="ml-auto">
+            {this.props.auth &&
+            this.props.auth.id === this.props.data.user.id ? (
+              <button
+                className=""
+                onClick={() => {
+                  this.onClick(this.props.data);
+                }}
+              >
+                DELETE
+              </button>
+            ) : null}
+          </div>
+        </div>
       </CommentWrapper>
     );
   }
@@ -85,6 +105,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   upvoteComment,
   removeVoteComment,
+  deleteComment,
   showModal
 };
 

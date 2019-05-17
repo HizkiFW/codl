@@ -82,3 +82,25 @@ export const removeVoteComment = vote => dispatch => {
       console.log(error);
     });
 };
+
+export const deleteComment = id => dispatch => {
+  axios
+    .post(`${apiUrl}/delete`, id, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => {
+      dispatch({
+        type: USER_REMOVE_VOTE_COMMENT,
+        payload: vote
+      });
+      dispatch({
+        type: REMOVE_VOTE_COMMENT,
+        payload: vote.commentId
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};

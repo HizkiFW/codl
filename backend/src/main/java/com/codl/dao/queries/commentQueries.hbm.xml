@@ -17,4 +17,11 @@
 			order by C.dateCreation desc
         ]]>
      </query>
+     <query name="deleteComment">
+        <![CDATA[
+			delete Comment C
+			where
+				C.id = :commentId
+        ]]>
+     </query>
 </hibernate-mapping>

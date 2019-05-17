@@ -44,6 +44,12 @@ public class PostManagerImpl implements PostManager {
 
 	@Override
 	@Transactional
+	public void deletePost(long id) {
+		 postDAO.deletePost(id);
+	}
+	
+	@Override
+	@Transactional
 	public void upvotePost(Vote vote) {
 		vote.setValue(1);
 		postDAO.upvotePost(vote);

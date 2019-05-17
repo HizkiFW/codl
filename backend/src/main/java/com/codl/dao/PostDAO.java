@@ -9,6 +9,7 @@ import com.codl.models.utils.Filter;
 public interface PostDAO {
 
     public Post addPost(Post post);
+    public void deletePost(long id);
     public List<Post> getPostsWithFilter(Filter filter);
     public void upvotePost(Vote vote);
     public void downvotePost(Vote vote);

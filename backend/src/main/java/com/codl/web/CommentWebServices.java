@@ -53,12 +53,20 @@ public class CommentWebServices {
 	}
 
 	@POST
+	@Path("delete")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void deleteComment(long id) {
+		commentManager.deleteComment(id);
+	}
+
+	@POST
 	@Path("upvote")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void upvoteComment(Vote vote) {
 		commentManager.upvoteComment(vote);
 	}
-	
+
 	@POST
 	@Path("removeVote")
 	@Consumes(MediaType.APPLICATION_JSON)

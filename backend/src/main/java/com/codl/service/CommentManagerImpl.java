@@ -30,6 +30,12 @@ public class CommentManagerImpl implements CommentManager {
 	
 	@Override
 	@Transactional
+	public void deleteComment(long id) {
+		 commentDAO.deleteComment(id);
+	}
+	
+	@Override
+	@Transactional
 	public void upvoteComment(Vote vote) {
 		vote.setValue(1);
 		commentDAO.upvoteComment(vote);

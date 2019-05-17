@@ -45,4 +45,18 @@
 				V.userId = :userId
         ]]>
      </query>
+     <query name="deleteVoteByCommentId">
+        <![CDATA[
+			delete Vote V
+			where
+				V.commentId = :commentId
+        ]]>
+     </query>
+     <query name="deleteVoteByPostId">
+        <![CDATA[
+			delete Vote V
+			where
+				V.postId = :postId
+        ]]>
+     </query>
 </hibernate-mapping>

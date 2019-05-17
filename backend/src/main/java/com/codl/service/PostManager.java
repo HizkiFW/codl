@@ -10,6 +10,7 @@ public interface PostManager {
 	
 	 public List<Post> getAllPosts(Filter filter);
 	 public Post addPost(Post post);
+	 public void deletePost(long id);
 	 public void upvotePost(Vote vote);
 	 public void downvotePost(Vote vote);
 	 public void removeVotePost(Vote vote);

@@ -66,4 +66,11 @@
 			order by voteCount desc
         ]]>
      </query>
+     <query name="deletePost">
+        <![CDATA[
+			delete Post P
+			where
+				P.id = :postId
+        ]]>
+     </query>
 </hibernate-mapping>

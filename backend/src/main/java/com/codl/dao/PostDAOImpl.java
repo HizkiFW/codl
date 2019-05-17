@@ -52,6 +52,12 @@ public class PostDAOImpl implements PostDAO {
 		post.setId(id);
 		return post;
 	}
+	
+	@Override
+	public void deletePost(long id) {
+		this.sessionFactory.getCurrentSession().getNamedQuery("deleteVoteByPostId").setParameter("postId", id).executeUpdate();
+		this.sessionFactory.getCurrentSession().getNamedQuery("deletePost").setParameter("postId", id).executeUpdate();
+	}
 
 	@Override
 	public void upvotePost(Vote vote) {
