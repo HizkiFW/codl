@@ -58,7 +58,7 @@ public class PostWebServices {
 	@Path("delete")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deleteComment(long id) {
+	public void deletePost(long id) {
 		postManager.deletePost(id);
 	}
 

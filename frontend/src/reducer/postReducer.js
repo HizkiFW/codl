@@ -1,6 +1,7 @@
 import {
   FETCH_POSTS,
   FETCH_MORE_POSTS,
+  DELETE_POST,
   UPVOTE_POST,
   DOWNVOTE_POST
 } from "../actions/types";
@@ -26,6 +27,11 @@ export default function(state = initialState, action) {
           action.payload.length > 0
             ? state.items.concat(action.payload)
             : state.items
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        items: state.items.filter(post => post.id !== action.payload)
       };
     case UPVOTE_POST:
       return {

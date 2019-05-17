@@ -29,16 +29,18 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public Comment addComment(Comment comment) {
 		long id = (long) this.sessionFactory.getCurrentSession().save(comment);
-		Vote vote = new Vote(comment.getUser().getId(), -1, id, 1);
+		Vote vote = new Vote(comment.getUser().getId(), comment.getPostId(), id, 1);
 		this.sessionFactory.getCurrentSession().save(vote);
 		comment.setId(id);
 		return comment;
 	}
-	
+
 	@Override
 	public void deleteComment(long id) {
-		this.sessionFactory.getCurrentSession().getNamedQuery("deleteVoteByCommentId").setParameter("commentId", id).executeUpdate();
-		this.sessionFactory.getCurrentSession().getNamedQuery("deleteComment").setParameter("commentId", id).executeUpdate();
+		this.sessionFactory.getCurrentSession().getNamedQuery("deleteVoteByCommentId").setParameter("commentId", id)
+				.executeUpdate();
+		this.sessionFactory.getCurrentSession().getNamedQuery("deleteComment").setParameter("commentId", id)
+				.executeUpdate();
 	}
 
 	@Override

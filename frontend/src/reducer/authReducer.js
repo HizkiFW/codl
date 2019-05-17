@@ -3,6 +3,8 @@ import {
   AUTH_ERROR,
   USER_NEW_POST,
   USER_NEW_COMMENT,
+  USER_DELETE_COMMENT,
+  USER_DELETE_POST,
   USER_UPVOTE_POST,
   USER_DOWNVOTE_POST,
   USER_REMOVE_VOTE_POST,
@@ -68,11 +70,31 @@ function newCommentVote(state, action) {
   let vote = {
     userId: state.id,
     commentId: action.payload.id,
-    postId: -1,
+    postId: action.payload.postId,
     value: 1
   };
 
   let updatedItems = state.votes.concat(vote);
+
+  return updateObject(state, {
+    votes: updatedItems
+  });
+}
+
+function deleteComment(state, action) {
+  let updatedItems = state.votes.filter(
+    vote => vote.commentId !== action.payload
+  );
+
+  return updateObject(state, {
+    votes: updatedItems
+  });
+}
+
+function deletePost(state, action) {
+  let updatedItems = state.votes.filter(
+    vote => vote.postId !== action.payload
+  );
 
   return updateObject(state, {
     votes: updatedItems
@@ -94,6 +116,16 @@ export default function(state = INITIAL_STATE, action) {
       return {
         ...state,
         authenticated: newCommentVote(state.authenticated, action)
+      };
+    case USER_DELETE_COMMENT:
+      return {
+        ...state,
+        authenticated: deleteComment(state.authenticated, action)
+      };
+    case USER_DELETE_POST:
+      return {
+        ...state,
+        authenticated: deletePost(state.authenticated, action)
       };
     case USER_UPVOTE_POST:
       return {

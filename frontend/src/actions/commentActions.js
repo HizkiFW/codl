@@ -2,11 +2,13 @@ import axios from "axios";
 import {
   FETCH_COMMENTS,
   NEW_COMMENT,
+  DELETE_COMMENT,
   UPVOTE_COMMENT,
   REMOVE_VOTE_COMMENT,
   USER_NEW_COMMENT,
   USER_UPVOTE_COMMENT,
-  USER_REMOVE_VOTE_COMMENT
+  USER_REMOVE_VOTE_COMMENT,
+  USER_DELETE_COMMENT
 } from "./types";
 
 const apiUrl = "http://localhost:8080/comment";
@@ -90,14 +92,14 @@ export const deleteComment = id => dispatch => {
         "Content-Type": "application/json"
       }
     })
-    .then(res => {
+    .then(() => {
       dispatch({
-        type: USER_REMOVE_VOTE_COMMENT,
-        payload: vote
+        type: USER_DELETE_COMMENT,
+        payload: id
       });
       dispatch({
-        type: REMOVE_VOTE_COMMENT,
-        payload: vote.commentId
+        type: DELETE_COMMENT,
+        payload: id
       });
     })
     .catch(error => {

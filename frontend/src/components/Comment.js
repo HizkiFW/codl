@@ -5,23 +5,29 @@ import Heart from "./Heart";
 import en from "javascript-time-ago/locale/en";
 import { connect } from "react-redux";
 import { showModal } from "../actions/modalActions";
-import { upvoteComment, removeVoteComment, deleteComment } from "../actions/commentActions";
+import {
+  upvoteComment,
+  removeVoteComment,
+  deleteComment
+} from "../actions/commentActions";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
 class Comment extends Component {
-  upvoteComment(id) {
+  upvoteComment(comment) {
     this.props.upvoteComment({
-      commentId: id,
+      commentId: comment.id,
+      postId: comment.postId,
       userId: this.props.auth.id,
       value: 1
     });
   }
 
-  removeVote(id) {
+  removeVote(comment) {
     this.props.removeVoteComment({
-      commentId: id,
+      commentId: comment.id,
+      postId: comment.postId,
       userId: this.props.auth.id,
       value: 0
     });
@@ -32,6 +38,10 @@ class Comment extends Component {
     if (votes.find(vote => vote.commentId === id)) {
       return votes.find(vote => vote.commentId === id).value;
     }
+  }
+
+  onClick(id) {
+    this.props.deleteComment(id);
   }
 
   render() {
@@ -75,17 +85,17 @@ class Comment extends Component {
               afterContent={this.props.data.voteCount}
               shouldAllow={() => (this.props.auth ? true : false)}
               onDisallowed={() => this.props.showModal()}
-              onUpvote={() => this.upvoteComment(this.props.data.id)}
-              onRemoveVote={() => this.removeVote(this.props.data.id)}
+              onUpvote={() => this.upvoteComment(this.props.data)}
+              onRemoveVote={() => this.removeVote(this.props.data)}
             />
           </div>
           <div className="ml-auto">
             {this.props.auth &&
             this.props.auth.id === this.props.data.user.id ? (
               <button
-                className=""
+                className="delete-button"
                 onClick={() => {
-                  this.onClick(this.props.data);
+                  this.onClick(this.props.data.id);
                 }}
               >
                 DELETE
@@ -131,5 +141,15 @@ const CommentWrapper = styled.div`
   }
   .text {
     margin-bottom: 15px;
+  }
+  .delete-button {
+    border: none;
+    background: transparent;
+    color: #557de8;
+    padding: 0;
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 `;

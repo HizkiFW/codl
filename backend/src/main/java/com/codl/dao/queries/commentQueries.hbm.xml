@@ -24,4 +24,11 @@
 				C.id = :commentId
         ]]>
      </query>
+     <query name="deleteCommentByPostId">
+        <![CDATA[
+			delete Comment C
+			where
+				C.postId = :postId
+        ]]>
+     </query>
 </hibernate-mapping>

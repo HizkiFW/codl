@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 import {
   upvotePost,
   downvotePost,
-  removeVotePost
+  removeVotePost,
+  deletePost
 } from "../actions/postActions";
 import { showModal } from "../actions/modalActions";
 import { getLanguageTheme } from "../utils/language";
@@ -68,6 +69,10 @@ class Post extends Component {
     if (votes.find(vote => vote.postId === id)) {
       return votes.find(vote => vote.postId === id).value;
     }
+  }
+
+  onClick(id) {
+    this.props.deletePost(id);
   }
 
   render() {
@@ -141,14 +146,32 @@ class Post extends Component {
           />
         </div>
         <span>{this.props.data.description}</span>
-        {!this.props.isHidden && (
-          <div className="comment">
-            <span>
-              <i className="fa fa-comment-alt" aria-hidden="true" />{" "}
-              {numberOfComments}
-            </span>
+        <div className="d-flex align-items-center">
+          <div className="">
+            {!this.props.isHidden && (
+              <div className="comment">
+                <span>
+                  <i className="fa fa-comment-alt" aria-hidden="true" />{" "}
+                  {numberOfComments}
+                </span>
+              </div>
+            )}
           </div>
-        )}
+          <div className="ml-auto">
+            {this.props.auth &&
+            this.props.auth.id === this.props.data.user.id ? (
+              <button
+                className="delete-button"
+                onClick={e => {
+                  e.preventDefault();
+                  this.onClick(this.props.data.id);
+                }}
+              >
+                DELETE
+              </button>
+            ) : null}
+          </div>
+        </div>
       </PostWrapper>
     );
   }
@@ -162,6 +185,7 @@ const mapDispatchToProps = {
   upvotePost,
   downvotePost,
   removeVotePost,
+  deletePost,
   showModal
 };
 
@@ -217,6 +241,16 @@ const PostWrapper = styled.div`
     }
     &:hover {
       background-color: rgba(26, 26, 27, 0.1);
+    }
+  }
+  .delete-button {
+    border: none;
+    background: transparent;
+    color: #557de8;
+    padding: 0;
+
+    &:hover {
+      opacity: 0.9;
     }
   }
 `;

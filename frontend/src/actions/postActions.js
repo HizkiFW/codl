@@ -2,9 +2,12 @@ import axios from "axios";
 import {
   FETCH_POSTS,
   FETCH_MORE_POSTS,
+  DELETE_POST,
+  DELETE_POST_COMMENT,
   UPVOTE_POST,
   DOWNVOTE_POST,
   USER_NEW_POST,
+  USER_DELETE_POST,
   USER_UPVOTE_POST,
   USER_DOWNVOTE_POST,
   USER_REMOVE_VOTE_POST
@@ -116,15 +119,20 @@ export const deletePost = id => dispatch => {
         "Content-Type": "application/json"
       }
     })
-    .then(res => {
+    .then(() => {
       dispatch({
-        type: USER_REMOVE_VOTE_COMMENT,
-        payload: vote
+        type: USER_DELETE_POST,
+        payload: id
       });
       dispatch({
-        type: REMOVE_VOTE_COMMENT,
-        payload: vote.commentId
+        type: DELETE_POST,
+        payload: id
       });
+      dispatch({
+        type: DELETE_POST_COMMENT,
+        payload: id
+      });
+      window.location = "/";
     })
     .catch(error => {
       console.log(error);
