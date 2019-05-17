@@ -73,10 +73,10 @@ class Post extends Component {
   }
 
   onClick(id) {
+    this.props.deletePost(id);
     if (this.props.isExpanded) {
       this.props.history.push("/");
     }
-    this.props.deletePost(id);
   }
 
   render() {
