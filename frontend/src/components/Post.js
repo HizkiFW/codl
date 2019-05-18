@@ -89,7 +89,7 @@ class Post extends Component {
     let numberOfComments = this.getComments(this.props.data.numberOfComments);
     return (
       <PostWrapper>
-        <div className="d-flex mb-3">
+        <div className="d-flex mb-3 align-items-center">
           <div className="mr-2">
             <img className="profile-pic" src={this.props.data.user.urlAvatar} />
           </div>
@@ -151,7 +151,7 @@ class Post extends Component {
             }}
           />
         </div>
-        <span>{this.props.data.description}</span>
+        <span className="description">{this.props.data.description}</span>
         <div className="d-flex align-items-center">
           <div className="">
             {!this.props.isExpanded && (
@@ -225,7 +225,10 @@ const PostWrapper = styled.div`
 
   .author {
     color: #666;
-    font-size: 17px;
+    font-size: 18px;
+  }
+  .description {
+    line-height: 1.35em;
   }
   #ace {
     margin-bottom: 10px;

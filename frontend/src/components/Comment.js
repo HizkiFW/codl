@@ -55,7 +55,7 @@ class Comment extends Component {
     }
     return (
       <CommentWrapper>
-        <div className="d-flex mb-3">
+        <div className="d-flex mb-3 align-items-center">
           <div className=" mr-1">
             <img className="profile-pic" src={this.props.data.user.urlAvatar} />
           </div>
@@ -128,6 +128,7 @@ const CommentWrapper = styled.div`
   border: 1px solid #dbdbdb;
   margin-bottom: 10px;
   padding: 15px 15px;
+  line-height: 1.35em;
 
   .profile-pic {
     height: 33px;
@@ -139,11 +140,13 @@ const CommentWrapper = styled.div`
   }
   .date {
     font-size: 12px;
+    color: #666;
   }
   .text {
     margin-bottom: 15px;
   }
   .delete-button {
+    font-size: 0.8em;
     border: none;
     background: transparent;
     color: #557de8;

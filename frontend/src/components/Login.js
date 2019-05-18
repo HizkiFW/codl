@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GitHubLogin from "react-github-login";
+import Spinner from "./Spinner";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { signIn } from "../actions/authActions";
@@ -8,9 +9,21 @@ import rms from "../../public/img/rms.jpg";
 import { CLIENT_ID } from "../utils/oauth";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false // will be true when ajax request is running
+    };
+  }
   onSuccess = response => {
     if (response !== undefined) {
-      this.props.signIn(response);
+      this.setState({ loading: true }, () => {
+        this.props.signIn(response).then(result =>
+          this.setState({
+            loading: false
+          })
+        );
+      });
     }
   };
   onFailure = response => {
@@ -20,6 +33,7 @@ class Login extends Component {
     this.props.closeModal();
   }
   render() {
+    const { loading } = this.state;
     return (
       <React.Fragment>
         {this.props.showModal ? (
@@ -38,6 +52,7 @@ class Login extends Component {
               <div className="join-image">
                 <img src={rms} className="img-fluid rounded" alt="join us" />
               </div>
+              {loading ? <Spinner /> : null}
               <GitHubLogin
                 clientId={CLIENT_ID}
                 redirectUri="http://localhost:3000/"
