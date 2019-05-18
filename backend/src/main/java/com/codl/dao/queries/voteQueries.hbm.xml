@@ -28,6 +28,7 @@
 			from Vote V
 			where
 				V.postId = :postId and
+				V.commentId = -1 and
 				V.userId = :userId
         ]]>
      </query>

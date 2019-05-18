@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   FETCH_POSTS,
   FETCH_MORE_POSTS,
+  NEW_POST,
   DELETE_POST,
   DELETE_POST_COMMENT,
   UPVOTE_POST,
@@ -12,6 +13,7 @@ import {
   USER_DOWNVOTE_POST,
   USER_REMOVE_VOTE_POST
 } from "./types";
+import { fetchTags } from "./tagActions";
 
 const apiUrl = "http://localhost:8080/post";
 
@@ -97,43 +99,50 @@ export const removeVotePost = (vote, prevStatus) => dispatch => {
     });
 };
 
-export const createPost = post => dispatch => {
-  axios
-    .post(`${apiUrl}/add`, post)
-    .then(res => {
-      dispatch({
-        type: USER_NEW_POST,
-        payload: res.data
-      });
-      window.location = "/";
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
+export const createPost = post => dispatch =>
+  Promise.resolve(
+    axios
+      .post(`${apiUrl}/add`, post)
+      .then(res => {
+        dispatch({
+          type: USER_NEW_POST,
+          payload: res.data
+        });
+        dispatch({
+          type: NEW_POST,
+          payload: res.data
+        });
+        dispatch(fetchTags());
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  );
 
-export const deletePost = id => dispatch => {
-  axios
-    .post(`${apiUrl}/delete`, id, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(() => {
-      dispatch({
-        type: USER_DELETE_POST,
-        payload: id
-      });
-      dispatch({
-        type: DELETE_POST,
-        payload: id
-      });
-      dispatch({
-        type: DELETE_POST_COMMENT,
-        payload: id
-      });
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
+export const deletePost = id => dispatch =>
+  Promise.resolve(
+    axios
+      .post(`${apiUrl}/delete`, id, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(() => {
+        dispatch({
+          type: USER_DELETE_POST,
+          payload: id
+        });
+        dispatch({
+          type: DELETE_POST,
+          payload: id
+        });
+        dispatch({
+          type: DELETE_POST_COMMENT,
+          payload: id
+        });
+        dispatch(fetchTags());
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  );

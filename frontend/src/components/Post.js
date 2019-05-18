@@ -72,10 +72,12 @@ class Post extends Component {
     }
   }
 
-  onClick(id) {
-    this.props.deletePost(id);
+  onDelete(id) {
     if (this.props.isExpanded) {
       this.props.history.push("/");
+      this.props.deletePost(id);
+    } else {
+      this.props.deletePost(id);
     }
   }
 
@@ -168,7 +170,7 @@ class Post extends Component {
                 className="delete-button"
                 onClick={e => {
                   e.preventDefault();
-                  this.onClick(this.props.data.id);
+                  this.onDelete(this.props.data.id);
                 }}
               >
                 DELETE

@@ -40,7 +40,7 @@ class Comment extends Component {
     }
   }
 
-  onClick(id) {
+  onDelete(id) {
     this.props.deleteComment(id);
   }
 
@@ -95,7 +95,7 @@ class Comment extends Component {
               <button
                 className="delete-button"
                 onClick={() => {
-                  this.onClick(this.props.data.id);
+                  this.onDelete(this.props.data.id);
                 }}
               >
                 DELETE
@@ -128,6 +128,7 @@ const CommentWrapper = styled.div`
   border: 1px solid #dbdbdb;
   margin-bottom: 10px;
   padding: 15px 15px;
+
   .profile-pic {
     height: 33px;
     width: 33px;

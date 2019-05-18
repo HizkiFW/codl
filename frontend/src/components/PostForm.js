@@ -53,10 +53,12 @@ class PostForm extends Component {
       description: this.state.description,
       language: this.state.language,
       dateCreation: Date.now(),
-      user:this.props.auth
+      user: this.props.auth
     };
 
-    this.props.createPost(post);
+    this.props.createPost(post).then(() => {
+      this.props.history.push("/");
+    });
   }
 
   render() {

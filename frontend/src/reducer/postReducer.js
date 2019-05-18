@@ -1,6 +1,7 @@
 import {
   FETCH_POSTS,
   FETCH_MORE_POSTS,
+  NEW_POST,
   DELETE_POST,
   UPVOTE_POST,
   DOWNVOTE_POST
@@ -27,6 +28,11 @@ export default function(state = initialState, action) {
           action.payload.length > 0
             ? state.items.concat(action.payload)
             : state.items
+      };
+    case NEW_POST:
+      return {
+        ...state,
+        items: [action.payload, ...state.items]
       };
     case DELETE_POST:
       return {
