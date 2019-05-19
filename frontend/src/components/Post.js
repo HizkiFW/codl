@@ -30,6 +30,14 @@ class Post extends Component {
     require(`brace/mode/${this.props.data.language}`);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.data === undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   upvotePost(id) {
     this.props.upvotePost({
       postId: id,
@@ -73,7 +81,9 @@ class Post extends Component {
   }
 
   onDelete(id) {
-    this.props.deletePost(id).then(this.props.history.push("/"));
+    this.props.deletePost(id).then(() => {
+      this.props.history.push("/");
+    });
   }
 
   render() {
