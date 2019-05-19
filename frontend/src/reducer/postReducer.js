@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   items: [],
-  hasMore: true
+  hasMore: false
 };
 
 export default function(state = initialState, action) {
@@ -17,13 +17,13 @@ export default function(state = initialState, action) {
     case FETCH_POSTS:
       return {
         ...state,
-        hasMore: action.payload.length > 0 ? true : false,
+        hasMore: (action.payload.length !== 0 && action.payload.length % 5 === 0) ? true : false,
         items: action.payload
       };
     case FETCH_MORE_POSTS:
       return {
         ...state,
-        hasMore: action.payload.length > 0 ? true : false,
+        hasMore: (action.payload.length !== 0 && action.payload.length % 5 === 0) ? true : false,
         items:
           action.payload.length > 0
             ? state.items.concat(action.payload)

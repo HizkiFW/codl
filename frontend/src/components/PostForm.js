@@ -68,10 +68,9 @@ class PostForm extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="d-flex">
             <div className="p-1 flex-grow-1 col-8">
-              <label htmlFor="exampleInputEmail1">Title</label>
+              <label>Title</label>
               <input
                 className="form-control"
-                id="exampleInputEmail1"
                 spellCheck="false"
                 onChange={this.onChange}
                 name="title"
@@ -112,10 +111,9 @@ class PostForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea3">Description</label>
+            <label>Description</label>
             <textarea
               className="form-control"
-              id="exampleFormControlTextarea3"
               spellCheck="false"
               rows="2"
               onChange={this.onChange}

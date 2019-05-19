@@ -73,12 +73,7 @@ class Post extends Component {
   }
 
   onDelete(id) {
-    if (this.props.isExpanded) {
-      this.props.history.push("/");
-      this.props.deletePost(id);
-    } else {
-      this.props.deletePost(id);
-    }
+    this.props.deletePost(id).then(this.props.history.push("/"));
   }
 
   render() {
@@ -165,7 +160,8 @@ class Post extends Component {
           </div>
           <div className="ml-auto">
             {this.props.auth &&
-            this.props.auth.id === this.props.data.user.id ? (
+            this.props.auth.id === this.props.data.user.id &&
+            this.props.isExpanded ? (
               <button
                 className="delete-button"
                 onClick={e => {
