@@ -1,3 +1,10 @@
 node_modules
 /target/
 src/main/resources/static/dist/
+.classpath
+.project
+.settings/
+package-lock.json
+src/main/js/utils/oauth.js
+src/main/resources/application.properties
+
