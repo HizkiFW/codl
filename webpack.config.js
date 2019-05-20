@@ -18,11 +18,11 @@ module.exports = {
     devtool: "source-map",
 
     //This property defines where the application starts
-    entry: './src/index.js',
+    entry: './src/main/js/index.js',
 
     //This property defines the file path and the file name which will be used for deploying the bundled file
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, './src/main/resources/static/dist'),
         filename: 'bundle.js',
         publicPath: '/'
     },
@@ -79,8 +79,8 @@ module.exports = {
     // Setup plugin to use a HTML file for serving bundled js files
     plugins: [
         new HtmlWebpackPlugin({
-            template: './public/index.html',
-            favicon: './public/img/favicon.ico',
+            template: './src/main/resources/static/index.html',
+            favicon: './src/main/resources/static/img/favicon.ico',
         }),
         extractPlugin,
         new CleanWebpackPlugin(),
@@ -94,7 +94,7 @@ module.exports = {
             start_url: '/',
             icons: [
                 {
-                    src: path.resolve('public/img/favicon.ico'),
+                    src: path.resolve('./src/main/resources/static/img/favicon.ico'),
                     sizes: [16, 24, 32, 64],
                     destination: path.join('img')
                 }

@@ -20,7 +20,7 @@ import { persistor, store } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import styled from "styled-components";
 import Portal from "./utils/Portal";
-import { cowsay } from "../public/cowsay.js";
+import { cowsay } from "../resources/static/cowsay.js";
 
 class App extends Component {
   state = { showPrint: true };

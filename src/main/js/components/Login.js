@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { signIn } from "../actions/authActions";
 import { closeModal } from "../actions/modalActions";
-import rms from "../../public/img/rms.jpg";
+import rms from "../../resources/static/img/rms.jpg";
 import { CLIENT_ID } from "../utils/oauth";
 
 class Login extends Component {
