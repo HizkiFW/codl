@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FETCH_TAGS } from "./types";
 
-const apiUrl = "http://localhost:8080/tag";
+const apiUrl = API_URL + "tag";
 
 export const fetchTags = () => dispatch => {
   axios

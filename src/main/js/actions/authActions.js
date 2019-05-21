@@ -2,7 +2,7 @@ import axios from "axios";
 import { AUTH_USER, AUTH_ERROR } from "./types";
 import { closeModal } from "./modalActions";
 
-const apiUrl = "http://localhost:8080/auth";
+const apiUrl = API_URL + "auth";
 
 export const signIn = code => dispatch =>
   Promise.resolve(

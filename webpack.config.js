@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -7,6 +8,13 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const extractPlugin = new ExtractTextPlugin({
     filename: 'bundle.css'
 });
+
+var API_URL = {
+	    production: JSON.stringify('https://codl.dev/api/'),
+	    development: JSON.stringify('http://localhost:8080/api/')
+}
+
+var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
 
@@ -99,6 +107,9 @@ module.exports = {
                     destination: path.join('img')
                 }
             ]
+        }),
+        new webpack.DefinePlugin({
+        	'API_URL': API_URL[environment]
         })
     ]
 }

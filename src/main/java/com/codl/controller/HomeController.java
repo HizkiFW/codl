@@ -8,7 +8,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "dist/index.html";
+		return "index.html";
 	}
 
 }

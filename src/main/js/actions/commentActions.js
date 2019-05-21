@@ -11,7 +11,7 @@ import {
   USER_DELETE_COMMENT
 } from "./types";
 
-const apiUrl = "http://localhost:8080/comment";
+const apiUrl = API_URL + "comment";
 
 export const fetchComments = postId => dispatch => {
   axios

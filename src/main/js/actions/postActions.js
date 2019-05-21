@@ -15,7 +15,7 @@ import {
 } from "./types";
 import { fetchTags } from "./tagActions";
 
-const apiUrl = "http://localhost:8080/post";
+const apiUrl = API_URL + "post";
 
 export const fetchPosts = (filter, type) => dispatch => {
   axios
