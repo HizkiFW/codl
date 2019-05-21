@@ -1,7 +1,7 @@
 node_modules
 /target/
-src/main/resources/static/dist/
 .classpath
+src/main/webapp/dist/
 .project
 .settings/
 package-lock.json
