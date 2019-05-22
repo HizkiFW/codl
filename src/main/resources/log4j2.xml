@@ -8,12 +8,6 @@
 				pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
 
-		<!-- File Appender -->
-		<File name="File" fileName="./app.log">
-			<PatternLayout
-				pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
-		</File>
-
 	</Appenders>
 	<Loggers>
 
@@ -35,18 +29,15 @@
 		<Logger name="org.hibernate.SQL" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="File" />
 		</Logger>
 
 		<!-- Log custom packages -->
 		<Logger name="com.codl" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="File" />
 		</Logger>
 
 		<Root level="error">
 			<AppenderRef ref="Console" />
-			<AppenderRef ref="File" />
 		</Root>
 	</Loggers>
 </Configuration>

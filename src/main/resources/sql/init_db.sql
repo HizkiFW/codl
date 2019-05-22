@@ -6,9 +6,9 @@ GRANT ALL privileges ON CODL.* TO 'tomcat'@'localhost';
 
 FLUSH PRIVILEGES;
 
-insert into CODL.USER values (1, "2010-04-02 15:28:22", "tekkenMaster");
-insert into CODL.POST values (1, "<html>Hello World</html>", "2010-04-02 15:28:22", "This is the first code", "html", "Title 1", 10, 1);
-insert into CODL.POST values (2, "<html>LOLOLOL</html>","2010-04-02 15:28:22", "This is the first code", "java", "Title 2", 190, 1);
-
-insert into CODL.COMMENT values (1, "2010-04-02 15:28:22", 1, "This is a comment", 15, 1);
-insert into CODL.COMMENT values (2, "2010-04-02 15:28:22", 1, "Mortal Kombat", 2, 1);
+create table CODL.COMMENT (ID bigint not null auto_increment, DATE_CREATION datetime(6) not null, POST_ID bigint, TEXT text not null, USER_ID bigint not null, primary key (ID)) engine=InnoDB;
+create table CODL.POST (ID bigint not null auto_increment, CODE text not null, DATE_CREATION datetime(6) not null, DESCRIPTION text, LANGUAGE varchar(255) not null, TITLE varchar(255) not null, USER_ID bigint not null, primary key (ID)) engine=InnoDB;
+create table CODL.USER (ID bigint not null auto_increment, DATE_CREATION datetime(6), EMAIL varchar(255), NAME varchar(255), URL_AVATAR varchar(255), USERNAME varchar(255), primary key (ID)) engine=InnoDB;
+create table CODL.VOTE (ID bigint not null auto_increment, COMMENT_ID bigint, POST_ID bigint, USER_ID bigint not null, VALUE bigint not null, primary key (ID)) engine=InnoDB;
+alter table CODL.COMMENT add constraint FKc4guf2g3mhm8dd6rvogse4wb0 foreign key (USER_ID) references USER (ID);
+alter table CODL.POST add constraint FKk57duahs09p84ac63gbqbvx9v foreign key (USER_ID) references USER (ID);

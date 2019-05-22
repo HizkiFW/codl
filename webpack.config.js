@@ -14,6 +14,11 @@ var API_URL = {
 	    development: JSON.stringify('http://localhost:8080/api/')
 }
 
+var URL = {
+	    production: JSON.stringify('https://codl.dev/'),
+	    development: JSON.stringify('http://localhost:3000/')
+}
+
 var environment = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
@@ -109,7 +114,8 @@ module.exports = {
             ]
         }),
         new webpack.DefinePlugin({
-        	'API_URL': API_URL[environment]
+        	'API_URL': API_URL[environment],
+        	'URL': URL[environment]
         })
     ]
 }

@@ -55,7 +55,7 @@ class Login extends Component {
               {loading ? <Spinner /> : null}
               <GitHubLogin
                 clientId={CLIENT_ID}
-                redirectUri="http://localhost:3000/"
+                redirectUri={URL}
                 onSuccess={data => {
                   this.onSuccess(data);
                 }}
