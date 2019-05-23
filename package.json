@@ -13,6 +13,7 @@
     "react": "^16.8.4",
     "react-ace": "^6.4.0",
     "react-dom": "^16.8.4",
+    "react-ga": "^2.5.7",
     "react-github-login": "^1.0.3",
     "react-infinite-scroll-component": "^4.5.2",
     "react-redux": "^6.0.1",

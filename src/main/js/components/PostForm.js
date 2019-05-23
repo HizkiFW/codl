@@ -119,6 +119,7 @@ class PostForm extends Component {
               onChange={this.onChange}
               name="description"
               value={this.state.description}
+              required
             />
           </div>
           <button type="submit" className="btn btn-primary">

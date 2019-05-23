@@ -22,8 +22,9 @@ class CommentForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onClick() {
+  onClick(e) {
     if (!this.props.auth) {
+      e.preventDefault();
       this.props.showModal();
     }
   }

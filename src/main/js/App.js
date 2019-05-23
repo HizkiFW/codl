@@ -21,6 +21,10 @@ import { PersistGate } from "redux-persist/integration/react";
 import styled from "styled-components";
 import Portal from "./utils/Portal";
 import { cowsay } from "../resources/static/cowsay.js";
+import ReactGA from "react-ga";
+
+ReactGA.initialize("UA-123140197-2");
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
   state = { showPrint: true };
