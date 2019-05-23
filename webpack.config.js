@@ -98,9 +98,9 @@ module.exports = {
         extractPlugin,
         new CleanWebpackPlugin(),
         new WebpackPwaManifest({
-            name: 'My Applications Friendly Name',
-            short_name: 'Application',
-            description: 'Description!',
+            name: 'Codl',
+            short_name: 'Codl',
+            description: 'Share cool pieces of code',
             background_color: '#01579b',
             theme_color: '#01579b',
             'theme-color': '#01579b',

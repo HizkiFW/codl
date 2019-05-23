@@ -159,4 +159,8 @@ const PostFormWrapper = styled.div`
   .select {
     z-index: 5;
   }
+
+  textarea:invalid {
+    box-shadow: none;
+  }
 `;
