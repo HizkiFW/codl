@@ -43,6 +43,9 @@ class Navbar extends Component {
                 >
                   Sign Out
                 </button>
+                <NavLink to="/submit" className="dropdown-item">
+                  Share Code
+                </NavLink>
               </div>
             </div>
           ) : null}
