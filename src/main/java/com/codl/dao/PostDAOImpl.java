@@ -52,11 +52,13 @@ public class PostDAOImpl implements PostDAO {
 		post.setId(id);
 		return post;
 	}
-	
+
 	@Override
 	public void deletePost(long id) {
-		this.sessionFactory.getCurrentSession().getNamedQuery("deleteVoteByPostId").setParameter("postId", id).executeUpdate();
-		this.sessionFactory.getCurrentSession().getNamedQuery("deleteCommentByPostId").setParameter("postId", id).executeUpdate();
+		this.sessionFactory.getCurrentSession().getNamedQuery("deleteVoteByPostId").setParameter("postId", id)
+				.executeUpdate();
+		this.sessionFactory.getCurrentSession().getNamedQuery("deleteCommentByPostId").setParameter("postId", id)
+				.executeUpdate();
 		this.sessionFactory.getCurrentSession().getNamedQuery("deletePost").setParameter("postId", id).executeUpdate();
 	}
 
@@ -78,7 +80,8 @@ public class PostDAOImpl implements PostDAO {
 	private void savePostVote(Vote vote) {
 		Vote existingVote = (Vote) this.sessionFactory.getCurrentSession().getNamedQuery("getVoteByPostIdAndUserId")
 				.setParameter("postId", vote.getPostId()).setParameter("userId", vote.getUserId())
-				.setResultTransformer(Transformers.aliasToBean(Vote.class)).getSingleResult();
+				.setResultTransformer(Transformers.aliasToBean(Vote.class)).getResultList().stream().findFirst()
+				.orElse(null);
 		if (existingVote != null) {
 			existingVote.setValue(vote.getValue());
 			this.sessionFactory.getCurrentSession().update(existingVote);

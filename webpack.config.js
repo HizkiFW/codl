@@ -28,7 +28,7 @@ module.exports = {
     },
 
     //Allow to debug on actual source instead of minified
-    devtool: "source-map",
+    //devtool: "source-map",
 
     //This property defines where the application starts
     entry: './src/main/js/index.js',

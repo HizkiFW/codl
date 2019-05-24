@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { createComment } from "../actions/commentActions";
 import { showModal } from "../actions/modalActions";
 import { connect } from "react-redux";
-import $ from "jquery"
+import $ from "jquery";
 
 class CommentForm extends Component {
   constructor(props) {
@@ -25,8 +25,8 @@ class CommentForm extends Component {
 
   onClick(e) {
     if (!this.props.auth) {
-      $("#comment").prop('disabled', true);
-      this.props.showModal();
+      $("#comment").prop("disabled", true);
+      this.props.showModal().then($("#comment").prop("disabled", false));
     }
   }
 

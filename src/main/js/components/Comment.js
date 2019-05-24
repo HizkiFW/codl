@@ -45,6 +45,9 @@ class Comment extends Component {
   }
 
   render() {
+    let author = this.props.data.user.name
+      ? this.props.data.user.name
+      : this.props.data.user.username;
     let date = timeAgo.format(
       new Date(this.props.data.dateCreation),
       "twitter"
@@ -60,7 +63,7 @@ class Comment extends Component {
             <img className="profile-pic" src={this.props.data.user.urlAvatar} />
           </div>
           <div className="">
-            <span className="author">{this.props.data.user.name}</span>
+            <span className="author">{author}</span>
           </div>
           <div className="ml-auto">
             <span className="date">{date}</span>

@@ -56,7 +56,8 @@ public class CommentDAOImpl implements CommentDAO {
 	private void saveCommentVote(Vote vote) {
 		Vote existingVote = (Vote) this.sessionFactory.getCurrentSession().getNamedQuery("getVoteByCommentIdAndUserId")
 				.setParameter("commentId", vote.getCommentId()).setParameter("userId", vote.getUserId())
-				.setResultTransformer(Transformers.aliasToBean(Vote.class)).getSingleResult();
+				.setResultTransformer(Transformers.aliasToBean(Vote.class)).getResultList().stream().findFirst()
+				.orElse(null);
 		if (existingVote != null) {
 			existingVote.setValue(vote.getValue());
 			this.sessionFactory.getCurrentSession().update(existingVote);

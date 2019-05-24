@@ -10,7 +10,7 @@ export default class Welcome extends Component {
         </div>
         <div className="card-body rounded">
           <p className="card-text">
-            Share and discuss the best/coolest piece of code you have ever seen!
+            Share and discuss the coolest pieces of code you have ever seen!
           </p>
         </div>
       </CardContainer>

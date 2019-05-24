@@ -87,6 +87,9 @@ class Post extends Component {
   }
 
   render() {
+    let author = this.props.data.user.name
+      ? this.props.data.user.name
+      : this.props.data.user.username;
     let date = timeAgo.format(
       new Date(this.props.data.dateCreation),
       "twitter"
@@ -108,7 +111,7 @@ class Post extends Component {
               <span className="title">{this.props.data.title}</span>
             </div>
             <span className="author">
-              {this.props.data.user.name}・{date}
+              {author}・{date}
             </span>
           </div>
           <div className="ml-auto">
