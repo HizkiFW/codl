@@ -40,6 +40,7 @@ class Post extends Component {
 
   upvotePost(id) {
     this.props.upvotePost({
+      commentId: -1,
       postId: id,
       userId: this.props.auth.id,
       value: 1
@@ -48,6 +49,7 @@ class Post extends Component {
 
   downvotePost(id) {
     this.props.downvotePost({
+      commentId: -1,
       postId: id,
       userId: this.props.auth.id,
       value: -1
@@ -57,6 +59,7 @@ class Post extends Component {
   removeVotePost(prevStatus, id) {
     this.props.removeVotePost(
       {
+        commentId: -1,
         postId: id,
         userId: this.props.auth.id,
         value: 0

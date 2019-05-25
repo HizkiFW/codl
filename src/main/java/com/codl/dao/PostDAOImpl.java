@@ -83,6 +83,7 @@ public class PostDAOImpl implements PostDAO {
 				.setResultTransformer(Transformers.aliasToBean(Vote.class)).getResultList().stream().findFirst()
 				.orElse(null);
 		if (existingVote != null) {
+			vote.setCommentId(-1);
 			existingVote.setValue(vote.getValue());
 			this.sessionFactory.getCurrentSession().update(existingVote);
 		} else {
