@@ -256,7 +256,7 @@ export function getLanguageTheme(language) {
     ["sass", ["LightSeaGreen", "Tomato"]],
     ["scad", ["NavajoWhite", "PowderBlue"]],
     ["scala", ["Moccasin", "Cornsilk"]],
-    ["scheme", ["MediumAquaMarine", "Coral"]],
+    ["scheme", ["darkred", "Coral"]],
     ["scss", ["BlueViolet", "LightPink"]],
     ["sh", ["Red", "Black"]],
     ["sjs", ["Chocolate", "MediumOrchid"]],
