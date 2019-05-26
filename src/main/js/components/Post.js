@@ -100,7 +100,7 @@ class Post extends Component {
     let numberOfComments = this.getComments(this.props.data.numberOfComments);
     return (
       <PostWrapper>
-        <div className="d-flex mb-3 align-items-center">
+        <div className="d-flex mb-3">
           <div className="mr-2">
             <img className="profile-pic" src={this.props.data.user.urlAvatar} />
           </div>
