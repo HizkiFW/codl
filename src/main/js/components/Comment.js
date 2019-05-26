@@ -147,6 +147,7 @@ const CommentWrapper = styled.div`
   }
   .text {
     margin-bottom: 15px;
+    white-space: pre-wrap;
   }
   .delete-button {
     font-size: 0.8em;
