@@ -241,6 +241,7 @@ const PostWrapper = styled.div`
   }
   .description {
     line-height: 1.35em;
+    white-space: pre-wrap;
   }
   #ace {
     margin-bottom: 10px;
