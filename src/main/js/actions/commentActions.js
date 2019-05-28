@@ -13,23 +13,24 @@ import {
 
 const apiUrl = API_URL + "comment";
 
-export const fetchComments = postId => dispatch => {
-  axios
-    .post(`${apiUrl}/getAll`, postId, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => {
-      dispatch({
-        type: FETCH_COMMENTS,
-        payload: res.data
-      });
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
+export const fetchComments = postId => dispatch =>
+  Promise.resolve(
+    axios
+      .post(`${apiUrl}/getAll`, postId, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => {
+        dispatch({
+          type: FETCH_COMMENTS,
+          payload: res.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  );
 
 export const createComment = comment => dispatch => {
   axios

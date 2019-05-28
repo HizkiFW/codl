@@ -18,7 +18,7 @@ class Login extends Component {
   onSuccess = response => {
     if (response !== undefined) {
       this.setState({ loading: true }, () => {
-        this.props.signIn(response).then(result =>
+        this.props.signIn(response).then(() =>
           this.setState({
             loading: false
           })
