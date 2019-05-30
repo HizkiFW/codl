@@ -3,24 +3,37 @@ import Post from "./Post";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { fetchPosts, fetchMorePosts } from "../actions/postActions";
+import { fetchPosts } from "../actions/postActions";
 import ChronoFilter from "./ChronoFilter";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Spinner from "./Spinner";
 
 class FilteredPosts extends Component {
-  state = {
-    start: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      start: 0,
+      loading: false // will be true when ajax request is running
+    };
+  }
 
   componentWillMount() {
-    this.props.fetchPosts(
-      {
-        start: this.state.start,
-        language: this.props.match.params.lang,
-        chrono: this.props.match.params.chrono
-      },
-      ""
-    );
+    this.setState({ loading: true }, () => {
+      this.props
+        .fetchPosts(
+          {
+            start: this.state.start,
+            language: this.props.match.params.lang,
+            chrono: this.props.match.params.chrono
+          },
+          ""
+        )
+        .then(() =>
+          this.setState({
+            loading: false
+          })
+        );
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,13 +41,21 @@ class FilteredPosts extends Component {
       nextProps.match.params.lang !== this.props.match.params.lang ||
       nextProps.match.params.chrono !== this.props.match.params.chrono
     ) {
-      this.props.fetchPosts(
-        {
-          language: nextProps.match.params.lang,
-          chrono: nextProps.match.params.chrono
-        },
-        ""
-      );
+      this.setState({ loading: true }, () => {
+        this.props
+          .fetchPosts(
+            {
+              language: nextProps.match.params.lang,
+              chrono: nextProps.match.params.chrono
+            },
+            ""
+          )
+          .then(() =>
+            this.setState({
+              loading: false
+            })
+          );
+      });
     }
   }
 
@@ -53,6 +74,7 @@ class FilteredPosts extends Component {
   };
 
   render() {
+    const { loading } = this.state;
     let sortByNew =
       this.props.match.params.chrono === "new" ||
       typeof this.props.match.params.chrono === "undefined"
@@ -71,14 +93,18 @@ class FilteredPosts extends Component {
           lang={this.props.match.params.lang}
           sortByNew={sortByNew}
         />
-        <InfiniteScroll
-          dataLength={this.props.posts.length}
-          next={this.fetchMoreData}
-          hasMore={this.props.hasMore}
-          loader={<h4 className="text-center">Loading...</h4>}
-        >
-          {postItems}
-        </InfiniteScroll>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <InfiniteScroll
+            dataLength={this.props.posts.length}
+            next={this.fetchMoreData}
+            hasMore={this.props.hasMore}
+            loader={<h4 className="text-center">Loading...</h4>}
+          >
+            {postItems}
+          </InfiniteScroll>
+        )}
       </div>
     );
   }

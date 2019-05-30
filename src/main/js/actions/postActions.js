@@ -17,31 +17,32 @@ import { fetchTags } from "./tagActions";
 
 const apiUrl = API_URL + "post";
 
-export const fetchPosts = (filter, type) => dispatch => {
-  axios
-    .post(`${apiUrl}/getAll`, filter)
-    .then(res => {
-      if (type === "MORE") {
-        dispatch({
-          type: FETCH_MORE_POSTS,
-          payload: res.data
-        });
-      } else {
-        dispatch({
-          type: FETCH_POSTS,
-          payload: res.data
-        });
-      }
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
+export const fetchPosts = (filter, type) => dispatch =>
+  Promise.resolve(
+    axios
+      .post(`${apiUrl}/getAll`, filter)
+      .then(res => {
+        if (type === "MORE") {
+          dispatch({
+            type: FETCH_MORE_POSTS,
+            payload: res.data
+          });
+        } else {
+          dispatch({
+            type: FETCH_POSTS,
+            payload: res.data
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  );
 
 export const upvotePost = vote => dispatch => {
   axios
     .post(`${apiUrl}/upvote`, vote)
-    .then(res => {
+    .then(() => {
       dispatch({
         type: USER_UPVOTE_POST,
         payload: vote
@@ -59,7 +60,7 @@ export const upvotePost = vote => dispatch => {
 export const downvotePost = vote => dispatch => {
   axios
     .post(`${apiUrl}/downvote`, vote)
-    .then(res => {
+    .then(() => {
       dispatch({
         type: USER_DOWNVOTE_POST,
         payload: vote
@@ -77,7 +78,7 @@ export const downvotePost = vote => dispatch => {
 export const removeVotePost = (vote, prevStatus) => dispatch => {
   axios
     .post(`${apiUrl}/removeVote`, vote)
-    .then(res => {
+    .then(() => {
       dispatch({
         type: USER_REMOVE_VOTE_POST,
         payload: vote
