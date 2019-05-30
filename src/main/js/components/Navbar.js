@@ -1,13 +1,22 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonContainer } from "./Button";
 import { connect } from "react-redux";
 import { signOut } from "../actions/authActions";
+import { showModal } from "../actions/modalActions";
 
 class Navbar extends Component {
-  onClick() {
+  onSignOutClick() {
     this.props.signOut();
+  }
+
+  onShareCodeClick() {
+    if (this.props.auth) {
+      this.props.history.push("/submit");
+    } else {
+      this.props.showModal();
+    }
   }
 
   render() {
@@ -25,9 +34,15 @@ class Navbar extends Component {
           />
         </form>
         <div>
-          <NavLink to="/submit" className="d-none d-md-inline-block mr-3">
-            <ButtonContainer>SHARE CODE</ButtonContainer>
-          </NavLink>
+          <div className="d-none d-md-inline-block mr-3">
+            <ButtonContainer
+              onClick={() => {
+                this.onShareCodeClick();
+              }}
+            >
+              SHARE CODE
+            </ButtonContainer>
+          </div>
           {this.props.auth ? (
             <div className="dropdown show d-inline-block">
               <button data-toggle="dropdown" className="profile-button">
@@ -38,7 +53,7 @@ class Navbar extends Component {
                 <button
                   className="dropdown-item"
                   onClick={() => {
-                    this.onClick();
+                    this.onSignOutClick();
                   }}
                 >
                   Sign Out
@@ -60,13 +75,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  signOut
+  signOut,
+  showModal
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Navbar);
+)(withRouter(Navbar));
 
 const NavWrapper = styled.nav`
   background: #24292e;
