@@ -6,21 +6,34 @@ import { Link } from "react-router-dom";
 import { fetchPosts } from "../actions/postActions";
 import ChronoFilter from "./ChronoFilter";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Spinner from "./Spinner";
 
 class Posts extends Component {
-  state = {
-    start: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      start: 0,
+      loading: false // will be true when ajax request is running
+    };
+  }
 
   componentWillMount() {
-    this.props.fetchPosts(
-      {
-        start: this.state.start,
-        language: "all",
-        chrono: "new"
-      },
-      ""
-    );
+    this.setState({ loading: true }, () => {
+      this.props
+        .fetchPosts(
+          {
+            start: this.state.start,
+            language: "all",
+            chrono: "new"
+          },
+          ""
+        )
+        .then(() =>
+          this.setState({
+            loading: false
+          })
+        );
+    });
   }
 
   fetchMoreData = () => {
@@ -38,6 +51,7 @@ class Posts extends Component {
   };
 
   render() {
+    const { loading } = this.state;
     const postItems = this.props.posts.map(post => (
       <PostsWrapper key={post.id}>
         <Link to={`/post/${post.id}`}>
@@ -48,14 +62,18 @@ class Posts extends Component {
     return (
       <div>
         <ChronoFilter lang="all" sortByNew={true} />
-        <InfiniteScroll
-          dataLength={this.props.posts.length}
-          next={this.fetchMoreData}
-          hasMore={this.props.hasMore}
-          loader={<h4 className="text-center">Loading...</h4>}
-        >
-          {postItems}
-        </InfiniteScroll>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <InfiniteScroll
+            dataLength={this.props.posts.length}
+            next={this.fetchMoreData}
+            hasMore={this.props.hasMore}
+            loader={<h4 className="text-center">Loading...</h4>}
+          >
+            {postItems}
+          </InfiniteScroll>
+        )}
       </div>
     );
   }
