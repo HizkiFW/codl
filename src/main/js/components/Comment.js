@@ -10,12 +10,19 @@ import {
   removeVoteComment,
   deleteComment
 } from "../actions/commentActions";
+import $ from "jquery";
 
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
 class Comment extends Component {
+  toggleHeart() {
+    document.getElementById("like-button").classList.toggle("fas");
+    document.getElementById("like-button").classList.toggle("far");
+  }
+
   upvoteComment(comment) {
+    this.toggleHeart();
     this.props.upvoteComment({
       commentId: comment.id,
       postId: comment.postId,
@@ -25,6 +32,7 @@ class Comment extends Component {
   }
 
   removeVote(comment) {
+    this.toggleHeart();
     this.props.removeVoteComment({
       commentId: comment.id,
       postId: comment.postId,
@@ -45,6 +53,9 @@ class Comment extends Component {
   }
 
   render() {
+    let isHeartSolid =
+      this.props.auth && this.getVoteStatus(this.props.data.id) === 1;
+
     let author = this.props.data.user.name
       ? this.props.data.user.name
       : this.props.data.user.username;
@@ -82,7 +93,11 @@ class Comment extends Component {
               upvoteContent={
                 <i
                   id="like-button"
-                  className="upvote-icon far fa-heart not-liked"
+                  className={
+                    "upvote-icon" +
+                    (isHeartSolid ? " fas " : " far ") +
+                    "fa-heart not-liked"
+                  }
                 />
               }
               afterContent={this.props.data.voteCount}

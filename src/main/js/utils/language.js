@@ -196,7 +196,7 @@ export function getLanguageTheme(language) {
     ["haskell_cabal", ["DarkGoldenRod", "LightYellow"]],
     ["haxe", ["LightCyan", "MediumAquaMarine"]],
     ["hjson", ["Orchid", "MediumTurquoise"]],
-    ["html", ["LightSteelBlue", "PapayaWhip"]],
+    ["html", ["darkviolet", "lightgray"]],
     ["html_elixir", ["HoneyDew", "LightGray"]],
     ["html_ruby", ["DarkSlateGray", "NavajoWhite"]],
     ["ini", ["LightGreen", "SlateGrey"]],

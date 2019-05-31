@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { createComment } from "../actions/commentActions";
 import { showModal } from "../actions/modalActions";
 import { connect } from "react-redux";
-import $ from "jquery";
 
 class CommentForm extends Component {
   constructor(props) {
@@ -25,8 +24,7 @@ class CommentForm extends Component {
 
   onClick(e) {
     if (!this.props.auth) {
-      $("#comment").prop("disabled", true);
-      this.props.showModal().then($("#comment").prop("disabled", false));
+      this.props.showModal();
     }
   }
 
@@ -64,6 +62,7 @@ class CommentForm extends Component {
               id="comment"
               value={this.state.text}
               required
+              disabled={this.props.isModalOpen}
             />
           </div>
           <div className="text-right">
@@ -78,7 +77,8 @@ class CommentForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth.authenticated
+  auth: state.auth.authenticated,
+  isModalOpen: state.modal.showModal
 });
 
 const mapDispatchToProps = {

@@ -38,6 +38,7 @@ export const CardContainer = styled.div`
 
   a {
     text-decoration: none;
+    outline: none;
   }
 
   .list-group {
