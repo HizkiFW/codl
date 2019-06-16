@@ -233,7 +233,7 @@ export function getLanguageTheme(language) {
     ["nix", ["Gray", "Turquoise"]],
     ["nsis", ["Cyan", "CadetBlue"]],
     ["objectivec", ["RoyalBlue", "DarkOrchid"]],
-    ["ocaml", ["Magenta", "RoyalBlue"]],
+    ["ocaml", ["Magenta", "purple"]],
     ["pascal", ["Chartreuse", "RebeccaPurple"]],
     ["perl", ["PaleGoldenRod", "Olive"]],
     ["pgsql", ["Grey", "Indigo "]],
