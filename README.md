@@ -1,5 +1,11 @@
+# codl
 
-__________________________
+A place to share and discuss the coolest pieces of code out there.
+
+[https://codl.dev](https://codl.dev)
+
+```
+ __________________________
 < WHAT ARE YOU LOOKING AT? >
  --------------------------
         \   ^__^
@@ -7,3 +13,4 @@ __________________________
             (__)\       )\/\
                 ||----w |
                 ||     ||
+```
